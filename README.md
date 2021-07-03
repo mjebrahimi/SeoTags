@@ -68,7 +68,7 @@ public void ConfigureServices(IServiceCollection services)
     @Html.SeoTags()
 ```
 
-### 4. Configure SEO info it in your view
+### 4. Configure SEO info in your view
 ```csharp
 @{
     //ViewData["Title"] = "Home Page";
