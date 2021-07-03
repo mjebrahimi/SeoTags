@@ -1,0 +1,43 @@
+﻿@{
+    //ViewData["Title"] = "Home Page";
+    Html.SetSeoInfo(seoInfo =>
+    {
+        seoInfo.SetCommonInfo(
+            pageTitle: "SEO Tags for ASP.NET Core",
+            description: "Create all SEO tags you need such as meta, link, twitter card (twitter:), open graph (og:), and ...",
+            url: "https://site.com/url/",
+            keywordTags: new[] { "SEO", "AspNetCore", "MVC", "RazorPages" },
+            seeAlsoUrls: new[] { "https://site.com/see-also-1", "https://site.com/see-also-2" });
+
+        seoInfo.SetImageInfo(
+            url: "https://site.com/uploads/image.jpg",
+            width: 1280,
+            height: 720,
+            alt: "Image alt",
+            //mimeType: "image/jpeg", //optional: detect from url file extension
+            cardType: SeoTags.TwitterCardType.SummaryLargeImage);
+
+        seoInfo.SetArticleInfo(
+            authorName: "Author Name",
+            publishDate: DateTimeOffset.Now,
+            modifiedDate: DateTimeOffset.Now,
+            authorTwitterId: "@MyTwitterId",
+            authorFacebookId: "https://facebook.com/MyUserId",
+            authorUrl: "https://github.com/author-profile",
+            section: "SEO");
+
+        seoInfo.AddFeed("Post Comments", "https://site.com/post/comment/rss", SeoTags.FeedType.Rss);
+
+        //seoInfo.SetCommonInfo(
+        //    title: "SEO Helper for ASP.NET Core",
+        //    description: "Create all SEO tags you need such as meta, link, twitter card (twitter:), open graph (og:), and ...",
+        //    url: "https://site.com/url/",
+        //    keywordTags: new[] { "SEO", "AspNetCore", "MVC", "RazorPages" });
+        //seoInfo.SetImageInfo(url: "https://site.com/uploads/image.jpg");
+    });
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
