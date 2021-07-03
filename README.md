@@ -180,6 +180,10 @@ public void ConfigureServices(IServiceCollection services)
 ...
 ```
 
+## Note
+- This package does not generate **favicon** tags. Use [realfavicongenerator.net](https://realfavicongenerator.net/) to generate favicon tags. 
+- Generation of **JSON-LD** is in progress and not yet available .
+
 ## Contributing
 
 Create an [issue](https://github.com/mjebrahimi/SeoTags/issues/new) if you find a BUG or have a Suggestion or Question. If you want to develop this project :
