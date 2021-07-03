@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeoTags", "SeoTags\SeoTags.csproj", "{79B6DCB0-A90A-4FAE-8991-54E8B074238E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeoTags", "src\SeoTags\SeoTags.csproj", "{79B6DCB0-A90A-4FAE-8991-54E8B074238E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeoTags.Sample", "SeoTags.Sample\SeoTags.Sample.csproj", "{1E4A16D9-D32A-4861-A16D-E159BFCAE242}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeoTags.Sample", "src\SeoTags.Sample\SeoTags.Sample.csproj", "{1E4A16D9-D32A-4861-A16D-E159BFCAE242}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
