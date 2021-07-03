@@ -99,7 +99,7 @@ public void ConfigureServices(IServiceCollection services)
             authorTwitterId: "@MyTwitterId",  //optional
             authorFacebookId: "https://facebook.com/MyUserId",  //optional
             authorUrl: "https://github.com/author-profile",  //optional
-            section: "SEO"  //optional
+            section: "Article Topic"  //optional
         );
 
         //Add another rss feed. (only for this page) (optional)
@@ -163,13 +163,13 @@ public void ConfigureServices(IServiceCollection services)
 <meta property="og:image:secure_url" content="https://site.com/uploads/image.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="1280" />
-<meta property="og:image:height" content="SEO Tags for ASP.NET Core" />
+<meta property="og:image:height" content="720" />
 <meta property="og:image:alt" content="Image alt" />
 <meta property="article:publisher" content="https://facebook.com/MySite" />
 <meta property="article:author" content="https://facebook.com/MyUserId" />
 <meta property="article:published_time" content="2021-07-03T13:34:41+00:00" />
 <meta property="article:modified_time" content="2021-07-03T13:34:41+00:00" />
-<meta property="article:section" content="SEO" />
+<meta property="article:section" content="Article Topic" />
 <meta property="article:tag" content="SEO" />
 <meta property="article:tag" content="AspNetCore" />
 <meta property="article:tag" content="MVC" />

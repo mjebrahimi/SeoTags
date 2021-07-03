@@ -231,7 +231,7 @@ namespace SeoTags
             if (ImageUrl is not null)
             {
                 builder.Append("<meta property=\"og:image\" content=\"").Append(ImageUrl).AppendLine("\" />");
-                if (ImageUrl?.StartsWith("https:", StringComparison.OrdinalIgnoreCase) is true)
+                if (ImageUrl.StartsWith("https:", StringComparison.OrdinalIgnoreCase) is true)
                     builder.Append("<meta property=\"og:image:secure_url\" content=\"").Append(ImageUrl).AppendLine("\" />");
                 if (ImageMimeType is not null)
                     builder.Append("<meta property=\"og:image:type\" content=\"").Append(ImageMimeType).AppendLine("\" />");
@@ -239,8 +239,8 @@ namespace SeoTags
                     builder.Append("<meta property=\"og:image:type\" content=\"").Append(type).AppendLine("\" />");
                 if (ImageWidth is not null)
                     builder.Append("<meta property=\"og:image:width\" content=\"").Append(ImageWidth).AppendLine("\" />");
-                if (Title is not null)
-                    builder.Append("<meta property=\"og:image:height\" content=\"").Append(Title).AppendLine("\" />");
+                if (ImageHeight is not null)
+                    builder.Append("<meta property=\"og:image:height\" content=\"").Append(ImageHeight).AppendLine("\" />");
                 if (ImageAlt is not null)
                     builder.Append("<meta property=\"og:image:alt\" content=\"").Append(ImageAlt).AppendLine("\" />");
             }
@@ -268,7 +268,7 @@ namespace SeoTags
 
                 case OpenGraphType.Video when VideoUrl is not null:
                     builder.Append("<meta property=\"og:video\" content=\"").Append(VideoUrl).AppendLine("\" />");
-                    if (VideoUrl?.StartsWith("https:", StringComparison.OrdinalIgnoreCase) is true)
+                    if (VideoUrl.StartsWith("https:", StringComparison.OrdinalIgnoreCase) is true)
                         builder.Append("<meta property=\"og:video:secure_url\" content=\"").Append(VideoUrl).AppendLine("\" />");
                     if (VideoWidth is not null)
                         builder.Append("<meta property=\"og:video:width\" content=\"").Append(VideoWidth).AppendLine("\" />");
@@ -290,7 +290,7 @@ namespace SeoTags
 
                 case OpenGraphType.Audio when AudioUrl is not null:
                     builder.Append("<meta property=\"og:audio\" content=\"").Append(AudioUrl).AppendLine("\" />");
-                    if (AudioUrl?.StartsWith("https:", StringComparison.OrdinalIgnoreCase) is true)
+                    if (AudioUrl.StartsWith("https:", StringComparison.OrdinalIgnoreCase) is true)
                         builder.Append("<meta property=\"og:audio:secure_url\" content=\"").Append(AudioUrl).AppendLine("\" />");
                     if (AudioMimeType is not null)
                         builder.Append("<meta property=\"og:audio:type\" content=\"").Append(AudioMimeType).AppendLine("\" />");
