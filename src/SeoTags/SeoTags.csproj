@@ -16,8 +16,7 @@
     <Description>
       SeoTags create all SEO tags you need such as meta, link, twitter card (twitter:), open graph (og:), and JSON-LD schema (structred data).
     </Description>
-    <!--SiteMap Robots.txt JSON-LD-->
-    <PackageTags>SEO JSON-LD AspNetCore MVC RazorPages HtmlHelper</PackageTags>
+    <PackageTags>SEO OpenGraph JSON-LD SiteMap Robots.txt AspNetCore MVC RazorPages HtmlHelper</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/mjebrahimi/SeoTags</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mjebrahimi/SeoTags</RepositoryUrl>
