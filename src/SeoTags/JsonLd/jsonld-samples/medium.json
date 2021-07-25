@@ -1,0 +1,35 @@
+{
+    "@context": "http:\u002F\u002Fschema.org",
+    "@type": "NewsArticle",
+    "image": [
+        "https:\u002F\u002Fmiro.medium.com\u002Fmax\u002F1200\u002F0*Iq2h-z8AclVbkJlM"
+    ],
+    "url": "https:\u002F\u002Fjber595.medium.com\u002Fintro-to-web-api-c-net-97bf0bc54de1",
+    "dateCreated": "2021-06-24T14:38:48.598Z",
+    "datePublished": "2021-06-24T14:38:48.598Z",
+    "dateModified": "2021-06-24T14:38:59.202Z",
+    "headline": "Intro to Web API — C#, .NET - Ibrahim Jaber - Medium",
+    "name": "Intro to Web API — C#, .NET - Ibrahim Jaber - Medium",
+    "description": "The demand for modern applications is increasing. every modern application requires some sort of data repository that can provide consistent data and also the ability to read and write this data in…",
+    "identifier": "97bf0bc54de1",
+    "author": {
+        "@type": "Person",
+        "name": "Ibrahim Jaber",
+        "url": "https:\u002F\u002Fjber595.medium.com"
+    },
+    "creator": [
+        "Ibrahim Jaber"
+    ],
+    "publisher": {
+        "@type": "Organization",
+        "name": "Medium",
+        "url": "https:\u002F\u002Fjber595.medium.com\u002F",
+        "logo": {
+            "@type": "ImageObject",
+            "width": 308,
+            "height": 60,
+            "url": "https:\u002F\u002Fmiro.medium.com\u002Fmax\u002F616\u002F1*OMF3fSqH8t4xBJ9-6oZDZw.png"
+        }
+    },
+    "mainEntityOfPage": "https:\u002F\u002Fjber595.medium.com\u002Fintro-to-web-api-c-net-97bf0bc54de1"
+}

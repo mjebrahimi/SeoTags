@@ -1,0 +1,95 @@
+{
+    "@context": "http://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "author": {
+                "@id": "https://moz.com#identity"
+            },
+            "copyrightHolder": {
+                "@id": "https://moz.com#identity"
+            },
+            "copyrightYear": "2019",
+            "creator": {
+                "@id": "https://moz.com#creator"
+            },
+            "dateModified": "2021-06-24T15:51:48-07:00",
+            "datePublished": "2019-04-01T12:53:00-07:00",
+            "description": "New to SEO? Looking for higher rankings and traffic through Search Engine Optimization? The Beginner's Guide to SEO has been read over 10 million times.",
+            "headline": "Beginner's Guide to SEO [Search Engine Optimization]",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://moz.com/cms/_1200x630_crop_center-center_82_none/BGSEO_intro_V3-01.png?mtime=20190327131722&focal=none&tmtime=20210628145917"
+            },
+            "inLanguage": "en-us",
+            "mainEntityOfPage": "https://moz.com/beginners-guide-to-seo",
+            "name": "Beginner's Guide to SEO [Search Engine Optimization]",
+            "publisher": {
+                "@id": "https://moz.com#creator"
+            },
+            "url": "https://moz.com/beginners-guide-to-seo"
+        },
+        {
+            "@id": "https://moz.com#identity",
+            "@type": "Organization",
+            "image": {
+                "@type": "ImageObject",
+                "height": "252",
+                "url": "https://moz.com/cms/Moz-logo-blue.jpg?mtime=20170419135148&focal=none",
+                "width": "862"
+            },
+            "logo": {
+                "@type": "ImageObject",
+                "height": "60",
+                "url": "https://moz.com/cms/_600x60_fit_center-center_82_none/5147/Moz-logo-blue.png?mtime=20170419135148&focal=none&tmtime=20210628145909",
+                "width": "205"
+            },
+            "name": "Moz",
+            "sameAs": [
+                "https://twitter.com/Moz",
+                "https://www.facebook.com/moz/",
+                "https://www.linkedin.com/company/moz/",
+                "https://www.youtube.com/channel/UCs26XZBwrSZLiTEH8wcoVXw",
+                "https://www.instagram.com/moz_hq/"
+            ],
+            "url": "https://moz.com"
+        },
+        {
+            "@id": "https://moz.com#creator",
+            "@type": "Organization",
+            "image": {
+                "@type": "ImageObject",
+                "height": "252",
+                "url": "https://moz.com/cms/Moz-logo-blue.jpg?mtime=20170419135148&focal=none",
+                "width": "862"
+            },
+            "logo": {
+                "@type": "ImageObject",
+                "height": "60",
+                "url": "https://moz.com/cms/_600x60_fit_center-center_82_none/5147/Moz-logo-blue.png?mtime=20170419135148&focal=none&tmtime=20210628145909",
+                "width": "205"
+            },
+            "name": "Moz",
+            "url": "https://moz.com"
+        },
+        {
+            "@type": "BreadcrumbList",
+            "description": "Breadcrumbs list",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "item": "https://moz.com",
+                    "name": "Homepage",
+                    "position": 1
+                },
+                {
+                    "@type": "ListItem",
+                    "item": "https://moz.com/beginners-guide-to-seo",
+                    "name": "Introduction",
+                    "position": 2
+                }
+            ],
+            "name": "Breadcrumbs"
+        }
+    ]
+}

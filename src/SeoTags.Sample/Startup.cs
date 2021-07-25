@@ -25,7 +25,8 @@ namespace SeoTags.Sample
                     siteTitle: "My Site Title",
                     siteTwitterId: "@MySiteTwitter",
                     siteFacebookId: "https://facebook.com/MySite",
-                    openSearchUrl: "https://site.com/open-search.xml");
+                    openSearchUrl: "https://site.com/open-search.xml",
+                    robots: "index, follow");
 
                 seoInfo.AddFeed(
                     title: "Post Feeds",

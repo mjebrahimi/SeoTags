@@ -12,7 +12,7 @@
     <Product>SeoTags</Product>
     <Authors>Mohammad Javad Ebrahimi</Authors>
     <Company>Mohammad Javad Ebrahimi</Company>
-    <Copyright>Copyright © Mohammad Javad Ebrahimi 2020</Copyright>
+    <Copyright>Copyright © Mohammad Javad Ebrahimi 2021</Copyright>
     <Description>
       SeoTags create all SEO tags you need such as meta, link, twitter card (twitter:), open graph (og:), and JSON-LD schema (structred data).
     </Description>
@@ -52,16 +52,29 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Schema.NET" Version="10.0.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="FavIcon.cs" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="JsonLd\jsonld-samples\**" />
+    <EmbeddedResource Remove="JsonLd\jsonld-samples\**" />
+    <None Remove="JsonLd\jsonld-samples\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="FavIcon.cs" />
+    <Compile Remove="JsonLd\JsonLd2.cs" />
+    <Compile Remove="JsonLd\OnyOfThese.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="icon.psd" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)\icon.png" Pack="true" PackagePath="" />

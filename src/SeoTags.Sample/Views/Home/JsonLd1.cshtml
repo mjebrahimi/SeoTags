@@ -1,0 +1,293 @@
+﻿@using SeoTags
+
+@{
+    var product = new ProductInfo
+    {
+        Url = "https://site.com/product-url/",
+        Name = "Product Name",
+        AlternateName = "Product AlternateName",
+        Description = "Product Description",
+        Category = "Product Category",
+        Identifier = "12345",
+        Brand = new BrandInfo
+        {
+            Name = "Brand Name"
+        },
+        Images = new[]
+        {
+            new ImageInfo()
+            {
+                Url = "https://site.com/uploads/image-1.jpg",
+                Caption = "Image Name",
+                InLanguage = "en-US",
+                Width = 1280,
+                Height = 720
+            },
+            new ImageInfo()
+            {
+                Url = "https://site.com/uploads/image-2.jpg",
+                Caption = "Image Name 2",
+                InLanguage = "en-US",
+                Width = 1280,
+                Height = 720
+            }
+        },
+        AggregateRating = new AggregateRatingInfo()
+        {
+            BestRating = 5.0,
+            WorstRating = 1.0,
+            RatingValue = 4.5,
+            RatingCount = 123,
+        },
+        Reviews = new[]
+        {
+            new ReviewInfo()
+            {
+                BestRating = 5.0,
+                WorstRating = 1.0,
+                RatingValue = 4.5,
+                Description = "Review Description 1",
+                AuthorName = "Review Author 1",
+                AuthorUrl = "https://site.com/author1"
+            },
+            new ReviewInfo()
+            {
+                BestRating = 5.0,
+                WorstRating = 1.0,
+                RatingValue = 5.0,
+                Description = "Review Description 2",
+                AuthorName = "Review Author 2",
+                AuthorUrl = "https://site.com/author2"
+            }
+        },
+        Offers = new[]
+        {
+            new OfferInfo()
+            {
+                Price = 1500,
+                PriceCurrency = "USD",
+                Url = "https://site.com/product-url/",
+                PriceValidUntil = DateTime.Now.AddDays(10)
+            },
+            new OfferInfo()
+            {
+                Price = 1499,
+                PriceCurrency = "USD",
+                Url = "https://site.com/product-url/",
+                PriceValidUntil = DateTime.Now.AddDays(15)
+            }
+        }
+    };
+
+    Html.SetSeoInfo(seoInfo =>
+    {
+        seoInfo.JsonLd.AddProduct(product);
+    });
+}
+
+<div>
+    <h1>JSON-LD Sample 1 (Nested Values)</h1>
+    <p>
+        <a href="https://github.com/mjebrahimi/SeoTags">SeoTags</a> create all SEO tags you need such as meta, link, twitter card (twitter:), open graph (og:), and JSON-LD schema (structred data)
+    </p>
+</div>
+
+
+<h4>Usage Code:</h4>
+<pre>
+<code class="language-cs">var product = new ProductInfo
+{
+    Url = "https://site.com/product-url/",
+    Name = "Product Name",
+    AlternateName = "Product AlternateName",
+    Description = "Product Description",
+    Category = "Product Category",
+    Identifier = "12345",
+    Brand = new BrandInfo
+    {
+        Name = "Brand Name"
+    },
+    Images = new[]
+    {
+        new ImageInfo()
+        {
+            Url = "https://site.com/uploads/image-1.jpg",
+            Caption = "Image Name",
+            InLanguage = "en-US",
+            Width = 1280,
+            Height = 720
+        },
+        new ImageInfo()
+        {
+            Url = "https://site.com/uploads/image-2.jpg",
+            Caption = "Image Name 2",
+            InLanguage = "en-US",
+            Width = 1280,
+            Height = 720
+        }
+    },
+    AggregateRating = new AggregateRatingInfo()
+    {
+        BestRating = 5.0,
+        WorstRating = 1.0,
+        RatingValue = 4.5,
+        RatingCount = 123,
+    },
+    Reviews = new[]
+    {
+        new ReviewInfo()
+        {
+            BestRating = 5.0,
+            WorstRating = 1.0,
+            RatingValue = 4.5,
+            Description = "Review Description 1",
+            AuthorName = "Review Author 1",
+            AuthorUrl = "https://site.com/author1"
+        },
+        new ReviewInfo()
+        {
+            BestRating = 5.0,
+            WorstRating = 1.0,
+            RatingValue = 5.0,
+            Description = "Review Description 2",
+            AuthorName = "Review Author 2",
+            AuthorUrl = "https://site.com/author2"
+        }
+    },
+    Offers = new[]
+    {
+        new OfferInfo()
+        {
+            Price = 1500,
+            PriceCurrency = "USD",
+            Url = "https://site.com/product-url/",
+            PriceValidUntil = DateTime.Now.AddDays(10)
+        },
+        new OfferInfo()
+        {
+            Price = 1499,
+            PriceCurrency = "USD",
+            Url = "https://site.com/product-url/",
+            PriceValidUntil = DateTime.Now.AddDays(15)
+        }
+    }
+};
+
+Html.SetSeoInfo(seoInfo =>
+{
+    seoInfo.JsonLd.AddProduct(product);
+});</code>
+</pre>
+
+<h4>Rendred Output:</h4>
+<pre>
+<code class="language-json">&lt;script type="application/ld+json"&gt;
+{
+    "@@context": "https://schema.org",
+    "@@graph": [
+        {
+            "@@type": "Product",
+            "@@id": "https://site.com/product-url/#product",
+            "name": "Product Name",
+            "description": "Product Description",
+            "alternateName": "Product AlternateName",
+            "image": [
+                {
+                    "@@type": "ImageObject",
+                    "@@id": "https://site.com/uploads/image-1.jpg#image",
+                    "url": "https://site.com/uploads/image-1.jpg",
+                    "inLanguage": "en-US",
+                    "contentUrl": "https://site.com/uploads/image-1.jpg",
+                    "height": "720",
+                    "width": "1280",
+                    "caption": "Image Name"
+                },
+                {
+                    "@@type": "ImageObject",
+                    "@@id": "https://site.com/uploads/image-2.jpg#image",
+                    "url": "https://site.com/uploads/image-2.jpg",
+                    "inLanguage": "en-US",
+                    "contentUrl": "https://site.com/uploads/image-2.jpg",
+                    "height": "720",
+                    "width": "1280",
+                    "caption": "Image Name 2"
+                }
+            ],
+            "url": "https://site.com/product-url/",
+            "aggregateRating": {
+                "@@type": "AggregateRating",
+                "bestRating": 5.0,
+                "ratingValue": 4.5,
+                "worstRating": 1.0,
+                "ratingCount": 123,
+                "reviewCount": 123
+            },
+            "brand": {
+                "@@type": "Brand",
+                "name": "Brand Name"
+            },
+            "category": "Product Category",
+            "mpn": "12345",
+            "offers": {
+                "@@type": "AggregateOffer",
+                "priceCurrency": "USD",
+                "highPrice": 1500.0,
+                "lowPrice": 1499.0,
+                "offerCount": 2,
+                "offers": [
+                    {
+                        "@@type": "Offer",
+                        "url": "https://site.com/product-url/",
+                        "price": 1500.0,
+                        "priceCurrency": "USD",
+                        "priceValidUntil": "2021-08-03"
+                    },
+                    {
+                        "@@type": "Offer",
+                        "url": "https://site.com/product-url/",
+                        "price": 1499.0,
+                        "priceCurrency": "USD",
+                        "priceValidUntil": "2021-08-08"
+                    }
+                ]
+            },
+            "review": [
+                {
+                    "@@type": "Review",
+                    "description": "Review Description 1",
+                    "author": {
+                        "@@type": "Person",
+                        "name": "Review Author 1",
+                        "url": "https://site.com/author1"
+                    },
+                    "reviewBody": "Review Description 1",
+                    "reviewRating": {
+                        "@@type": "Rating",
+                        "bestRating": 5.0,
+                        "ratingValue": 4.5,
+                        "worstRating": 1.0
+                    }
+                },
+                {
+                    "@@type": "Review",
+                    "description": "Review Description 2",
+                    "author": {
+                        "@@type": "Person",
+                        "name": "Review Author 2",
+                        "url": "https://site.com/author2"
+                    },
+                    "reviewBody": "Review Description 2",
+                    "reviewRating": {
+                        "@@type": "Rating",
+                        "bestRating": 5.0,
+                        "ratingValue": 5.0,
+                        "worstRating": 1.0
+                    }
+                }
+            ],
+            "sku": "12345"
+        }
+    ]
+}
+&lt;/script&gt;</code>
+</pre>

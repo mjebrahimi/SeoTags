@@ -1,11 +1,11 @@
-﻿using SeoTags;
-using Microsoft.AspNetCore.Html;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Text;
-
-namespace Microsoft.AspNetCore.Mvc.Rendering
+﻿namespace Microsoft.AspNetCore.Mvc.Rendering
 {
+    using SeoTags;
+    using Microsoft.AspNetCore.Html;
+    using Microsoft.Extensions.DependencyInjection;
+    using System;
+    using System.Text;
+
     /// <summary>
     /// HtmlHelper extensions for seo tags
     /// </summary>
@@ -40,10 +40,18 @@ namespace Microsoft.AspNetCore.Mvc.Rendering
         public static IHtmlContent SeoTags(this IHtmlHelper _, SeoInfo seoInfo)
         {
             var builder = new StringBuilder();
-            seoInfo.MetaLink.Render(builder);
-            seoInfo.TwitterCard.Render(builder);
-            seoInfo.OpenGraph.Render(builder);
+            seoInfo.Render(builder);
             return new HtmlString(builder.ToString());
+        }
+
+        /// <summary>
+        /// Render Meta tags and link tags.
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        public static IHtmlContent MetaLink(this IHtmlHelper htmlHelper)
+        {
+            var seoInfo = htmlHelper.ViewContext.HttpContext.RequestServices.GetRequiredService<SeoInfo>();
+            return htmlHelper.MetaLink(seoInfo.MetaLink);
         }
 
         /// <summary>
@@ -51,7 +59,6 @@ namespace Microsoft.AspNetCore.Mvc.Rendering
         /// </summary>
         /// <param name="_">The HTML helper.</param>
         /// <param name="metaLink">The meta link.</param>
-        /// <returns>Output</returns>
         public static IHtmlContent MetaLink(this IHtmlHelper _, MetaLink metaLink)
         {
             var builder = new StringBuilder();
@@ -62,9 +69,18 @@ namespace Microsoft.AspNetCore.Mvc.Rendering
         /// <summary>
         /// Render twitter card tags (twitter: meta tags)
         /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        public static IHtmlContent TwitterCard(this IHtmlHelper htmlHelper)
+        {
+            var seoInfo = htmlHelper.ViewContext.HttpContext.RequestServices.GetRequiredService<SeoInfo>();
+            return htmlHelper.TwitterCard(seoInfo.TwitterCard);
+        }
+
+        /// <summary>
+        /// Render twitter card tags (twitter: meta tags)
+        /// </summary>
         /// <param name="_">The HTML helper.</param>
         /// <param name="twitterCard">The twitter card.</param>
-        /// <returns>Output</returns>
         public static IHtmlContent TwitterCard(this IHtmlHelper _, TwitterCard twitterCard)
         {
             var builder = new StringBuilder();
@@ -75,28 +91,51 @@ namespace Microsoft.AspNetCore.Mvc.Rendering
         /// <summary>
         /// Render open graph tags (og: meta tags)
         /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        public static IHtmlContent OpenGraph(this IHtmlHelper htmlHelper)
+        {
+            var seoInfo = htmlHelper.ViewContext.HttpContext.RequestServices.GetRequiredService<SeoInfo>();
+            return htmlHelper.OpenGraph(seoInfo.OpenGraph);
+        }
+
+        /// <summary>
+        /// Render open graph tags (og: meta tags)
+        /// </summary>
         /// <param name="_">The HTML helper.</param>
         /// <param name="openGraph">The open graph.</param>
-        /// <returns>Output</returns>
         public static IHtmlContent OpenGraph(this IHtmlHelper _, OpenGraph openGraph)
         {
             var builder = new StringBuilder();
             openGraph.Render(builder);
             return new HtmlString(builder.ToString());
-        }
 
-        //public static IHtmlContent Icon(this IHtmlHelper _, FavIcon favIcon)
-        //{
-        //    //Microsoft.AspNetCore.Html.HtmlContentBuilder
-        //    //Microsoft.AspNetCore.Html.HtmlContentBuilderExtensions
-        //    //Microsoft.AspNetCore.Html.HtmlString (warp encoded html string)
-        //    //Microsoft.AspNetCore.Html.HtmlFormattableString (same as HtmlString but formattable string)
-        //    //Microsoft.AspNetCore.Mvc.ViewFeatures.StringHtmlContent (encode input string when writen)
-        //    //Microsoft.AspNetCore.Mvc.Rendering.TagBuilder (html tag builder)
-        //
-        //    var builder = new StringBuilder();
-        //    favIcon.Render(builder);
-        //    return new HtmlString(builder.ToString());
-        //}
+            //Microsoft.AspNetCore.Html.HtmlContentBuilder
+            //Microsoft.AspNetCore.Html.HtmlContentBuilderExtensions
+            //Microsoft.AspNetCore.Html.HtmlString (warp encoded html string)
+            //Microsoft.AspNetCore.Html.HtmlFormattableString (same as HtmlString but formattable string)
+            //Microsoft.AspNetCore.Mvc.ViewFeatures.StringHtmlContent (encode input string when writen)
+            //Microsoft.AspNetCore.Mvc.Rendering.TagBuilder (html tag builder)
+        }
     }
 }
+
+//namespace Microsoft.AspNetCore.Mvc
+//{
+//    using SeoTags;
+//    using Microsoft.AspNetCore.Html;
+//    using Microsoft.Extensions.DependencyInjection;
+//    using System;
+//    using System.Text;
+//    using Microsoft.AspNetCore.Http;
+
+//    /// <summary>
+//    /// Sets the seo information.
+//    /// </summary>
+//    /// <param name="httpContext">The http context.</param>
+//    /// <param name="config">The configuration.</param>
+//    public static void SetSeoInfo(this HttpContext httpContext, Action<SeoInfo> config)
+//    {
+//        var seoInfo = httpContext.RequestServices.GetRequiredService<SeoInfo>();
+//        config(seoInfo);
+//    }
+//}

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -35,12 +34,12 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the DNS prefetch urls. (create both rel='preconnect' and rel='dns-prefetch' link tags)
         /// </summary>
-        public List<string> DnsPrefetchUrls { get; set; } = new List<string>();
+        public List<string> DnsPrefetchUrls { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the preloads. (create rel='preload' link tag).
         /// </summary>
-        public List<Preload> Preloads { get; set; } = new List<Preload>();
+        public List<Preload> Preloads { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the site title. (final title generate from SiteTitle and PageTitle by TitleFormat)
@@ -65,7 +64,7 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the keywords. (create name='keywords' meta tag)
         /// </summary>
-        public List<string> Keywords { get; set; } = new List<string>();
+        public List<string> Keywords { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the canonical URL. (create rel='canonical' link tag)
@@ -105,7 +104,12 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the feeds. (create application/rss+xml and application/atom+xml link tags)
         /// </summary>
-        public List<Feed> Feeds { get; set; } = new List<Feed>();
+        public List<Feed> Feeds { get; set; } = new();
+
+        /// <summary>
+        /// Gets or sets the robots meta tag.
+        /// </summary>
+        public string Robots { get; set; }
         #endregion
 
         #region Methods
@@ -115,81 +119,102 @@ namespace SeoTags
         /// <param name="builder">The builder.</param>
         public void Render(StringBuilder builder)
         {
-            TitleFormat.EnsureNotNull(nameof(TitleFormat));
-            SiteTitle.EnsureNotNull(nameof(SiteTitle));
-            PageTitle.EnsureNotNull(nameof(PageTitle));
-            Description.EnsureNotNull(nameof(Description));
+            TitleFormat.EnsureNotNullOrWhiteSpace(nameof(TitleFormat));
 
-            if (Charset is not null)
-                builder.Append("<meta charset=\"").Append(Charset).AppendLine("\" />");
-            if (ContentType is not null)
-                builder.Append("<meta http-equiv=\"Content-Type\" content=\"").Append(ContentType).AppendLine("\" />");
-            if (XUACompatible is not null)
-                builder.Append("<meta http-equiv=\"X-UA-Compatible\" content=\"").Append(XUACompatible).AppendLine("\" />");
-            if (ViewPort is not null)
-                builder.Append("<meta name=\"viewport\" content=\"").Append(ViewPort).AppendLine("\" />");
+            if (Charset.IsNotNullOrWhiteSpace())
+                builder.Append("<meta charset=\"").Append(Charset.HtmlEncode()).AppendLine("\" />");
+            if (ContentType.IsNotNullOrWhiteSpace())
+                builder.Append("<meta http-equiv=\"Content-Type\" content=\"").Append(ContentType.HtmlEncode()).AppendLine("\" />");
+            if (XUACompatible.IsNotNullOrWhiteSpace())
+                builder.Append("<meta http-equiv=\"X-UA-Compatible\" content=\"").Append(XUACompatible.HtmlEncode()).AppendLine("\" />");
+            if (ViewPort.IsNotNullOrWhiteSpace())
+                builder.Append("<meta name=\"viewport\" content=\"").Append(ViewPort.HtmlEncode()).AppendLine("\" />");
             builder.AppendLine();
 
-            var dnsPrefetchUrls = DnsPrefetchUrls?.Distinct() ?? new List<string>();
-            foreach (var item in dnsPrefetchUrls)
+            if (DnsPrefetchUrls?.Count > 0)
             {
-                item.EnsureNotNull(nameof(DnsPrefetchUrls), "Has null item");
-                builder.Append("<link rel=\"preconnect\" href=\"").Append(item).AppendLine("\" crossorigin />");
-            }
-            foreach (var item in dnsPrefetchUrls)
-                builder.Append("<link rel=\"dns-prefetch\" href=\"").Append(item).AppendLine("\" />");
-            foreach (var item in Preloads ?? new List<Preload>())
-            {
-                item.EnsureNotNull(nameof(Preloads), "Has null item");
-                var type = item.MimeType ?? Utils.GetContentType(item.Url);
-                var @as = item.As ?? DetectPreloadType(type);
-
-                switch (@as)
+                foreach (var url in DnsPrefetchUrls)
                 {
-                    case PreloadType.Style:
-                    case PreloadType.Script:
-                        builder.Append("<link rel=\"preload\" as=\"").Append(@as.ToDisplay()).Append("\" href=\"").Append(item.Url).AppendLine("\" />");
-                        break;
-                    case PreloadType.Font:
-                        builder.Append("<link rel=\"preload\" as=\"").Append(@as.ToDisplay()).Append("\" type=\"").Append(type).Append("\" href=\"").Append(item.Url).AppendLine("\" crossorigin />");
-                        break;
-                    default:
-                        builder.Append("<link rel=\"preload\" as=\"").Append(@as.ToDisplay()).Append("\" type=\"").Append(type).Append("\" href=\"").Append(item.Url).AppendLine("\" />");
-                        break;
+                    url.EnsureNotNullOrWhiteSpace(nameof(DnsPrefetchUrls), "Has null item");
+                    builder.Append("<link rel=\"preconnect\" href=\"").Append(url).AppendLine("\" crossorigin />");
+                }
+                foreach (var url in DnsPrefetchUrls)
+                    builder.Append("<link rel=\"dns-prefetch\" href=\"").Append(url).AppendLine("\" />");
+            }
+            if (Preloads?.Count > 0)
+            {
+                foreach (var item in Preloads)
+                {
+                    item.EnsureNotNull(nameof(Preloads), "Has null item");
+                    item.Url.EnsureNotNullOrWhiteSpace(nameof(item.Url));
+                    item.As?.EnsureIsValid(nameof(item.As));
+
+                    var url = item.Url;
+                    var type = item.MimeType?.HtmlEncode() ?? Utilities.GetContentType(url);
+                    var @as = item.As ?? DetectPreloadType(type);
+
+                    switch (@as)
+                    {
+                        case PreloadType.Style:
+                        case PreloadType.Script:
+                            builder.Append("<link rel=\"preload\" as=\"").Append(@as.ToDisplay()).Append("\" href=\"").Append(url).AppendLine("\" />");
+                            break;
+                        case PreloadType.Font:
+                            builder.Append("<link rel=\"preload\" as=\"").Append(@as.ToDisplay()).Append("\" type=\"").Append(type).Append("\" href=\"").Append(url).AppendLine("\" crossorigin />");
+                            break;
+                        default:
+                            builder.Append("<link rel=\"preload\" as=\"").Append(@as.ToDisplay()).Append("\" type=\"").Append(type).Append("\" href=\"").Append(url).AppendLine("\" />");
+                            break;
+                    }
                 }
             }
             builder.AppendLine();
 
-            var finalTitle = string.Format(TitleFormat, PageTitle, SiteTitle);
+            var finalTitle = string.Format(TitleFormat, PageTitle, SiteTitle).HtmlEncode();
             builder.Append("<title>").Append(finalTitle).AppendLine("</title>");
             builder.Append("<meta name=\"title\" content=\"").Append(finalTitle).AppendLine("\" />");
-            builder.Append("<meta name=\"description\" content=\"").Append(Description).AppendLine("\" />");
+            if (Description.IsNotNullOrWhiteSpace())
+                builder.Append("<meta name=\"description\" content=\"").Append(Description.HtmlEncode()).AppendLine("\" />");
             if (Keywords?.Count > 0)
             {
-                Keywords.EnsureNotNullItem(nameof(Keywords));
-                builder.Append("<meta name=\"keywords\" content=\"").AppendJoin(", ", Keywords.Distinct()).AppendLine("\" />");
+                var keywords = Keywords.Select(p =>
+                {
+                    p.EnsureNotNullOrWhiteSpace(nameof(Keywords));
+                    return p.HtmlEncode();
+                });
+                builder.Append("<meta name=\"keywords\" content=\"").AppendJoin(", ", keywords).AppendLine("\" />");
             }
 
-            if (AuthorName is not null)
-                builder.Append("<meta name=\"author\" content=\"").Append(AuthorName).AppendLine("\" />");
-            if (AuthorUrl is not null)
+            if (AuthorName.IsNotNullOrWhiteSpace())
+                builder.Append("<meta name=\"author\" content=\"").Append(AuthorName.HtmlEncode()).AppendLine("\" />");
+            if (AuthorUrl.IsNotNullOrWhiteSpace())
                 builder.Append("<link rel=\"author\" href=\"").Append(AuthorUrl).AppendLine("\" />");
-            if (CanonicalUrl is not null)
+            if (CanonicalUrl.IsNotNullOrWhiteSpace())
                 builder.Append("<link rel=\"canonical\" href=\"").Append(CanonicalUrl).AppendLine("\" />");
-            if (PrevUrl is not null)
+            if (PrevUrl.IsNotNullOrWhiteSpace())
                 builder.Append("<link rel=\"prev\" href=\"").Append(PrevUrl).AppendLine("\" />");
-            if (NextUrl is not null)
+            if (NextUrl.IsNotNullOrWhiteSpace())
                 builder.Append("<link rel=\"next\" href=\"").Append(NextUrl).AppendLine("\" />");
-            if (OpenSearchUrl is not null)
+            if (OpenSearchUrl.IsNotNullOrWhiteSpace())
             {
-                OpenSearchTitle.EnsureNotNull(nameof(OpenSearchTitle));
-                builder.Append("<link rel=\"application/opensearchdescription+xml\" title=\"").Append(OpenSearchTitle).Append("\" href=\"").Append(OpenSearchUrl).AppendLine("\" />");
+                OpenSearchUrl.EnsureNotNullOrWhiteSpace(nameof(OpenSearchUrl));
+                OpenSearchTitle.EnsureNotNullOrWhiteSpace(nameof(OpenSearchTitle));
+                builder.Append("<link rel=\"application/opensearchdescription+xml\" title=\"").Append(OpenSearchTitle.HtmlEncode()).Append("\" href=\"").Append(OpenSearchUrl).AppendLine("\" />");
             }
-            foreach (var item in Feeds ?? new List<Feed>())
+            if (Feeds?.Count > 0)
             {
-                item.EnsureNotNull(nameof(Feeds), "Has null item");
-                builder.Append("<link rel=\"alternate\" type=\"").Append(item.FeedType.ToDisplay()).Append("\" title=\"").Append(item.Title).Append("\" href=\"").Append(item.Url).AppendLine("\" />");
+                foreach (var item in Feeds)
+                {
+                    item.EnsureNotNull(nameof(Feeds), "Has null item");
+                    item.Title.EnsureNotNullOrWhiteSpace(nameof(item.Title));
+                    item.Url.EnsureNotNullOrWhiteSpace(nameof(item.Url));
+                    item.FeedType.EnsureIsValid(nameof(item.FeedType));
+
+                    builder.Append("<link rel=\"alternate\" type=\"").Append(item.FeedType.ToDisplay()).Append("\" title=\"").Append(item.Title.HtmlEncode()).Append("\" href=\"").Append(item.Url).AppendLine("\" />");
+                }
             }
+            if (Robots.IsNotNullOrWhiteSpace())
+                builder.Append("<meta name=\"robots\" content=\"").Append(Robots).AppendLine("\" />");
 
             builder.AppendLine();
         }
@@ -200,7 +225,7 @@ namespace SeoTags
         /// <param name="titleFormat">The title format.</param>
         public void SetTitleFormat(string titleFormat = "{0} - {1}")
         {
-            titleFormat.EnsureNotNull(nameof(titleFormat));
+            titleFormat.EnsureNotNullOrWhiteSpace(nameof(titleFormat));
             TitleFormat = titleFormat;
         }
 
@@ -211,8 +236,8 @@ namespace SeoTags
         /// <param name="url">The URL.</param>
         public void SetOpenSearch(string title, string url)
         {
-            title.EnsureNotNull(nameof(title));
-            url.EnsureNotNull(nameof(url));
+            title.EnsureNotNullOrWhiteSpace(nameof(title));
+            url.EnsureNotNullOrWhiteSpace(nameof(url));
 
             OpenSearchTitle = title;
             OpenSearchUrl = url;
@@ -227,9 +252,9 @@ namespace SeoTags
         /// <param name="keywords">The keyword tags.</param>
         public void SetCommonInfo(string pageTitle, string description, string url, IEnumerable<string> keywords = null)
         {
-            pageTitle.EnsureNotNull(nameof(pageTitle));
-            description.EnsureNotNull(nameof(description));
-            url.EnsureNotNull(nameof(url));
+            pageTitle.EnsureNotNullOrWhiteSpace(nameof(pageTitle));
+            description.EnsureNotNullOrWhiteSpace(nameof(description));
+            url.EnsureNotNullOrWhiteSpace(nameof(url));
             keywords?.EnsureNotNullItem(nameof(keywords));
 
             PageTitle = pageTitle;
@@ -268,7 +293,7 @@ namespace SeoTags
         /// <param name="feedType">Type of the feed.</param>
         public void AddFeed(string title, string url, FeedType feedType)
         {
-            Feeds ??= new List<Feed>();
+            Feeds ??= new();
             Feeds.Add(new Feed(title, url, feedType));
         }
 
@@ -280,7 +305,7 @@ namespace SeoTags
         {
             feeds.EnsureNotNullAndNotNullItem(nameof(feeds));
 
-            Feeds ??= new List<Feed>();
+            Feeds ??= new();
             foreach (var feed in feeds)
                 Feeds.Add(feed);
         }
@@ -293,7 +318,7 @@ namespace SeoTags
         {
             feeds.EnsureNotNullAndNotNullItem(nameof(feeds));
 
-            Feeds ??= new List<Feed>();
+            Feeds ??= new();
             foreach (var feed in feeds)
                 Feeds.Add(feed);
         }
@@ -306,7 +331,7 @@ namespace SeoTags
         {
             dnsPrefetchUrls.EnsureNotNullAndNotNullItem(nameof(dnsPrefetchUrls));
 
-            DnsPrefetchUrls ??= new List<string>();
+            DnsPrefetchUrls ??= new();
             foreach (var item in dnsPrefetchUrls)
                 DnsPrefetchUrls.Add(item);
         }
@@ -319,7 +344,7 @@ namespace SeoTags
         {
             dnsPrefetchUrls.EnsureNotNullAndNotNullItem(nameof(dnsPrefetchUrls));
 
-            DnsPrefetchUrls ??= new List<string>();
+            DnsPrefetchUrls ??= new();
             foreach (var item in dnsPrefetchUrls)
                 DnsPrefetchUrls.Add(item);
         }
@@ -332,7 +357,7 @@ namespace SeoTags
         /// <param name="as">The as attrubite.</param>
         public void AddPreload(string url, string mimeType = null, PreloadType? @as = null)
         {
-            Preloads ??= new List<Preload>();
+            Preloads ??= new();
             Preloads.Add(new Preload(url, mimeType, @as));
         }
 
@@ -344,7 +369,7 @@ namespace SeoTags
         {
             preloads.EnsureNotNullAndNotNullItem(nameof(preloads));
 
-            Preloads ??= new List<Preload>();
+            Preloads ??= new();
             foreach (var item in preloads)
                 Preloads.Add(item);
         }
@@ -357,7 +382,7 @@ namespace SeoTags
         {
             preloads.EnsureNotNullAndNotNullItem(nameof(preloads));
 
-            Preloads ??= new List<Preload>();
+            Preloads ??= new();
             foreach (var item in preloads)
                 Preloads.Add(item);
         }
@@ -372,10 +397,10 @@ namespace SeoTags
         /// <param name="keywords">The keywords.</param>
         public static MetaLink CreateNew(string siteTitle, string pageTitle, string description, string canonicalUrl, IEnumerable<string> keywords = null)
         {
-            siteTitle.EnsureNotNull(nameof(siteTitle));
-            pageTitle.EnsureNotNull(nameof(pageTitle));
-            description.EnsureNotNull(nameof(description));
-            canonicalUrl.EnsureNotNull(nameof(canonicalUrl));
+            siteTitle.EnsureNotNullOrWhiteSpace(nameof(siteTitle));
+            pageTitle.EnsureNotNullOrWhiteSpace(nameof(pageTitle));
+            description.EnsureNotNullOrWhiteSpace(nameof(description));
+            canonicalUrl.EnsureNotNullOrWhiteSpace(nameof(canonicalUrl));
             keywords?.EnsureNotNullItem(nameof(keywords));
 
             return new MetaLink
@@ -477,176 +502,5 @@ namespace SeoTags
         <link rel="alternate" type="application/atom+xml" title="@Model.SiteTitle" href="@Model.AtomUrl">
         */
         #endregion
-    }
-
-    /// <summary>
-    /// Feed
-    /// </summary>
-    public class Feed
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Feed"/> class.
-        /// </summary>
-        /// <param name="title">The title.</param>
-        /// <param name="url">The URL.</param>
-        /// <param name="feedType">Type of the feed.</param>
-        public Feed(string title, string url, FeedType feedType)
-        {
-            title.EnsureNotNull(nameof(title));
-            url.EnsureNotNull(nameof(url));
-            feedType.EnsureIsValid(nameof(feedType));
-
-            Title = title;
-            Url = url;
-            FeedType = feedType;
-        }
-
-        /// <summary>
-        /// Gets or sets the title.
-        /// </summary>
-        public string Title { get; set; }
-
-        /// <summary>
-        /// Gets or sets the URL.
-        /// </summary>
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or sets the type of the feed.
-        /// </summary>
-        public FeedType FeedType { get; set; }
-    }
-
-    /// <summary>
-    /// Type of feed
-    /// </summary>
-    public enum FeedType
-    {
-        /// <summary>
-        /// The RSS xml
-        /// </summary>
-        [Display(Name = "application/rss+xml")]
-        Rss,
-
-        /// <summary>
-        /// The atom xml
-        /// </summary>
-        [Display(Name = "application/atom+xml")]
-        Atom
-    }
-
-    /// <summary>
-    /// Preload
-    /// </summary>
-    public class Preload
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Preload"/> class.
-        /// </summary>
-        /// <param name="url">The URL of preload for href attribute.</param>
-        /// <param name="mimeType">MimeType for the type attribute. (Default: if not set, try to detect by url file extension)</param>
-        /// <param name="as">The as attrubite.</param>
-        public Preload(string url, string mimeType = null, PreloadType? @as = null)
-        {
-            url.EnsureNotNull(nameof(url));
-            @as?.EnsureIsValid(nameof(@as));
-
-            Url = url;
-            MimeType = mimeType;
-            As = @as;
-        }
-
-        /// <summary>
-        /// Gets or sets the URL of preload (href attribute).
-        /// </summary>
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or sets the MimeType (type attribute). (Default: if not set, try to detect by url file extension)
-        /// </summary>
-        public string MimeType { get; set; }
-
-        /// <summary>
-        /// Gets or sets vlaue of (as attribute).
-        /// </summary>
-        public PreloadType? As { get; set; }
-    }
-
-    /// <summary>
-    /// Type of preload (as attribute)
-    /// </summary>
-    public enum PreloadType
-    {
-        /// <summary>
-        /// Audio file, as typically used in &lt;audio&gt;.
-        /// </summary>
-        [Display(Name = "audio")]
-        Audio,
-
-        /// <summary>
-        /// An HTML document intended to be embedded by a &lt;frame&gt; or &lt;iframe&gt;.
-        /// </summary>
-        [Display(Name = "document")]
-        Document,
-
-        /// <summary>
-        /// A resource to be embedded inside an &lt;embed&gt; element.
-        /// </summary>
-        [Display(Name = "embed")]
-        Embed,
-
-        /// <summary>
-        /// Resource to be accessed by a fetch or XHR request, such as an ArrayBuffer or JSON file.
-        /// </summary>
-        [Display(Name = "fetch")]
-        Fetch,
-
-        /// <summary>
-        /// Font file.
-        /// </summary>
-        [Display(Name = "font")]
-        Font,
-
-        /// <summary>
-        /// Image file.
-        /// </summary>
-        [Display(Name = "image")]
-        Image,
-
-        /// <summary>
-        /// A resource to be embedded inside an &lt;object&gt; element.
-        /// </summary>
-        [Display(Name = "object")]
-        Object,
-
-        /// <summary>
-        /// JavaScript file.
-        /// </summary>
-        [Display(Name = "script")]
-        Script,
-
-        /// <summary>
-        /// CSS stylesheet.
-        /// </summary>
-        [Display(Name = "style")]
-        Style,
-
-        /// <summary>
-        /// WebVTT file.
-        /// </summary>
-        [Display(Name = "track")]
-        Track,
-
-        /// <summary>
-        /// A JavaScript web worker or shared worker.
-        /// </summary>
-        [Display(Name = "worker")]
-        Worker,
-
-        /// <summary>
-        /// Video file, as typically used in &lt;video&gt;.
-        /// </summary>
-        [Display(Name = "video")]
-        Video
     }
 }

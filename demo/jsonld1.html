@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+<link rel="dns-prefetch" href="https://fonts.gstatic.com/" />
+<link rel="dns-prefetch" href="https://www.google-analytics.com" />
+<link rel="preload" as="style" href="https://site.com/site.css" />
+<link rel="preload" as="script" href="https://site.com/app.js" />
+<link rel="preload" as="font" type="font/woff2" href="https://site.com/fonts/Font.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="https://site.com/fonts/Font_Light.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="https://site.com/fonts/Font_Medium.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="https://site.com/fonts/Font_Bold.woff2" crossorigin />
+
+<title> - My Site Title</title>
+<meta name="title" content=" - My Site Title" />
+<link rel="application/opensearchdescription+xml" title="My Site Title" href="https://site.com/open-search.xml" />
+<link rel="alternate" type="application/rss+xml" title="Post Feeds" href="https://site.com/rss/" />
+<meta name="robots" content="index, follow" />
+
+<meta name="twitter:site" content="@MySiteTwitter" />
+
+<meta property="og:site_name" content="My Site Title" />
+<meta property="og:locale" content="en_US" />
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","@id":"https://site.com/product-url/#product","name":"Product Name","description":"Product Description","alternateName":"Product AlternateName","image":[{"@type":"ImageObject","@id":"https://site.com/uploads/image-1.jpg#image","url":"https://site.com/uploads/image-1.jpg","inLanguage":"en-US","contentUrl":"https://site.com/uploads/image-1.jpg","height":"720","width":"1280","caption":"Image Name"},{"@type":"ImageObject","@id":"https://site.com/uploads/image-2.jpg#image","url":"https://site.com/uploads/image-2.jpg","inLanguage":"en-US","contentUrl":"https://site.com/uploads/image-2.jpg","height":"720","width":"1280","caption":"Image Name 2"}],"url":"https://site.com/product-url/","aggregateRating":{"@type":"AggregateRating","bestRating":5.0,"ratingValue":4.5,"worstRating":1.0,"ratingCount":123,"reviewCount":123},"brand":{"@type":"Brand","name":"Brand Name"},"category":"Product Category","mpn":"12345","offers":{"@type":"AggregateOffer","priceCurrency":"USD","highPrice":1500.0,"lowPrice":1499.0,"offerCount":2,"offers":[{"@type":"Offer","url":"https://site.com/product-url/","price":1500.0,"priceCurrency":"USD","priceValidUntil":"2021-08-04"},{"@type":"Offer","url":"https://site.com/product-url/","price":1499.0,"priceCurrency":"USD","priceValidUntil":"2021-08-09"}]},"review":[{"@type":"Review","description":"Review Description 1","author":{"@type":"Person","name":"Review Author 1","url":"https://site.com/author1"},"reviewBody":"Review Description 1","reviewRating":{"@type":"Rating","bestRating":5.0,"ratingValue":4.5,"worstRating":1.0}},{"@type":"Review","description":"Review Description 2","author":{"@type":"Person","name":"Review Author 2","url":"https://site.com/author2"},"reviewBody":"Review Description 2","reviewRating":{"@type":"Rating","bestRating":5.0,"ratingValue":5.0,"worstRating":1.0}}],"sku":"12345"}]}</script>
+
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/site.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/base16/one-light.min.css" />
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/xcode.min.css" />-->
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">SeoTags.Sample</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="index.html">[Demo Sample]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="jsonld1.html">[JSON-LD Sample 1]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="jsonld2.html">[JSON-LD Sample 2]</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            
+
+<div>
+    <h1>JSON-LD Sample 1 (Nested Values)</h1>
+    <p>
+        <a href="https://github.com/mjebrahimi/SeoTags">SeoTags</a> create all SEO tags you need such as meta, link, twitter card (twitter:), open graph (og:), and JSON-LD schema (structred data)
+    </p>
+</div>
+
+
+<h4>Usage Code:</h4>
+<pre>
+<code class="language-cs">var product = new ProductInfo
+{
+    Url = "https://site.com/product-url/",
+    Name = "Product Name",
+    AlternateName = "Product AlternateName",
+    Description = "Product Description",
+    Category = "Product Category",
+    Identifier = "12345",
+    Brand = new BrandInfo
+    {
+        Name = "Brand Name"
+    },
+    Images = new[]
+    {
+        new ImageInfo()
+        {
+            Url = "https://site.com/uploads/image-1.jpg",
+            Caption = "Image Name",
+            InLanguage = "en-US",
+            Width = 1280,
+            Height = 720
+        },
+        new ImageInfo()
+        {
+            Url = "https://site.com/uploads/image-2.jpg",
+            Caption = "Image Name 2",
+            InLanguage = "en-US",
+            Width = 1280,
+            Height = 720
+        }
+    },
+    AggregateRating = new AggregateRatingInfo()
+    {
+        BestRating = 5.0,
+        WorstRating = 1.0,
+        RatingValue = 4.5,
+        RatingCount = 123,
+    },
+    Reviews = new[]
+    {
+        new ReviewInfo()
+        {
+            BestRating = 5.0,
+            WorstRating = 1.0,
+            RatingValue = 4.5,
+            Description = "Review Description 1",
+            AuthorName = "Review Author 1",
+            AuthorUrl = "https://site.com/author1"
+        },
+        new ReviewInfo()
+        {
+            BestRating = 5.0,
+            WorstRating = 1.0,
+            RatingValue = 5.0,
+            Description = "Review Description 2",
+            AuthorName = "Review Author 2",
+            AuthorUrl = "https://site.com/author2"
+        }
+    },
+    Offers = new[]
+    {
+        new OfferInfo()
+        {
+            Price = 1500,
+            PriceCurrency = "USD",
+            Url = "https://site.com/product-url/",
+            PriceValidUntil = DateTime.Now.AddDays(10)
+        },
+        new OfferInfo()
+        {
+            Price = 1499,
+            PriceCurrency = "USD",
+            Url = "https://site.com/product-url/",
+            PriceValidUntil = DateTime.Now.AddDays(15)
+        }
+    }
+};
+
+Html.SetSeoInfo(seoInfo =>
+{
+    seoInfo.JsonLd.AddProduct(product);
+});</code>
+</pre>
+
+<h4>Rendred Output:</h4>
+<pre>
+<code class="language-json">&lt;script type="application/ld+json"&gt;
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Product",
+            "@id": "https://site.com/product-url/#product",
+            "name": "Product Name",
+            "description": "Product Description",
+            "alternateName": "Product AlternateName",
+            "image": [
+                {
+                    "@type": "ImageObject",
+                    "@id": "https://site.com/uploads/image-1.jpg#image",
+                    "url": "https://site.com/uploads/image-1.jpg",
+                    "inLanguage": "en-US",
+                    "contentUrl": "https://site.com/uploads/image-1.jpg",
+                    "height": "720",
+                    "width": "1280",
+                    "caption": "Image Name"
+                },
+                {
+                    "@type": "ImageObject",
+                    "@id": "https://site.com/uploads/image-2.jpg#image",
+                    "url": "https://site.com/uploads/image-2.jpg",
+                    "inLanguage": "en-US",
+                    "contentUrl": "https://site.com/uploads/image-2.jpg",
+                    "height": "720",
+                    "width": "1280",
+                    "caption": "Image Name 2"
+                }
+            ],
+            "url": "https://site.com/product-url/",
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "bestRating": 5.0,
+                "ratingValue": 4.5,
+                "worstRating": 1.0,
+                "ratingCount": 123,
+                "reviewCount": 123
+            },
+            "brand": {
+                "@type": "Brand",
+                "name": "Brand Name"
+            },
+            "category": "Product Category",
+            "mpn": "12345",
+            "offers": {
+                "@type": "AggregateOffer",
+                "priceCurrency": "USD",
+                "highPrice": 1500.0,
+                "lowPrice": 1499.0,
+                "offerCount": 2,
+                "offers": [
+                    {
+                        "@type": "Offer",
+                        "url": "https://site.com/product-url/",
+                        "price": 1500.0,
+                        "priceCurrency": "USD",
+                        "priceValidUntil": "2021-08-03"
+                    },
+                    {
+                        "@type": "Offer",
+                        "url": "https://site.com/product-url/",
+                        "price": 1499.0,
+                        "priceCurrency": "USD",
+                        "priceValidUntil": "2021-08-08"
+                    }
+                ]
+            },
+            "review": [
+                {
+                    "@type": "Review",
+                    "description": "Review Description 1",
+                    "author": {
+                        "@type": "Person",
+                        "name": "Review Author 1",
+                        "url": "https://site.com/author1"
+                    },
+                    "reviewBody": "Review Description 1",
+                    "reviewRating": {
+                        "@type": "Rating",
+                        "bestRating": 5.0,
+                        "ratingValue": 4.5,
+                        "worstRating": 1.0
+                    }
+                },
+                {
+                    "@type": "Review",
+                    "description": "Review Description 2",
+                    "author": {
+                        "@type": "Person",
+                        "name": "Review Author 2",
+                        "url": "https://site.com/author2"
+                    },
+                    "reviewBody": "Review Description 2",
+                    "reviewRating": {
+                        "@type": "Rating",
+                        "bestRating": 5.0,
+                        "ratingValue": 5.0,
+                        "worstRating": 1.0
+                    }
+                }
+            ],
+            "sku": "12345"
+        }
+    ]
+}
+&lt;/script&gt;</code>
+</pre>
+
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - SeoTags.Sample - <a href="/Home/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/languages/json.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</body>
+</html>

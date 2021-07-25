@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace SeoTags
 {
@@ -12,20 +13,37 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the meta link.
         /// </summary>
-        public MetaLink MetaLink { get; set; } = new MetaLink();
+        public MetaLink MetaLink { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the twitter card.
         /// </summary>
-        public TwitterCard TwitterCard { get; set; } = new TwitterCard();
+        public TwitterCard TwitterCard { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the open graph.
         /// </summary>
-        public OpenGraph OpenGraph { get; set; } = new OpenGraph();
+        public OpenGraph OpenGraph { get; set; } = new();
+
+        /// <summary>
+        /// Gets or sets the json ld.
+        /// </summary>
+        public JsonLd JsonLd { get; set; } = new();
         #endregion
 
-        #region Methods
+        #region Methods        
+        /// <summary>
+        /// Renders the specified builder.
+        /// </summary>
+        /// <param name="builder">The builder.</param>
+        public void Render(StringBuilder builder)
+        {
+            MetaLink?.Render(builder);
+            TwitterCard?.Render(builder);
+            OpenGraph?.Render(builder);
+            JsonLd?.Render(builder);
+        }
+
         /// <summary>
         /// Sets the site information.
         /// </summary>
@@ -33,13 +51,15 @@ namespace SeoTags
         /// <param name="siteTwitterId">The site twitter id.</param>
         /// <param name="siteFacebookId">The site facebook id.</param>
         /// <param name="openSearchUrl">The open search URL.</param>
-        public void SetSiteInfo(string siteTitle, string siteTwitterId = null, string siteFacebookId = null, string openSearchUrl = null)
+        /// <param name="robots">The robots meta tag.</param>
+        public void SetSiteInfo(string siteTitle, string siteTwitterId = null, string siteFacebookId = null, string openSearchUrl = null, string robots = null)
         {
-            siteTitle.EnsureNotNull(nameof(siteTitle));
+            siteTitle.EnsureNotNullOrWhiteSpace(nameof(siteTitle));
 
             MetaLink.SiteTitle = siteTitle;
             MetaLink.OpenSearchTitle = siteTitle;
             MetaLink.OpenSearchUrl = openSearchUrl;
+            MetaLink.Robots = robots;
 
             TwitterCard.Site = siteTwitterId;
 

@@ -1,0 +1,74 @@
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebSite",
+            "@id": "https://ahrefs.com/blog/#website",
+            "url": "https://ahrefs.com/blog/",
+            "name": "SEO Blog by Ahrefs",
+            "description": "Link Building Strategies &amp; SEO Tips",
+            "potentialAction": [
+                {
+                    "@type": "SearchAction",
+                    "target": "https://ahrefs.com/blog/?s={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            ],
+            "inLanguage": "en-US"
+        },
+        {
+            "@type": "ImageObject",
+            "@id": "https://ahrefs.com/blog/seo-meta-tags/#primaryimage",
+            "inLanguage": "en-US",
+            "url": "https://ahrefs.com/blog/wp-content/uploads/2020/02/fb-meta-tags.png",
+            "contentUrl": "https://ahrefs.com/blog/wp-content/uploads/2020/02/fb-meta-tags.png",
+            "width": 1920,
+            "height": 990
+        },
+        {
+            "@type": "WebPage",
+            "@id": "https://ahrefs.com/blog/seo-meta-tags/#webpage",
+            "url": "https://ahrefs.com/blog/seo-meta-tags/",
+            "name": "Meta Tags for SEO: A Simple Guide for Beginners",
+            "isPartOf": {
+                "@id": "https://ahrefs.com/blog/#website"
+            },
+            "primaryImageOfPage": {
+                "@id": "https://ahrefs.com/blog/seo-meta-tags/#primaryimage"
+            },
+            "datePublished": "2020-02-05T01:10:51+00:00",
+            "dateModified": "2021-06-29T16:49:51+00:00",
+            "author": {
+                "@id": "https://ahrefs.com/blog/#/schema/person/e6a89cbde8e750d22996aa26e213e712"
+            },
+            "description": "Meta tags are snippets of code that tell search engines important information about your web page, such as how they should display it in search results.",
+            "inLanguage": "en-US",
+            "potentialAction": [
+                {
+                    "@type": "ReadAction",
+                    "target": [
+                        "https://ahrefs.com/blog/seo-meta-tags/"
+                    ]
+                }
+            ]
+        },
+        {
+            "@type": "Person",
+            "@id": "https://ahrefs.com/blog/#/schema/person/e6a89cbde8e750d22996aa26e213e712",
+            "name": "Joshua Hardwick",
+            "image": {
+                "@type": "ImageObject",
+                "@id": "https://ahrefs.com/blog/#personlogo",
+                "inLanguage": "en-US",
+                "url": "https://ahrefs.com/blog/wp-content/uploads/2019/10/meme.jpg",
+                "contentUrl": "https://ahrefs.com/blog/wp-content/uploads/2019/10/meme.jpg",
+                "caption": "Joshua Hardwick"
+            },
+            "description": "Head of Content @ Ahrefs (or, in plain English, I'm the guy responsible for ensuring that every blog post we publish is EPIC).",
+            "sameAs": [
+                "https://twitter.com/JoshuaCHardwick"
+            ],
+            "url": "https://ahrefs.com/blog/author/joshua-hardwick/"
+        }
+    ]
+}

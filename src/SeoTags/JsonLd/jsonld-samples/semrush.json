@@ -1,0 +1,71 @@
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "@id": "https://www.semrush.com",
+                "name": "Semrush"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+                "@id": "https://www.semrush.com/blog/",
+                "name": "Blog"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "@id": "https://www.semrush.com/blog/seo-checklist",
+                "name": "The Ultimate SEO Checklist: 41 Best Practices"
+            }
+        }
+    ]
+}
+
+
+
+  
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "url": "https://www.semrush.com/blog/seo-checklist/",
+    "wordCount": "",
+    "mainEntityOfPage": {
+        "@type": "Webpage",
+        "@id": "https://google.com/article"
+    },
+    "headline": "The Ultimate SEO Checklist: 41 Best Practices",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://static.semrush.com/blog/uploads/media/39/5a/395a116af769df4705d4cc21956da66e/seo-checklist.svg",
+        "width": "885px",
+        "height": "375px"
+    },
+    "datePublished": "2020-06-12T14:45:00+00:00",
+    "dateModified": "2020-12-21T11:49:00+00:00",
+    "description": "This guide is the ultimate SEO checklist that will help you drive SEO success, covering 41 best practice strategies and tasks that you need to know about.",
+    "identifier": "blog/seo-checklist",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Semrush",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://static.semrush.com/blog/prod/blog/logo.png",
+            "width": "600",
+            "height": "60"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "James Brockbank",
+        "identifier": "146886913"
+    },
+    "genre": "SEO"
+}

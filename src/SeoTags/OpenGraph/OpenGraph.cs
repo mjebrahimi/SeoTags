@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -45,7 +44,7 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the locale alternatives. (og:locale:alternate)
         /// </summary>
-        public List<string> LocaleAlternatives { get; set; } = new List<string>();
+        public List<string> LocaleAlternatives { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the image URL. (og:image and og:image:secure_url if url starts with https:)
@@ -75,9 +74,6 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the article publisher. (article:publisher) (usually facebook id of publisher)
         /// </summary>
-        /// <value>
-        /// The article publisher.
-        /// </value>
         public string ArticlePublisher { get; set; }
 
         /// <summary>
@@ -88,9 +84,6 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the article publish time in ISO 8601 in UTC. (article:published_time)
         /// </summary>
-        /// <value>
-        /// The article publish time.
-        /// </value>
         public DateTimeOffset? ArticlePublishTime { get; set; }
 
         /// <summary>
@@ -111,7 +104,7 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the article tags. (article:tag)
         /// </summary>
-        public List<string> ArticleTags { get; set; } = new List<string>();
+        public List<string> ArticleTags { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the URL of iframe player of video. (og:video and og:video:secure_url if url starts with https:)
@@ -146,7 +139,7 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the video tags. (og:video:tag)
         /// </summary>
-        public List<string> VideoTags { get; set; } = new List<string>();
+        public List<string> VideoTags { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the audio URL. (og:audio and og:audio:secure_url if url starts with https:)
@@ -164,7 +157,7 @@ namespace SeoTags
         public string MusicCreator { get; set; }
 
         /// <summary>
-        /// Gets or sets the book author. (book:author)
+        /// Gets or sets the book author. (book:author) (usually facebook id of book author)
         /// </summary>
         public string BookAuthor { get; set; }
 
@@ -181,7 +174,7 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the book tags. (book:tag)
         /// </summary>
-        public List<string> BookTags { get; set; } = new List<string>();
+        public List<string> BookTags { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the product price amount. (product:price:amount and og:price:amount)
@@ -196,12 +189,12 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the see also urls. (og:see_also)
         /// </summary>
-        public List<string> SeeAlsoUrls { get; set; } = new List<string>();
+        public List<string> SeeAlsoUrls { get; set; } = new();
 
         /// <summary>
-        /// Gets or sets a value indicating render date time offset as UTC. (default: <see langword="true"/>)
+        /// Gets or sets a value indicating render date times as UTC. (default: <see langword="true"/>)
         /// </summary>
-        public bool RenderDateTimeOffsetAsUTC { get; set; } = true;
+        public bool RenderDateTimeAsUTC { get; set; } = true;
         #endregion
 
         #region Methods
@@ -215,58 +208,68 @@ namespace SeoTags
 
             if (Type is not null)
                 builder.Append("<meta property=\"og:type\" content=\"").Append(Type.Value.ToDisplay()).AppendLine("\" />");
-            if (Title is not null)
-                builder.Append("<meta property=\"og:title\" content=\"").Append(Title).AppendLine("\" />");
-            if (Description is not null)
-                builder.Append("<meta property=\"og:description\" content=\"").Append(Description).AppendLine("\" />");
-            if (Url is not null)
+            if (Title.IsNotNullOrWhiteSpace())
+                builder.Append("<meta property=\"og:title\" content=\"").Append(Title.HtmlEncode()).AppendLine("\" />");
+            if (Description.IsNotNullOrWhiteSpace())
+                builder.Append("<meta property=\"og:description\" content=\"").Append(Description.HtmlEncode()).AppendLine("\" />");
+            if (Url.IsNotNullOrWhiteSpace())
                 builder.Append("<meta property=\"og:url\" content=\"").Append(Url).AppendLine("\" />");
-            if (SiteName is not null)
-                builder.Append("<meta property=\"og:site_name\" content=\"").Append(SiteName).AppendLine("\" />");
-            if (Locale is not null)
-                builder.Append("<meta property=\"og:locale\" content=\"").Append(Locale).AppendLine("\" />");
-            foreach (var item in LocaleAlternatives?.Distinct() ?? new List<string>())
-                builder.Append("<meta property=\"og:locale:alternate\" content=\"").Append(item).AppendLine("\" />");
+            if (SiteName.IsNotNullOrWhiteSpace())
+                builder.Append("<meta property=\"og:site_name\" content=\"").Append(SiteName.HtmlEncode()).AppendLine("\" />");
+            if (Locale.IsNotNullOrWhiteSpace())
+                builder.Append("<meta property=\"og:locale\" content=\"").Append(Locale.HtmlEncode()).AppendLine("\" />");
+            if (LocaleAlternatives?.Count > 0)
+            {
+                foreach (var item in LocaleAlternatives)
+                {
+                    item.EnsureNotNullOrWhiteSpace(nameof(LocaleAlternatives), "Has null or whitespace item.");
+                    builder.Append("<meta property=\"og:locale:alternate\" content=\"").Append(item.HtmlEncode()).AppendLine("\" />");
+                }
+            }
 
-            if (ImageUrl is not null)
+            if (ImageUrl.IsNotNullOrWhiteSpace())
             {
                 builder.Append("<meta property=\"og:image\" content=\"").Append(ImageUrl).AppendLine("\" />");
                 if (ImageUrl.StartsWith("https:", StringComparison.OrdinalIgnoreCase) is true)
                     builder.Append("<meta property=\"og:image:secure_url\" content=\"").Append(ImageUrl).AppendLine("\" />");
-                if (ImageMimeType is not null)
-                    builder.Append("<meta property=\"og:image:type\" content=\"").Append(ImageMimeType).AppendLine("\" />");
-                else if (Utils.TryGetContentType(ImageUrl, out var type))
+                if (ImageMimeType.IsNotNullOrWhiteSpace())
+                    builder.Append("<meta property=\"og:image:type\" content=\"").Append(ImageMimeType.HtmlEncode()).AppendLine("\" />");
+                else if (Utilities.TryGetContentType(ImageUrl, out var type))
                     builder.Append("<meta property=\"og:image:type\" content=\"").Append(type).AppendLine("\" />");
                 if (ImageWidth is not null)
                     builder.Append("<meta property=\"og:image:width\" content=\"").Append(ImageWidth).AppendLine("\" />");
                 if (ImageHeight is not null)
                     builder.Append("<meta property=\"og:image:height\" content=\"").Append(ImageHeight).AppendLine("\" />");
-                if (ImageAlt is not null)
-                    builder.Append("<meta property=\"og:image:alt\" content=\"").Append(ImageAlt).AppendLine("\" />");
+                if (ImageAlt.IsNotNullOrWhiteSpace())
+                    builder.Append("<meta property=\"og:image:alt\" content=\"").Append(ImageAlt.HtmlEncode()).AppendLine("\" />");
             }
 
             switch (Type)
             {
                 case OpenGraphType.Article:
-                    if (ArticlePublisher is not null)
+                    if (ArticlePublisher.IsNotNullOrWhiteSpace())
                         builder.Append("<meta property=\"article:publisher\" content=\"").Append(ArticlePublisher).AppendLine("\" />");
-                    if (ArticleAuthor is not null)
+                    if (ArticleAuthor.IsNotNullOrWhiteSpace())
                         builder.Append("<meta property=\"article:author\" content=\"").Append(ArticleAuthor).AppendLine("\" />");
-                    //DateTime.Now.ToString("yyyy-MM-ddTHH:mm:sszzz")
-                    //DateTimeOffset.Now.ToString("yyyy-MM-ddTHH:mm:sszzz")
                     if (ArticlePublishTime is not null)
-                        builder.Append("<meta property=\"article:published_time\" content=\"").Append(ArticlePublishTime.Value.ToStringISO8601(RenderDateTimeOffsetAsUTC)).AppendLine("\" />");
+                        builder.Append("<meta property=\"article:published_time\" content=\"").Append(ArticlePublishTime.Value.ToStringIso8601(RenderDateTimeAsUTC)).AppendLine("\" />");
                     if (ArticleModifiedTime is not null)
-                        builder.Append("<meta property=\"article:modified_time\" content=\"").Append(ArticleModifiedTime.Value.ToStringISO8601(RenderDateTimeOffsetAsUTC)).AppendLine("\" />");
+                        builder.Append("<meta property=\"article:modified_time\" content=\"").Append(ArticleModifiedTime.Value.ToStringIso8601(RenderDateTimeAsUTC)).AppendLine("\" />");
                     if (ArticleExpirationTime is not null)
-                        builder.Append("<meta property=\"article:expiration_time\" content=\"").Append(ArticleExpirationTime.Value.ToStringISO8601(RenderDateTimeOffsetAsUTC)).AppendLine("\" />");
-                    if (ArticleSection is not null)
-                        builder.Append("<meta property=\"article:section\" content=\"").Append(ArticleSection).AppendLine("\" />");
-                    foreach (var item in ArticleTags?.Distinct() ?? new List<string>())
-                        builder.Append("<meta property=\"article:tag\" content=\"").Append(item).AppendLine("\" />");
+                        builder.Append("<meta property=\"article:expiration_time\" content=\"").Append(ArticleExpirationTime.Value.ToStringIso8601(RenderDateTimeAsUTC)).AppendLine("\" />");
+                    if (ArticleSection.IsNotNullOrWhiteSpace())
+                        builder.Append("<meta property=\"article:section\" content=\"").Append(ArticleSection.HtmlEncode()).AppendLine("\" />");
+                    if (ArticleTags?.Count > 0)
+                    {
+                        foreach (var item in ArticleTags)
+                        {
+                            item.EnsureNotNullOrWhiteSpace(nameof(ArticleTags), "Has null or whitespace item.");
+                            builder.Append("<meta property=\"article:tag\" content=\"").Append(item.HtmlEncode()).AppendLine("\" />");
+                        }
+                    }
                     break;
 
-                case OpenGraphType.Video when VideoUrl is not null:
+                case OpenGraphType.Video when VideoUrl.IsNotNullOrWhiteSpace():
                     builder.Append("<meta property=\"og:video\" content=\"").Append(VideoUrl).AppendLine("\" />");
                     if (VideoUrl.StartsWith("https:", StringComparison.OrdinalIgnoreCase) is true)
                         builder.Append("<meta property=\"og:video:secure_url\" content=\"").Append(VideoUrl).AppendLine("\" />");
@@ -274,57 +277,78 @@ namespace SeoTags
                         builder.Append("<meta property=\"og:video:width\" content=\"").Append(VideoWidth).AppendLine("\" />");
                     if (VideoHeight is not null)
                         builder.Append("<meta property=\"og:video:height\" content=\"").Append(VideoHeight).AppendLine("\" />");
-                    if (VideoMimeType is not null)
-                        builder.Append("<meta property=\"og:video:type\" content=\"").Append(VideoMimeType).AppendLine("\" />");
-                    else if (Utils.TryGetContentType(VideoUrl, out var type))
+                    if (VideoMimeType.IsNotNullOrWhiteSpace())
+                        builder.Append("<meta property=\"og:video:type\" content=\"").Append(VideoMimeType.HtmlEncode()).AppendLine("\" />");
+                    else if (Utilities.TryGetContentType(VideoUrl, out var type))
                         builder.Append("<meta property=\"og:video:type\" content=\"").Append(type).AppendLine("\" />");
                     else
                         builder.Append("<meta property=\"og:video:type\" content=\"text/html\" />"); //Default mime type of iframe url of video player
                     if (VideoDurationSeconds is not null)
                         builder.Append("<meta property=\"og:video:duration\" content=\"").Append(VideoDurationSeconds).AppendLine("\" />");
                     if (VideoReleaseDate is not null)
-                        builder.Append("<meta property=\"og:video:release_date\" content=\"").Append(VideoReleaseDate.Value.ToStringISO8601(RenderDateTimeOffsetAsUTC)).AppendLine("\" />");
-                    foreach (var item in VideoTags?.Distinct() ?? new List<string>())
-                        builder.Append("<meta property=\"og:video:tag\" content=\"").Append(item).AppendLine("\" />");
+                        builder.Append("<meta property=\"og:video:release_date\" content=\"").Append(VideoReleaseDate.Value.ToStringIso8601(RenderDateTimeAsUTC)).AppendLine("\" />");
+                    if (VideoTags?.Count > 0)
+                    {
+                        foreach (var item in VideoTags)
+                        {
+                            item.EnsureNotNullOrWhiteSpace(nameof(VideoTags), "Has null or whitespace item.");
+                            builder.Append("<meta property=\"og:video:tag\" content=\"").Append(item.HtmlEncode()).AppendLine("\" />");
+                        }
+                    }
                     break;
 
-                case OpenGraphType.Audio when AudioUrl is not null:
+                case OpenGraphType.Audio when AudioUrl.IsNotNullOrWhiteSpace():
                     builder.Append("<meta property=\"og:audio\" content=\"").Append(AudioUrl).AppendLine("\" />");
                     if (AudioUrl.StartsWith("https:", StringComparison.OrdinalIgnoreCase) is true)
                         builder.Append("<meta property=\"og:audio:secure_url\" content=\"").Append(AudioUrl).AppendLine("\" />");
-                    if (AudioMimeType is not null)
-                        builder.Append("<meta property=\"og:audio:type\" content=\"").Append(AudioMimeType).AppendLine("\" />");
-                    else if (Utils.TryGetContentType(AudioUrl, out var type))
+                    if (AudioMimeType.IsNotNullOrWhiteSpace())
+                        builder.Append("<meta property=\"og:audio:type\" content=\"").Append(AudioMimeType.HtmlEncode()).AppendLine("\" />");
+                    else if (Utilities.TryGetContentType(AudioUrl, out var type))
                         builder.Append("<meta property=\"og:audio:type\" content=\"").Append(type).AppendLine("\" />");
-                    if (MusicCreator is not null)
+                    if (MusicCreator.IsNotNullOrWhiteSpace())
                         builder.Append("<meta property=\"music:creator\" content=\"").Append(MusicCreator).AppendLine("\" />");
                     break;
 
                 case OpenGraphType.Book:
-                    if (BookAuthor is not null)
+                    if (BookAuthor.IsNotNullOrWhiteSpace())
                         builder.Append("<meta property=\"book:author\" content=\"").Append(BookAuthor).AppendLine("\" />");
-                    if (BookISBN is not null)
-                        builder.Append("<meta property=\"book:isbn\" content=\"").Append(BookISBN).AppendLine("\" />");
+                    if (BookISBN.IsNotNullOrWhiteSpace())
+                        builder.Append("<meta property=\"book:isbn\" content=\"").Append(BookISBN.HtmlEncode()).AppendLine("\" />");
                     if (BookReleasDate is not null)
-                        builder.Append("<meta property=\"book:release_date\" content=\"").Append(BookReleasDate.Value.ToStringISO8601(RenderDateTimeOffsetAsUTC)).AppendLine("\" />");
-                    foreach (var item in BookTags?.Distinct() ?? new List<string>())
-                        builder.Append("<meta property=\"book:tag\" content=\"").Append(item).AppendLine("\" />");
+                        builder.Append("<meta property=\"book:release_date\" content=\"").Append(BookReleasDate.Value.ToStringIso8601(RenderDateTimeAsUTC)).AppendLine("\" />");
+                    if (BookTags?.Count > 0)
+                    {
+                        foreach (var item in BookTags)
+                        {
+                            item.EnsureNotNullOrWhiteSpace(nameof(BookTags), "Has null or whitespace item.");
+                            builder.Append("<meta property=\"book:tag\" content=\"").Append(item.HtmlEncode()).AppendLine("\" />");
+                        }
+                    }
                     break;
 
                 case OpenGraphType.Product:
+                    var priceCurrency = ProductPriceCurrency?.HtmlEncode();
                     if (ProductPriceAmount is not null)
                         builder.Append("<meta property=\"product:price:amount\" content=\"").Append(ProductPriceAmount).AppendLine("\" />");
-                    if (ProductPriceCurrency is not null)
-                        builder.Append("<meta property=\"product:price:currency\" content=\"").Append(ProductPriceCurrency).AppendLine("\" />");
+                    if (priceCurrency.IsNotNullOrWhiteSpace())
+                        builder.Append("<meta property=\"product:price:currency\" content=\"").Append(priceCurrency).AppendLine("\" />");
+                    //<meta property="product:condition" content="new">
+                    //<meta property="product:availability" content="in stock">
                     if (ProductPriceAmount is not null)
                         builder.Append("<meta property=\"og:price:amount\" content=\"").Append(ProductPriceAmount).AppendLine("\" />");
-                    if (ProductPriceCurrency is not null)
-                        builder.Append("<meta property=\"og:price:currency\" content=\"").Append(ProductPriceCurrency).AppendLine("\" />");
+                    if (priceCurrency.IsNotNullOrWhiteSpace())
+                        builder.Append("<meta property=\"og:price:currency\" content=\"").Append(priceCurrency).AppendLine("\" />");
                     break;
             }
 
-            foreach (var item in SeeAlsoUrls?.Distinct() ?? new List<string>())
-                builder.Append("<meta property=\"og:see_also\" content=\"").Append(item).AppendLine("\" />");
+            if (SeeAlsoUrls?.Count > 0)
+            {
+                foreach (var item in SeeAlsoUrls)
+                {
+                    item.EnsureNotNullOrWhiteSpace(nameof(SeeAlsoUrls), "Has null or whitespace item.");
+                    builder.Append("<meta property=\"og:see_also\" content=\"").Append(item).AppendLine("\" />");
+                }
+            }
 
             builder.AppendLine();
         }
@@ -342,9 +366,9 @@ namespace SeoTags
                     throw new ArgumentException("Image width is set but image url is not set.");
                 if (ImageHeight is not null)
                     throw new ArgumentException("Image height is set but image url is not set.");
-                if (ImageMimeType is not null)
+                if (ImageMimeType.IsNotNullOrWhiteSpace())
                     throw new ArgumentException("Image mime type is set but image url is not set.");
-                if (ImageAlt is not null)
+                if (ImageAlt.IsNotNullOrWhiteSpace())
                     throw new ArgumentException("Image alt is set but image url is not set.");
             }
 
@@ -354,17 +378,17 @@ namespace SeoTags
                     throw new ArgumentException("Video width is set but video url is not set.");
                 if (VideoHeight is not null)
                     throw new ArgumentException("Video height is set but video url is not set.");
-                if (VideoMimeType is not null)
+                if (VideoMimeType.IsNotNullOrWhiteSpace())
                     throw new ArgumentException("Video mime type is set but video url is not set.");
                 if (VideoDurationSeconds is not null)
                     throw new ArgumentException("Video duration seconds is set but video url is not set.");
                 if (VideoReleaseDate is not null)
                     throw new ArgumentException("Video release date is set but video url is not set.");
-                if (VideoTags?.Any() is true)
+                if (VideoTags?.Count > 0)
                     throw new ArgumentException("Video tags is set but video url is not set.");
             }
 
-            if (AudioUrl is null && AudioMimeType is not null)
+            if (AudioUrl is null && AudioMimeType.IsNotNullOrWhiteSpace())
                 throw new ArgumentException("Audio mime type is set but audio url is not set.");
         }
 
@@ -377,9 +401,9 @@ namespace SeoTags
         /// <param name="seeAlsoUrls">The see also urls.</param>
         public void SetCommonInfo(string title, string description, string url, IEnumerable<string> seeAlsoUrls = null)
         {
-            title.EnsureNotNull(nameof(title));
-            description.EnsureNotNull(nameof(description));
-            url.EnsureNotNull(nameof(url));
+            title.EnsureNotNullOrWhiteSpace(nameof(title));
+            description.EnsureNotNullOrWhiteSpace(nameof(description));
+            url.EnsureNotNullOrWhiteSpace(nameof(url));
             seeAlsoUrls?.EnsureNotNullItem(nameof(seeAlsoUrls));
 
             Type ??= OpenGraphType.Website; //null-coalescing assign to prevent overwrite value
@@ -399,7 +423,7 @@ namespace SeoTags
         /// <param name="mimeType">Type of the MIME.(Default: if not set, try to detect by image url file extension)</param>
         public void SetImageInfo(string url, int? width = null, int? height = null, string alt = null, string mimeType = null)
         {
-            url.EnsureNotNull(nameof(url));
+            url.EnsureNotNullOrWhiteSpace(nameof(url));
 
             ImageUrl = url;
             ImageWidth = width;
@@ -444,7 +468,7 @@ namespace SeoTags
         public void SetVideoInfo(string url, int? width = null, int? height = null, DateTimeOffset? releaseDate = null, int? durationSeconds = null,
             string mimeType = null, IEnumerable<string> tags = null)
         {
-            url.EnsureNotNull(nameof(url));
+            url.EnsureNotNullOrWhiteSpace(nameof(url));
             tags?.EnsureNotNullItem(nameof(tags));
 
             Type = OpenGraphType.Video;
@@ -465,7 +489,7 @@ namespace SeoTags
         /// <param name="creator">The creator (usually creator facebook id).</param>
         public void SetAudioInfo(string url, string mimeType = null, string creator = null)
         {
-            url.EnsureNotNull(nameof(url));
+            url.EnsureNotNullOrWhiteSpace(nameof(url));
 
             Type = OpenGraphType.Audio;
             AudioUrl = url;
@@ -482,7 +506,7 @@ namespace SeoTags
         /// <param name="tags">The books tags.</param>
         public void SetBookInfo(string author, string isbn = null, DateTimeOffset? bookReleaseDate = null, IEnumerable<string> tags = null)
         {
-            author.EnsureNotNull(author);
+            author.EnsureNotNullOrWhiteSpace(author);
             tags?.EnsureNotNullItem(nameof(tags));
 
             Type = OpenGraphType.Book;
@@ -499,7 +523,7 @@ namespace SeoTags
         /// <param name="priceCurrency">The price currency.</param>
         public void SetProducInfo(int priceAmount, string priceCurrency)
         {
-            priceCurrency.EnsureNotNull(nameof(priceCurrency));
+            priceCurrency.EnsureNotNullOrWhiteSpace(nameof(priceCurrency));
 
             ProductPriceAmount = priceAmount;
             ProductPriceCurrency = priceCurrency;
@@ -512,7 +536,7 @@ namespace SeoTags
         /// <param name="localeAlternatives">The locale alternatives.</param>
         public void SetLocales(string locale, string[] localeAlternatives = null)
         {
-            locale.EnsureNotNull(nameof(locale));
+            locale.EnsureNotNullOrWhiteSpace(nameof(locale));
             localeAlternatives?.EnsureNotNullItem(nameof(localeAlternatives));
 
             Locale = locale;
@@ -527,7 +551,7 @@ namespace SeoTags
         {
             seeAlsoUrls.EnsureNotNullAndNotNullItem(nameof(seeAlsoUrls));
 
-            SeeAlsoUrls ??= new List<string>();
+            SeeAlsoUrls ??= new();
             foreach (var item in seeAlsoUrls)
                 SeeAlsoUrls.Add(item);
         }
@@ -540,7 +564,7 @@ namespace SeoTags
         {
             seeAlsoUrls.EnsureNotNullAndNotNullItem(nameof(seeAlsoUrls));
 
-            SeeAlsoUrls ??= new List<string>();
+            SeeAlsoUrls ??= new();
             foreach (var item in seeAlsoUrls)
                 SeeAlsoUrls.Add(item);
         }
@@ -614,6 +638,8 @@ namespace SeoTags
         <meta property="og:type" content="og:product">
         <meta property="product:price:amount" content="@Model.ProductPriceIRR">
         <meta property="product:price:currency" content="IRR">
+        <meta property="product:condition" content="new">
+        <meta property="product:availability" content="in stock">
         https://raptor-dmt.com/seo/open-graph-and-social-tags/
         <meta property="og:price:amount" content="@Model.ProductPriceIRR" />
         <meta property="og:price:currency" content="IRR" />
@@ -625,47 +651,5 @@ namespace SeoTags
         <meta property="og:see_also" content="https://twitter.com/Moz">
         */
         #endregion
-    }
-
-    /// <summary>
-    /// Type of open graph
-    /// </summary>
-    public enum OpenGraphType
-    {
-        /// <summary>
-        /// og:type => website
-        /// </summary>
-        [Display(Name = "website")]
-        Website,
-
-        /// <summary>
-        /// og:type => article
-        /// </summary>
-        [Display(Name = "article")]
-        Article,
-
-        /// <summary>
-        /// og:type => product
-        /// </summary>
-        [Display(Name = "product")]
-        Product,
-
-        /// <summary>
-        /// og:type => video
-        /// </summary>
-        [Display(Name = "video.other")] //video.movie, video.tv_show, video.other (these are identical to video.movie) - video.episode
-        Video,
-
-        /// <summary>
-        /// og:type => audio
-        /// </summary>
-        [Display(Name = "music.radio_station")] //music.song, music.album, music.playlist, music.radio_station
-        Audio,
-
-        /// <summary>
-        /// og:type => book
-        /// </summary>
-        [Display(Name = "book")]
-        Book
     }
 }

@@ -1,0 +1,142 @@
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Organization",
+            "@id": "https://mizfa.academy/#organization",
+            "name": "\u0622\u06a9\u0627\u062f\u0645\u06cc \u0645\u06cc\u0632\u0641\u0627",
+            "url": "https://mizfa.academy/",
+            "sameAs": [
+                "https://www.facebook.com/mizfacom/",
+                "https://www.instagram.com/mizfacom/",
+                "https://www.linkedin.com/company/mizfa",
+                "https://uk.pinterest.com/mizfacom/",
+                "https://twitter.com/mizfacom"
+            ],
+            "logo": {
+                "@type": "ImageObject",
+                "@id": "https://mizfa.academy/#logo",
+                "inLanguage": "fa-IR",
+                "url": "https://mizfa.academy/wp-content/uploads/2019/03/logo-new-v1.png",
+                "contentUrl": "https://mizfa.academy/wp-content/uploads/2019/03/logo-new-v1.png",
+                "width": 385,
+                "height": 137,
+                "caption": "\u0622\u06a9\u0627\u062f\u0645\u06cc \u0645\u06cc\u0632\u0641\u0627"
+            },
+            "image": {
+                "@id": "https://mizfa.academy/#logo"
+            }
+        },
+        {
+            "@type": "WebSite",
+            "@id": "https://mizfa.academy/#website",
+            "url": "https://mizfa.academy/",
+            "name": "\u0622\u06a9\u0627\u062f\u0645\u06cc \u0645\u06cc\u0632\u0641\u0627",
+            "description": "\u062e\u062f\u0645\u0627\u062a \u0648 \u0622\u0645\u0648\u0632\u0634 \u0647\u0627\u06cc \u0645\u062c\u0627\u0632\u06cc \u0645\u06cc\u0632\u0641\u0627",
+            "publisher": {
+                "@id": "https://mizfa.academy/#organization"
+            },
+            "potentialAction": [
+                {
+                    "@type": "SearchAction",
+                    "target": "https://mizfa.academy/?s={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            ],
+            "inLanguage": "fa-IR"
+        },
+        {
+            "@type": "ImageObject",
+            "@id": "https://mizfa.academy/product/simple-asp-net-core2-training/#primaryimage",
+            "inLanguage": "fa-IR",
+            "url": "https://mizfa.academy/wp-content/uploads/2018/10/asp-net-core.png",
+            "contentUrl": "https://mizfa.academy/wp-content/uploads/2018/10/asp-net-core.png",
+            "width": 800,
+            "height": 402,
+            "caption": "\u0622\u0645\u0648\u0632\u0634 asp.net"
+        },
+        {
+            "@type": "WebPage",
+            "@id": "https://mizfa.academy/product/simple-asp-net-core2-training/#webpage",
+            "url": "https://mizfa.academy/product/simple-asp-net-core2-training/",
+            "name": "120 \u0633\u0627\u0639\u062a \u0641\u06cc\u0644\u0645 \u0622\u0645\u0648\u0632\u0634\u06cc ASP.NET Core - \u0622\u0645\u0648\u0632\u0634 \u067e\u0631\u0648\u0698\u0647 \u0645\u062d\u0648\u0631 [2020]",
+            "isPartOf": {
+                "@id": "https://mizfa.academy/#website"
+            },
+            "primaryImageOfPage": {
+                "@id": "https://mizfa.academy/product/simple-asp-net-core2-training/#primaryimage"
+            },
+            "datePublished": "2018-03-18T15:30:26+00:00",
+            "dateModified": "2021-05-31T17:42:56+00:00",
+            "description": "\u062f\u0627\u0646\u0644\u0648\u062f \u0641\u06cc\u0644\u0645 \u0622\u0645\u0648\u0632\u0634\u06cc \u0637\u0631\u0627\u062d\u06cc \u0633\u0627\u06cc\u062a \u0627\u0632 \u067e\u0627\u06cc\u0647 \u062a\u0627 \u067e\u06cc\u0634\u0631\u0641\u062a\u0647 ASP NET MVC Core - \u062f\u0648\u0631\u0647 \u0622\u0645\u0648\u0632\u0634 \u0648\u06cc\u062f\u06cc\u0648\u06cc\u06cc \u062c\u0627\u0645\u0639 \u0648 \u06a9\u0627\u0631\u0628\u0631\u062f\u06cc ASP.NET Core \u0646\u0633\u062e\u0647 core 2.1 core 2.2 core 3.1 \u0641\u0627\u0631\u0633\u06cc",
+            "breadcrumb": {
+                "@id": "https://mizfa.academy/product/simple-asp-net-core2-training/#breadcrumb"
+            },
+            "inLanguage": "fa-IR",
+            "potentialAction": [
+                {
+                    "@type": "ReadAction",
+                    "target": [
+                        "https://mizfa.academy/product/simple-asp-net-core2-training/"
+                    ]
+                }
+            ]
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://mizfa.academy/product/simple-asp-net-core2-training/#breadcrumb",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@type": "WebPage",
+                        "@id": "https://mizfa.academy/",
+                        "url": "https://mizfa.academy/",
+                        "name": "\u062e\u0627\u0646\u0647"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": {
+                        "@type": "WebPage",
+                        "@id": "https://mizfa.academy/shop/",
+                        "url": "https://mizfa.academy/shop/",
+                        "name": "\u0647\u0645\u0647 \u062f\u0648\u0631\u0647\u200c\u0647\u0627"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "item": {
+                        "@type": "WebPage",
+                        "@id": "https://mizfa.academy/product-category/virtual-courses/",
+                        "url": "https://mizfa.academy/product-category/virtual-courses/",
+                        "name": "\u062f\u0648\u0631\u0647\u200c\u0647\u0627\u06cc \u0645\u062c\u0627\u0632\u06cc"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "item": {
+                        "@type": "WebPage",
+                        "@id": "https://mizfa.academy/product-category/virtual-courses/asp-net-core-2-1/",
+                        "url": "https://mizfa.academy/product-category/virtual-courses/asp-net-core-2-1/",
+                        "name": "\u0645\u062c\u0645\u0648\u0639\u0647 \u062f\u0648\u0631\u0647 \u0647\u0627\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 asp.net core 2.1"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "item": {
+                        "@type": "WebPage",
+                        "@id": "https://mizfa.academy/product/simple-asp-net-core2-training/",
+                        "url": "https://mizfa.academy/product/simple-asp-net-core2-training/",
+                        "name": "\u06f1\u06f2\u06f0 \u0633\u0627\u0639\u062a \u0641\u06cc\u0644\u0645 \u0622\u0645\u0648\u0632\u0634 \u0637\u0631\u0627\u062d\u06cc \u0633\u0627\u06cc\u062a \u0628\u0627 ASP.NET Core"
+                    }
+                }
+            ]
+        }
+    ]
+}

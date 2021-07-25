@@ -1,0 +1,151 @@
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebSite",
+            "@id": "https://devblogs.microsoft.com/dotnet/#website",
+            "url": "https://devblogs.microsoft.com/dotnet/",
+            "name": ".NET Blog",
+            "description": "Free. Cross-platform. Open source. A developer platform for building all your apps.",
+            "potentialAction": [
+                {
+                    "@type": "SearchAction",
+                    "target": "https://devblogs.microsoft.com/dotnet/?s={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            ],
+            "inLanguage": "en-US"
+        },
+        {
+            "@type": "CollectionPage",
+            "@id": "https://devblogs.microsoft.com/dotnet/page/2/#webpage",
+            "url": "https://devblogs.microsoft.com/dotnet/page/2/",
+            "name": ".NET Blog | Page 2 of 106",
+            "isPartOf": {
+                "@id": "https://devblogs.microsoft.com/dotnet/#website"
+            },
+            "description": "Free. Cross-platform. Open source. A developer platform for building all your apps.",
+            "breadcrumb": {
+                "@id": "https://devblogs.microsoft.com/dotnet/page/2/#breadcrumb"
+            },
+            "inLanguage": "en-US",
+            "potentialAction": [
+                {
+                    "@type": "ReadAction",
+                    "target": [
+                        "https://devblogs.microsoft.com/dotnet/page/2/"
+                    ]
+                }
+            ]
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://devblogs.microsoft.com/dotnet/page/2/#breadcrumb",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home"
+                }
+            ]
+        }
+    ]
+}
+
+
+
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebSite",
+            "@id": "https://devblogs.microsoft.com/dotnet/#website",
+            "url": "https://devblogs.microsoft.com/dotnet/",
+            "name": ".NET Blog",
+            "description": "Free. Cross-platform. Open source. A developer platform for building all your apps.",
+            "potentialAction": [
+                {
+                    "@type": "SearchAction",
+                    "target": "https://devblogs.microsoft.com/dotnet/?s={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            ],
+            "inLanguage": "en-US"
+        },
+        {
+            "@type": "ImageObject",
+            "@id": "https://devblogs.microsoft.com/dotnet/whats-new-in-windows-forms-in-net-6-0-preview-5/#primaryimage",
+            "inLanguage": "en-US",
+            "url": "https://devblogs.microsoft.com/dotnet/wp-content/uploads/sites/10/2021/06/feature.png",
+            "contentUrl": "https://devblogs.microsoft.com/dotnet/wp-content/uploads/sites/10/2021/06/feature.png",
+            "width": 600,
+            "height": 368,
+            "caption": "What\u2019s new in Windows Forms in .NET 6.0 Preview 5"
+        },
+        {
+            "@type": "WebPage",
+            "@id": "https://devblogs.microsoft.com/dotnet/whats-new-in-windows-forms-in-net-6-0-preview-5/#webpage",
+            "url": "https://devblogs.microsoft.com/dotnet/whats-new-in-windows-forms-in-net-6-0-preview-5/",
+            "name": "What's new in Windows Forms in .NET 6.0 Preview 5 | .NET Blog",
+            "isPartOf": {
+                "@id": "https://devblogs.microsoft.com/dotnet/#website"
+            },
+            "primaryImageOfPage": {
+                "@id": "https://devblogs.microsoft.com/dotnet/whats-new-in-windows-forms-in-net-6-0-preview-5/#primaryimage"
+            },
+            "datePublished": "2021-06-23T16:00:02+00:00",
+            "dateModified": "2021-06-22T17:16:23+00:00",
+            "author": {
+                "@id": "https://devblogs.microsoft.com/dotnet/#/schema/person/f27712e8dceb3e96210a2187fe147676"
+            },
+            "description": "Read about the new features that are in Windows Forms in .NET 6.0 Preview 5.",
+            "breadcrumb": {
+                "@id": "https://devblogs.microsoft.com/dotnet/whats-new-in-windows-forms-in-net-6-0-preview-5/#breadcrumb"
+            },
+            "inLanguage": "en-US",
+            "potentialAction": [
+                {
+                    "@type": "ReadAction",
+                    "target": [
+                        "https://devblogs.microsoft.com/dotnet/whats-new-in-windows-forms-in-net-6-0-preview-5/"
+                    ]
+                }
+            ]
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://devblogs.microsoft.com/dotnet/whats-new-in-windows-forms-in-net-6-0-preview-5/#breadcrumb",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://devblogs.microsoft.com/dotnet/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "What&#8217;s new in Windows Forms in .NET 6.0 Preview 5"
+                }
+            ]
+        },
+        {
+            "@type": "Person",
+            "@id": "https://devblogs.microsoft.com/dotnet/#/schema/person/f27712e8dceb3e96210a2187fe147676",
+            "name": "Igor Velikorossov",
+            "image": {
+                "@type": "ImageObject",
+                "@id": "https://devblogs.microsoft.com/dotnet/#personlogo",
+                "inLanguage": "en-US",
+                "url": "https://secure.gravatar.com/avatar/c8d724e10a3de01175f4415aed9b35de?s=96&d=mm&r=g",
+                "contentUrl": "https://secure.gravatar.com/avatar/c8d724e10a3de01175f4415aed9b35de?s=96&d=mm&r=g",
+                "caption": "Igor Velikorossov"
+            },
+            "description": "Engineer on Windows Forms team",
+            "sameAs": [
+                "https://twitter.com/https://twitter.com/IgorRussKie"
+            ],
+            "url": "https://devblogs.microsoft.com/dotnet/author/igvelikomicrosoft-com/"
+        }
+    ]
+}

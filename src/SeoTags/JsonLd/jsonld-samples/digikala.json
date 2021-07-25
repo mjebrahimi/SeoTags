@@ -1,0 +1,68 @@
+{
+    "@context": "https://www.schema.org",
+    "@type": "Product",
+    "name": "کروسان کاکائو پچ پچ  بسته 6 عددی",
+    "alternateName": "Pech Pech Cocoa Croissant Pack of 6",
+    "image": [
+        "https://dkstatics-public.digikala.com/digikala-products/119588865.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15",
+        "https://dkstatics-public.digikala.com/digikala-products/119588867.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15",
+        "https://dkstatics-public.digikala.com/digikala-products/31f3beb7a8689bc74459db8e4f260221034e2bf9_1603785925.jpg?x-oss-process=image/resize,h_1600/quality,q_80"
+    ],
+    "description": "",
+    "sku": 2522021,
+    "mpn": 2522021,
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 4.4,
+        "reviewCount": 3719,
+        "bestRating": 5,
+        "worstRating": 0
+    },
+    "brand": {
+        "@type": "Thing",
+        "name": "پچ پچ"
+    },
+    "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "IRR",
+        "lowPrice": 195000,
+        "highPrice": 195000,
+        "offerCount": 1,
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "IRR",
+            "price": 195000,
+            "itemCondition": "https://schema.org/UsedCondition",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+                "@type": "Organization",
+                "name": "دیجی‌کالا"
+            }
+        }
+    },
+    "review": {
+        "@type": "Review",
+        "author": "حسین بریهی",
+        "datePublished": "2021-01-10",
+        "description": "شکلاتش هر دفعه داره کمتر میشه. کیفیتش هم کمتر شده",
+        "name": "کروسان",
+        "reviewRating": {
+            "@type": "Rating",
+            "bestRating": 5,
+            "ratingValue": 2,
+            "worstRating": 0
+        }
+    }
+}
+
+
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://www.digikala.com",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.digikala.com/search/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}

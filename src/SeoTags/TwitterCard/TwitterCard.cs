@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace SeoTags
@@ -78,7 +77,7 @@ namespace SeoTags
         /// &lt;meta name="twitter:label2" content="Color" /&gt;
         /// &lt;meta name="twitter:data2" content="Black" /&gt;
         /// </summary>
-        public Dictionary<string, string> AdditionalInfo { get; set; } = new Dictionary<string, string>();
+        public Dictionary<string, string> AdditionalInfo { get; set; } = new();
 
         ///// <summary>
         ///// Url of your page. &lt;meta name="twitter:url" content="[for example: https://site.com/page-url]" /gt;
@@ -97,29 +96,29 @@ namespace SeoTags
 
             if (CardType is not null)
                 builder.Append("<meta name=\"twitter:card\" content=\"").Append(CardType.Value.ToDisplay()).AppendLine("\" />");
-            if (Title is not null)
-                builder.Append("<meta name=\"twitter:title\" content=\"").Append(Title).AppendLine("\" />");
-            if (Description is not null)
-                builder.Append("<meta name=\"twitter:description\" content=\"").Append(Description).AppendLine("\" />");
-            if (Site is not null)
-                builder.Append("<meta name=\"twitter:site\" content=\"").Append(Site).AppendLine("\" />");
-            if (Creator is not null)
-                builder.Append("<meta name=\"twitter:creator\" content=\"").Append(Creator).AppendLine("\" />");
+            if (Title.IsNotNullOrWhiteSpace())
+                builder.Append("<meta name=\"twitter:title\" content=\"").Append(Title.HtmlEncode()).AppendLine("\" />");
+            if (Description.IsNotNullOrWhiteSpace())
+                builder.Append("<meta name=\"twitter:description\" content=\"").Append(Description.HtmlEncode()).AppendLine("\" />");
+            if (Site.IsNotNullOrWhiteSpace())
+                builder.Append("<meta name=\"twitter:site\" content=\"").Append(Site.HtmlEncode()).AppendLine("\" />");
+            if (Creator.IsNotNullOrWhiteSpace())
+                builder.Append("<meta name=\"twitter:creator\" content=\"").Append(Creator.HtmlEncode()).AppendLine("\" />");
 
-            if (ImageUrl is not null)
+            if (ImageUrl.IsNotNullOrWhiteSpace())
             {
                 builder.Append("<meta name=\"twitter:image\" content=\"").Append(ImageUrl).AppendLine("\" />");
                 if (ImageWidth is not null)
                     builder.Append("<meta name=\"twitter:image:width\" content=\"").Append(ImageWidth).AppendLine("\" />");
                 if (ImageHeight is not null)
                     builder.Append("<meta name=\"twitter:image:height\" content=\"").Append(ImageHeight).AppendLine("\" />");
-                if (ImageAlt is not null)
-                    builder.Append("<meta name=\"twitter:image:alt\" content=\"").Append(ImageAlt).AppendLine("\" />");
+                if (ImageAlt.IsNotNullOrWhiteSpace())
+                    builder.Append("<meta name=\"twitter:image:alt\" content=\"").Append(ImageAlt.HtmlEncode()).AppendLine("\" />");
             }
 
-            if (PlayerUrl is not null && CardType == TwitterCardType.Player)
+            if (PlayerUrl.IsNotNullOrWhiteSpace() && CardType == TwitterCardType.Player)
             {
-                if (PlayerUrl is not null)
+                if (PlayerUrl.IsNotNullOrWhiteSpace())
                     builder.Append("<meta name=\"twitter:player\" content=\"").Append(PlayerUrl).AppendLine("\" />");
                 if (PlayerWidth is not null)
                     builder.Append("<meta name=\"twitter:player:width\" content=\"").Append(PlayerWidth).AppendLine("\" />");
@@ -127,14 +126,17 @@ namespace SeoTags
                     builder.Append("<meta name=\"twitter:player:height\" content=\"").Append(PlayerHeight).AppendLine("\" />");
             }
 
-            var counter = 1;
-            foreach (var item in AdditionalInfo ?? new Dictionary<string, string>())
+            if (AdditionalInfo is not null)
             {
-                item.Value.EnsureNotNull(nameof(AdditionalInfo), "Has null value");
+                var counter = 1;
+                foreach (var item in AdditionalInfo)
+                {
+                    item.Value.EnsureNotNullOrWhiteSpace(nameof(AdditionalInfo), "Has null value");
 
-                builder.Append("<meta name=\"twitter:label").Append(counter).Append("\" content=\"").Append(item.Key).AppendLine("\" />");
-                builder.Append("<meta name=\"twitter:data").Append(counter).Append("\" content=\"").Append(item.Value).AppendLine("\" />");
-                counter++;
+                    builder.Append("<meta name=\"twitter:label").Append(counter).Append("\" content=\"").Append(item.Key.HtmlEncode()).AppendLine("\" />");
+                    builder.Append("<meta name=\"twitter:data").Append(counter).Append("\" content=\"").Append(item.Value.HtmlEncode()).AppendLine("\" />");
+                    counter++;
+                }
             }
 
             builder.AppendLine();
@@ -186,8 +188,8 @@ namespace SeoTags
         /// <param name="description">The description.</param>
         public void SetCommonInfo(string title, string description)
         {
-            title.EnsureNotNull(nameof(title));
-            title.EnsureNotNull(nameof(description));
+            title.EnsureNotNullOrWhiteSpace(nameof(title));
+            description.EnsureNotNullOrWhiteSpace(nameof(description));
 
             CardType ??= TwitterCardType.Summary; //null-coalescing assign to prevent overwrite value
             Title = title;
@@ -204,7 +206,7 @@ namespace SeoTags
         /// <param name="cardType">Type of the card.</param>
         public void SetImageInfo(string url, int? width = null, int? height = null, string alt = null, TwitterCardType cardType = TwitterCardType.SummaryLargeImage)
         {
-            url.EnsureNotNull(nameof(url));
+            url.EnsureNotNullOrWhiteSpace(nameof(url));
             cardType.EnsureIsValid(nameof(cardType));
 
             CardType = cardType;
@@ -222,7 +224,7 @@ namespace SeoTags
         /// <param name="height">The height of video.</param>
         public void SetPlayerInfo(string url, int width, int height)
         {
-            url.EnsureNotNull(nameof(url));
+            url.EnsureNotNullOrWhiteSpace(nameof(url));
 
             CardType = TwitterCardType.Player;
             PlayerUrl = url;
@@ -246,9 +248,9 @@ namespace SeoTags
         public void SetPlayerInfo(string playerUrl, int playerWidth, int playerHeight, string site, string title,
             string description = null, string imageUrl = null, int? imageWidth = null, int? imageHeight = null, string imageAlt = null)
         {
-            site.EnsureNotNull(nameof(site));
-            title.EnsureNotNull(nameof(title));
-            playerUrl.EnsureNotNull(nameof(playerUrl));
+            site.EnsureNotNullOrWhiteSpace(nameof(site));
+            title.EnsureNotNullOrWhiteSpace(nameof(title));
+            playerUrl.EnsureNotNullOrWhiteSpace(nameof(playerUrl));
 
             CardType = TwitterCardType.Player;
             Site = site;
@@ -270,10 +272,10 @@ namespace SeoTags
         /// <param name="data">The data.</param>
         public void AddAdditionalInfo(string label, string data)
         {
-            label.EnsureNotNull(nameof(label));
-            data.EnsureNotNull(nameof(data));
+            label.EnsureNotNullOrWhiteSpace(nameof(label));
+            data.EnsureNotNullOrWhiteSpace(nameof(data));
 
-            AdditionalInfo ??= new Dictionary<string, string>();
+            AdditionalInfo ??= new();
             AdditionalInfo[label] = data;
         }
 
@@ -284,11 +286,13 @@ namespace SeoTags
         public void AddAdditionalInfo(Dictionary<string, string> additionalInfo)
         {
             additionalInfo.EnsureNotNull(nameof(additionalInfo));
-            additionalInfo.ForEach(p => p.Value.EnsureNotNull(nameof(additionalInfo), "Has null value"));
 
-            AdditionalInfo ??= new Dictionary<string, string>();
+            AdditionalInfo ??= new();
             foreach (var item in additionalInfo)
+            {
+                item.Value.EnsureNotNullOrWhiteSpace(nameof(item.Value));
                 AdditionalInfo[item.Key] = item.Value;
+            }
         }
 
         /// <summary>
@@ -304,8 +308,8 @@ namespace SeoTags
         public static TwitterCard CreateSummary(string title, string description, string site = null,
             string imageUrl = null, int? imageWidth = null, int? imageHeight = null, string imageAlt = null)
         {
-            title.EnsureNotNull(nameof(title));
-            description.EnsureNotNull(nameof(description));
+            title.EnsureNotNullOrWhiteSpace(nameof(title));
+            description.EnsureNotNullOrWhiteSpace(nameof(description));
 
             return new TwitterCard
             {
@@ -333,8 +337,8 @@ namespace SeoTags
         public static TwitterCard CreateSummaryLargeImage(string title, string description, string site = null,
             string imageUrl = null, int? imageWidth = null, int? imageHeight = null, string imageAlt = null)
         {
-            title.EnsureNotNull(nameof(title));
-            description.EnsureNotNull(nameof(description));
+            title.EnsureNotNullOrWhiteSpace(nameof(title));
+            description.EnsureNotNullOrWhiteSpace(nameof(description));
 
             return new TwitterCard
             {
@@ -365,9 +369,9 @@ namespace SeoTags
         public static TwitterCard CreatePlayer(string site, string title, string playerUrl, int playerWidth, int playerHeight,
             string description = null, string imageUrl = null, int? imageWidth = null, int? imageHeight = null, string imageAlt = null)
         {
-            site.EnsureNotNull(nameof(site));
-            title.EnsureNotNull(nameof(title));
-            playerUrl.EnsureNotNull(nameof(playerUrl));
+            site.EnsureNotNullOrWhiteSpace(nameof(site));
+            title.EnsureNotNullOrWhiteSpace(nameof(title));
+            playerUrl.EnsureNotNullOrWhiteSpace(nameof(playerUrl));
 
             return new TwitterCard
             {
@@ -426,35 +430,5 @@ namespace SeoTags
         <meta name="twitter:widgets:new-embed-design" content="on">
         */
         #endregion
-    }
-
-    /// <summary>
-    /// Types of twitter:card
-    /// </summary>
-    public enum TwitterCardType
-    {
-        /// <summary>
-        /// summary
-        /// </summary>
-        [Display(Name = "summary")]
-        Summary,
-
-        /// <summary>
-        /// summary_large_image
-        /// </summary>
-        [Display(Name = "summary_large_image")]
-        SummaryLargeImage,
-
-        /// <summary>
-        /// player
-        /// </summary>
-        [Display(Name = "player")]
-        Player,
-
-        /// <summary>
-        /// product
-        /// </summary>
-        [Display(Name = "product")]
-        Product,
     }
 }

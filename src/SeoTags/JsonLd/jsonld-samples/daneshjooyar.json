@@ -1,0 +1,254 @@
+{
+    "@context": "https:\/\/schema.org",
+    "@type": "Product",
+    "name": "\u0622\u0645\u0648\u0632\u0634 ASP.NET Core 5 \u062f\u0631 \u0642\u0627\u0644\u0628 \u067e\u0631\u0648\u0698\u0647 \u0628\u0632\u0631\u06af \u062a\u0627\u06a9\u0633\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u0645\u0634\u0627\u0628\u0647 \u0627\u0633\u0646\u067e",
+    "image": [
+        "https:\/\/daneshjooyar.com\/wp-content\/uploads\/2020\/08\/snap.png"
+    ],
+    "description": "\u062a\u0627\u06a9\u0633\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u060c \u06cc\u06a9 \u0633\u0631\u0641\u0635\u0644 \u06a9\u0627\u0645\u0644 \u0628\u0631\u0627\u06cc \u0639\u0632\u06cc\u0632\u0627\u0646\u06cc \u0627\u0633\u062a \u06a9\u0647 \u0645\u06cc\u062e\u0648\u0627\u0647\u0646\u062f \u0635\u0641\u0631 \u062a\u0627 \u0635\u062f \u0637\u0631\u0627\u062d\u06cc \u0648\u0628\u0633\u0627\u06cc\u062a \u0631\u0627 \u0641\u0631\u0627 \u0628\u06af\u06cc\u0631\u06cc\u0646\u062f \u0648 \u0628\u0627 \u06cc\u06a9 \u067e\u0631\u0648\u0698\u0647\u060c \u0648\u0627\u0631\u062f \u0628\u0627\u0632\u0627\u0631 \u06a9\u0627\u0631 \u0634\u0648\u0646\u062f",
+    "brand": {
+        "@type": "Brand",
+        "name": "\u062f\u0627\u0646\u0634\u062c\u0648\u06cc\u0627\u0631"
+    },
+    "category": "\u0622\u0645\u0648\u0632\u0634 ASP.NET",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 4.3300000000000000710542735760100185871124267578125,
+        "reviewCount": "6"
+    },
+    "review": {
+        "@type": "Review",
+        "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 4.3300000000000000710542735760100185871124267578125,
+            "bestRating": 5
+        },
+        "author": {
+            "@type": "Person",
+            "name": "\u0645\u06cc\u0644\u0627\u062f \u0639\u0627\u0645\u0631\u06cc"
+        }
+    },
+    "mpn": 2025,
+    "sku": "c2574048",
+    "offers": {
+        "@type": "Offer",
+        "url": "https:\/\/www.daneshjooyar.com\/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7\/",
+        "priceCurrency": "IRR",
+        "price": 8800000,
+        "availability": "https:\/\/schema.org\/InStock",
+        "seller": {
+            "@type": "Organization",
+            "name": "\u062f\u0627\u0646\u0634\u062c\u0648\u06cc\u0627\u0631"
+        },
+        "priceValidUntil": "2021-12-31"
+    }
+}
+
+
+
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Organization",
+            "@id": "https://www.daneshjooyar.com/#organization",
+            "name": "\u062f\u0627\u0646\u0634\u062c\u0648\u06cc\u0627\u0631",
+            "url": "https://www.daneshjooyar.com/",
+            "sameAs": [
+                "https://www.instagram.com/daneshjooyar/",
+                "https://www.linkedin.com/company/daneshooyar/",
+                "https://www.youtube.com/channel/UC5Hn2qKQnVlwo7vyCTMPfIQ"
+            ],
+            "logo": {
+                "@type": "ImageObject",
+                "@id": "https://www.daneshjooyar.com/#logo",
+                "inLanguage": "fa-IR",
+                "url": "https://daneshjooyar.com/wp-content/uploads/2019/02/Logo_1.png",
+                "contentUrl": "https://daneshjooyar.com/wp-content/uploads/2019/02/Logo_1.png",
+                "width": 340,
+                "height": 340,
+                "caption": "\u062f\u0627\u0646\u0634\u062c\u0648\u06cc\u0627\u0631"
+            },
+            "image": {
+                "@id": "https://www.daneshjooyar.com/#logo"
+            }
+        },
+        {
+            "@type": "WebSite",
+            "@id": "https://www.daneshjooyar.com/#website",
+            "url": "https://www.daneshjooyar.com/",
+            "name": "\u062f\u0627\u0646\u0634\u062c\u0648\u06cc\u0627\u0631",
+            "description": "\u0622\u0645\u0648\u0632\u0634 \u0628\u0631\u0646\u0627\u0645\u0647 \u0646\u0648\u06cc\u0633\u06cc",
+            "publisher": {
+                "@id": "https://www.daneshjooyar.com/#organization"
+            },
+            "potentialAction": [
+                {
+                    "@type": "SearchAction",
+                    "target": "https://www.daneshjooyar.com/?s={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            ],
+            "inLanguage": "fa-IR"
+        },
+        {
+            "@type": "ImageObject",
+            "@id": "https://www.daneshjooyar.com/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7/#primaryimage",
+            "inLanguage": "fa-IR",
+            "url": "https://daneshjooyar.com/wp-content/uploads/2020/08/snap.png",
+            "contentUrl": "https://daneshjooyar.com/wp-content/uploads/2020/08/snap.png",
+            "width": 1920,
+            "height": 1080,
+            "caption": "\u0637\u0631\u0627\u062d\u06cc \u0627\u067e\u0644\u06cc\u06a9\u06cc\u0634\u0646 \u062a\u0627\u06a9\u0633\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u0645\u0634\u0627\u0628\u0647 \u0627\u0633\u0646\u067e"
+        },
+        {
+            "@type": "WebPage",
+            "@id": "https://www.daneshjooyar.com/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7/#webpage",
+            "url": "https://www.daneshjooyar.com/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7/",
+            "name": "\u0622\u0645\u0648\u0632\u0634 ASP.NET Core 5 \u062f\u0631 \u0642\u0627\u0644\u0628 \u067e\u0631\u0648\u0698\u0647 \u0628\u0632\u0631\u06af \u062a\u0627\u06a9\u0633\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u0645\u0634\u0627\u0628\u0647 \u0627\u0633\u0646\u067e - \u062f\u0627\u0646\u0634\u062c\u0648\u06cc\u0627\u0631",
+            "isPartOf": {
+                "@id": "https://www.daneshjooyar.com/#website"
+            },
+            "primaryImageOfPage": {
+                "@id": "https://www.daneshjooyar.com/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7/#primaryimage"
+            },
+            "datePublished": "2021-06-23T19:42:25+00:00",
+            "dateModified": "2021-06-24T09:43:23+00:00",
+            "description": "\u062a\u0627\u06a9\u0633\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u060c \u06cc\u06a9 \u0633\u0631\u0641\u0635\u0644 \u06a9\u0627\u0645\u0644 \u0628\u0631\u0627\u06cc \u0639\u0632\u06cc\u0632\u0627\u0646\u06cc \u0627\u0633\u062a \u06a9\u0647 \u0645\u06cc\u062e\u0648\u0627\u0647\u0646\u062f \u0635\u0641\u0631 \u062a\u0627 \u0635\u062f \u0637\u0631\u0627\u062d\u06cc \u0648\u0628\u0633\u0627\u06cc\u062a \u0631\u0627 \u0641\u0631\u0627 \u0628\u06af\u06cc\u0631\u06cc\u0646\u062f \u0648 \u0628\u0627 \u06cc\u06a9 \u067e\u0631\u0648\u0698\u0647\u060c \u0648\u0627\u0631\u062f \u0628\u0627\u0632\u0627\u0631 \u06a9\u0627\u0631 \u0634\u0648\u0646\u062f",
+            "breadcrumb": {
+                "@id": "https://www.daneshjooyar.com/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7/#breadcrumb"
+            },
+            "inLanguage": "fa-IR",
+            "potentialAction": [
+                {
+                    "@type": "ReadAction",
+                    "target": [
+                        "https://www.daneshjooyar.com/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7/"
+                    ]
+                }
+            ]
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.daneshjooyar.com/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7/#breadcrumb",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@type": "WebPage",
+                        "@id": "https://www.daneshjooyar.com/",
+                        "url": "https://www.daneshjooyar.com/",
+                        "name": "\u0635\u0641\u062d\u0647 \u0646\u062e\u0633\u062a"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": {
+                        "@type": "WebPage",
+                        "@id": "https://www.daneshjooyar.com/category/webdesign/",
+                        "url": "https://www.daneshjooyar.com/category/webdesign/",
+                        "name": "\u0637\u0631\u0627\u062d\u06cc \u0633\u0627\u06cc\u062a"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "item": {
+                        "@type": "WebPage",
+                        "@id": "https://www.daneshjooyar.com/category/webdesign/back-end/",
+                        "url": "https://www.daneshjooyar.com/category/webdesign/back-end/",
+                        "name": "\u0628\u0631\u0646\u0627\u0645\u0647 \u0646\u0648\u06cc\u0633\u06cc \u0648\u0628"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "item": {
+                        "@type": "WebPage",
+                        "@id": "https://www.daneshjooyar.com/category/webdesign/back-end/aspnet/",
+                        "url": "https://www.daneshjooyar.com/category/webdesign/back-end/aspnet/",
+                        "name": "\u0622\u0645\u0648\u0632\u0634 ASP.NET"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "item": {
+                        "@type": "WebPage",
+                        "@id": "https://www.daneshjooyar.com/category/webdesign/back-end/aspnet/aspcore/",
+                        "url": "https://www.daneshjooyar.com/category/webdesign/back-end/aspnet/aspcore/",
+                        "name": "\u0622\u0645\u0648\u0632\u0634 Core"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 6,
+                    "item": {
+                        "@id": "https://www.daneshjooyar.com/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7/#webpage"
+                    }
+                }
+            ]
+        },
+        {
+            "@type": "Article",
+            "@id": "https://www.daneshjooyar.com/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7/#article",
+            "isPartOf": {
+                "@id": "https://www.daneshjooyar.com/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7/#webpage"
+            },
+            "author": {
+                "@id": "https://www.daneshjooyar.com/#/schema/person/ed647341df1791e40a99568e907b0531"
+            },
+            "headline": "\u0622\u0645\u0648\u0632\u0634 ASP.NET Core 5 \u062f\u0631 \u0642\u0627\u0644\u0628 \u067e\u0631\u0648\u0698\u0647 \u0628\u0632\u0631\u06af \u062a\u0627\u06a9\u0633\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u0645\u0634\u0627\u0628\u0647 \u0627\u0633\u0646\u067e",
+            "datePublished": "2021-06-23T19:42:25+00:00",
+            "dateModified": "2021-06-24T09:43:23+00:00",
+            "mainEntityOfPage": {
+                "@id": "https://www.daneshjooyar.com/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7/#webpage"
+            },
+            "commentCount": 65,
+            "publisher": {
+                "@id": "https://www.daneshjooyar.com/#organization"
+            },
+            "image": {
+                "@id": "https://www.daneshjooyar.com/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7/#primaryimage"
+            },
+            "keywords": [
+                "\u0622\u0645\u0648\u0632\u0634 \u0647\u0627\u06cc \u067e\u0631\u0648\u0698\u0647 \u0645\u062d\u0648\u0631"
+            ],
+            "articleSection": [
+                "\u0622\u0645\u0648\u0632\u0634 ASP.NET",
+                "\u0622\u0645\u0648\u0632\u0634 Core",
+                "\u0628\u0631\u0646\u0627\u0645\u0647 \u0646\u0648\u06cc\u0633\u06cc \u0648\u0628",
+                "\u062f\u06cc\u06af\u0631 \u0632\u0628\u0627\u0646 \u0647\u0627\u06cc \u0628\u0631\u0646\u0627\u0645\u0647 \u0646\u0648\u06cc\u0633\u06cc",
+                "\u0637\u0631\u0627\u062d\u06cc \u0633\u0627\u06cc\u062a"
+            ],
+            "inLanguage": "fa-IR",
+            "potentialAction": [
+                {
+                    "@type": "CommentAction",
+                    "name": "Comment",
+                    "target": [
+                        "https://www.daneshjooyar.com/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%b7%d8%b1%d8%a7%d8%ad%db%8c-%d8%b3%d8%a7%db%8c%d8%aa-%d9%88-%d8%a7%d9%be%d9%84%db%8c%da%a9%db%8c%d8%b4%d9%86-%d8%aa%d8%a7%da%a9%d8%b3%db%8c-%d8%a2%d9%86%d9%84%d8%a7/#respond"
+                    ]
+                }
+            ]
+        },
+        {
+            "@type": "Person",
+            "@id": "https://www.daneshjooyar.com/#/schema/person/ed647341df1791e40a99568e907b0531",
+            "name": "\u0645\u06cc\u0644\u0627\u062f \u0639\u0627\u0645\u0631\u06cc",
+            "image": {
+                "@type": "ImageObject",
+                "@id": "https://www.daneshjooyar.com/#personlogo",
+                "inLanguage": "fa-IR",
+                "url": "https://www.daneshjooyar.com/wp-content/uploads/2019/09/421a3cf79e0de9d2ca1b9de4174c9e77_avatar.jpg",
+                "contentUrl": "https://www.daneshjooyar.com/wp-content/uploads/2019/09/421a3cf79e0de9d2ca1b9de4174c9e77_avatar.jpg",
+                "caption": "\u0645\u06cc\u0644\u0627\u062f \u0639\u0627\u0645\u0631\u06cc"
+            },
+            "sameAs": [
+                "http://www.pumkin.ir"
+            ]
+        }
+    ]
+}

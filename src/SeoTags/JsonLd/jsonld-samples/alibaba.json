@@ -1,0 +1,29 @@
+{
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "Alibaba Travels Co.",
+    "alternateName": "سفرهای علی بابا",
+    "url": "https://www.alibaba.ir",
+    "logo": "https://www.alibaba.ir/icon.png",
+    "contactPoint": [
+        {
+            "@type": "ContactPoint",
+            "telephone": "+982143900000",
+            "contactType": "customer service",
+            "areaServed": "IR",
+            "availableLanguage": "Persian"
+        },
+        {
+            "@type": "ContactPoint",
+            "telephone": "+982124580000",
+            "contactType": "sales",
+            "areaServed": "IR",
+            "availableLanguage": "Persian"
+        }
+    ],
+    "sameAs": [
+        "https://twitter.com/AlibabaIR",
+        "https://www.instagram.com/alibabaticket/",
+        "https://www.linkedin.com/company/alibaba-ir/"
+    ]
+}
