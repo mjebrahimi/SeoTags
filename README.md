@@ -2,11 +2,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://github.com/mjebrahimi/SeoTags/workflows/.NET%20Core/badge.svg)](https://github.com/mjebrahimi/SeoTags)
 
-
 # SeoTags
 SeoTags Create **all SEO tags** you need such as **meta**, **link**, **twitter card** (twitter:), **open graph** (og:), and **JSON-LD** schema (structred data).
 
 ## How to use
+
+See https://mjebrahimi.github.io/SeoTags/ for more info.
 
 ### 1. Install Package
 
@@ -15,6 +16,18 @@ PM> Install-Package SeoTags
 ```
 
 ### 2. Add Services and Configure
+
+Everything you need to do is configuring `SeoInfo` object  and render this in your _Layout.cshtml.
+
+This configuring can be achived by set properties of SeoInfo object in three ways:
+
+1. When register services using `services.AddSeoTags(seoInfo => { ... })` method in Startup.cs
+2. `Html.SetSeoInfo(seoInfo => { ... })`method in your views .cshtml (Mvc or RazorPages)
+3. `HttpContext.SetSeoInfo(seoInfo => { ... })` method anywhere you access to HttpContext object (for example in your Controller or PageModel)
+
+There is common options which is not page spacific like site title, site twitter id, site facebook id, open search url, feeds (Rss or Atom), and etc...
+
+Usually this values set when register services using `services.AddSeoTags(seoInfo => { ... })` method in Startup.cs.
 
 ```cs
 public void ConfigureServices(IServiceCollection services)
@@ -26,7 +39,8 @@ public void ConfigureServices(IServiceCollection services)
             siteTitle: "My Site Title", 
             siteTwitterId: "@MySiteTwitter",  //optional
             siteFacebookId: "https://facebook.com/MySite",  //optional
-            openSearchUrl: "https://site.com/open-search.xml"  //optional
+            openSearchUrl: "https://site.com/open-search.xml",  //optional
+            robots: "index, follow"  //optional
         );
 
         //optional
@@ -54,6 +68,11 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 ### 3. Place it in your _Layout.cshtml
+
+Call `Html.SeoTags()` to render seo tags.
+
+This method has two overload, one with SeoInfo argument (if you need to pass custom instance of SeoInfo object), and one without argument which retrive configured SeoInfo object from services.
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -62,16 +81,21 @@ public void ConfigureServices(IServiceCollection services)
     <!-- You don't need this anymore -->
     @*<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SeoTags.Sample</title>*@
+    <title>@ViewData["Title"] -  Site Title</title>*@
     <!-- SeoTags generates all of these for you. -->
 
     @Html.SeoTags()
 ```
 
-### 4. Configure SEO info in your view
+### 4. Set SEO info in your view
+
+Set your SEO options with calling `Html.SetSeoInfo(seoInfo => { ... })` method in your view .cshtml.
+
+You can do the same with calling `HttpContext.SetSeoInfo(seoInfo => { ... })` anywhere you access to HttpContext object (for example in your Controller or PageModel)
+
 ```csharp
 @{
-    //ViewData["Title"] = "Home Page";
+    //ViewData["Title"] = "Page Title";
 
     Html.SetSeoInfo(seoInfo =>
     {
@@ -109,6 +133,8 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 ### 5. Renderd Output
+
+The following code shows the rendered output.
 
 ```html
 <!DOCTYPE html>
@@ -179,6 +205,12 @@ public void ConfigureServices(IServiceCollection services)
 
 ...
 ```
+
+## JSON-LD
+
+SeoTags now supports popular JSON-LD types such as **Article**, **Product**, **Book**, **Organization**, **WebSite**, **WebPage**, and etc...
+
+See our docs for [Nested example](https://mjebrahimi.github.io/SeoTags/jsonld1.html) and [Referenced example](https://mjebrahimi.github.io/SeoTags/jsonld2.html).
 
 ## Note
 - This package does not generate **favicon** tags. Use [realfavicongenerator.net](https://realfavicongenerator.net/) to generate favicon tags. 
