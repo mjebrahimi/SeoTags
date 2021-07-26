@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 
 namespace SeoTags.Sample
 {
@@ -23,18 +22,22 @@ namespace SeoTags.Sample
             {
                 seoInfo.SetSiteInfo(
                     siteTitle: "My Site Title",
-                    siteTwitterId: "@MySiteTwitter",
-                    siteFacebookId: "https://facebook.com/MySite",
-                    openSearchUrl: "https://site.com/open-search.xml",
-                    robots: "index, follow");
+                    siteTwitterId: "@MySiteTwitter",  //optional
+                    siteFacebookId: "https://facebook.com/MySite",  //optional
+                    openSearchUrl: "https://site.com/open-search.xml",  //optional
+                    robots: "index, follow"  //optional
+                );
 
+                //optional
                 seoInfo.AddFeed(
                     title: "Post Feeds",
                     url: "https://site.com/rss/",
                     feedType: FeedType.Rss);
 
+                //optional
                 seoInfo.AddDnsPrefetch("https://fonts.gstatic.com/", "https://www.google-analytics.com");
 
+                //optional
                 seoInfo.AddPreload(new Preload("https://site.com/site.css"),
                     new Preload("https://site.com/app.js"),
                     new Preload("https://site.com/fonts/Font.woff2"),
@@ -42,9 +45,8 @@ namespace SeoTags.Sample
                     new Preload("https://site.com/fonts/Font_Medium.woff2"),
                     new Preload("https://site.com/fonts/Font_Bold.woff2"));
 
+                //optional
                 seoInfo.SetLocales("en_US");
-
-                //seoInfo.SetSiteInfo("My Site Name");
             });
 
             services.AddControllersWithViews();

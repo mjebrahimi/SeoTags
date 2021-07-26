@@ -1,4 +1,9 @@
-﻿namespace Microsoft.AspNetCore.Mvc.Rendering
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using SeoTags;
+using System;
+
+namespace Microsoft.AspNetCore.Mvc.Rendering
 {
     using SeoTags;
     using Microsoft.AspNetCore.Html;
@@ -119,23 +124,22 @@
     }
 }
 
-//namespace Microsoft.AspNetCore.Mvc
-//{
-//    using SeoTags;
-//    using Microsoft.AspNetCore.Html;
-//    using Microsoft.Extensions.DependencyInjection;
-//    using System;
-//    using System.Text;
-//    using Microsoft.AspNetCore.Http;
-
-//    /// <summary>
-//    /// Sets the seo information.
-//    /// </summary>
-//    /// <param name="httpContext">The http context.</param>
-//    /// <param name="config">The configuration.</param>
-//    public static void SetSeoInfo(this HttpContext httpContext, Action<SeoInfo> config)
-//    {
-//        var seoInfo = httpContext.RequestServices.GetRequiredService<SeoInfo>();
-//        config(seoInfo);
-//    }
-//}
+namespace Microsoft.AspNetCore.Mvc
+{
+    /// <summary>
+    /// HttpContext extensions for seo tags
+    /// </summary>
+    public static class HttpContextExtensions
+    {
+        /// <summary>
+        /// Sets the seo information.
+        /// </summary>
+        /// <param name="httpContext">The http context.</param>
+        /// <param name="config">The configuration.</param>
+        public static void SetSeoInfo(this HttpContext httpContext, Action<SeoInfo> config)
+        {
+            var seoInfo = httpContext.RequestServices.GetRequiredService<SeoInfo>();
+            config(seoInfo);
+        }
+    }
+}
