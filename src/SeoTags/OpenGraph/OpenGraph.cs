@@ -399,7 +399,7 @@ namespace SeoTags
         /// <param name="description">The description.</param>
         /// <param name="url">The URL.</param>
         /// <param name="seeAlsoUrls">The see also urls.</param>
-        public void SetCommonInfo(string title, string description, string url, IEnumerable<string> seeAlsoUrls = null)
+        public OpenGraph SetCommonInfo(string title, string description, string url, IEnumerable<string> seeAlsoUrls = null)
         {
             title.EnsureNotNullOrWhiteSpace(nameof(title));
             description.EnsureNotNullOrWhiteSpace(nameof(description));
@@ -411,6 +411,7 @@ namespace SeoTags
             Description = description;
             Url = url;
             SeeAlsoUrls = seeAlsoUrls?.ToList();
+            return this;
         }
 
         /// <summary>
@@ -421,7 +422,7 @@ namespace SeoTags
         /// <param name="height">The height.</param>
         /// <param name="alt">The alt.</param>
         /// <param name="mimeType">Type of the MIME.(Default: if not set, try to detect by image url file extension)</param>
-        public void SetImageInfo(string url, int? width = null, int? height = null, string alt = null, string mimeType = null)
+        public OpenGraph SetImageInfo(string url, int? width = null, int? height = null, string alt = null, string mimeType = null)
         {
             url.EnsureNotNullOrWhiteSpace(nameof(url));
 
@@ -430,6 +431,7 @@ namespace SeoTags
             ImageHeight = height;
             ImageAlt = alt;
             ImageMimeType = mimeType;
+            return this;
         }
 
         /// <summary>
@@ -441,7 +443,7 @@ namespace SeoTags
         /// <param name="tags">The tags of artile.</param>
         /// <param name="modifiedTime">The modified time of artile.</param>
         /// <param name="expirationTime">The expiration time of artile.</param>
-        public void SetArticleInfo(DateTimeOffset publishTime, string author = null, string section = null, IEnumerable<string> tags = null,
+        public OpenGraph SetArticleInfo(DateTimeOffset publishTime, string author = null, string section = null, IEnumerable<string> tags = null,
             DateTimeOffset? modifiedTime = null, DateTimeOffset? expirationTime = null)
         {
             tags?.EnsureNotNullItem(nameof(tags));
@@ -453,6 +455,7 @@ namespace SeoTags
             ArticleExpirationTime = expirationTime;
             ArticleSection = section;
             ArticleTags = tags?.ToList();
+            return this;
         }
 
         /// <summary>
@@ -465,7 +468,7 @@ namespace SeoTags
         /// <param name="durationSeconds">The duration seconds of video.</param>
         /// <param name="mimeType">The mime type of video. (Default: if not set, try to detect by video url file extension)</param>
         /// <param name="tags">The video tags.</param>
-        public void SetVideoInfo(string url, int? width = null, int? height = null, DateTimeOffset? releaseDate = null, int? durationSeconds = null,
+        public OpenGraph SetVideoInfo(string url, int? width = null, int? height = null, DateTimeOffset? releaseDate = null, int? durationSeconds = null,
             string mimeType = null, IEnumerable<string> tags = null)
         {
             url.EnsureNotNullOrWhiteSpace(nameof(url));
@@ -479,6 +482,7 @@ namespace SeoTags
             VideoDurationSeconds = durationSeconds;
             VideoReleaseDate = releaseDate;
             VideoTags = tags?.ToList();
+            return this;
         }
 
         /// <summary>
@@ -487,7 +491,7 @@ namespace SeoTags
         /// <param name="url">The URL.</param>
         /// <param name="mimeType">The mime type of audio. (Default: if not set, try to detect by audio url file extension)</param>
         /// <param name="creator">The creator (usually creator facebook id).</param>
-        public void SetAudioInfo(string url, string mimeType = null, string creator = null)
+        public OpenGraph SetAudioInfo(string url, string mimeType = null, string creator = null)
         {
             url.EnsureNotNullOrWhiteSpace(nameof(url));
 
@@ -495,6 +499,7 @@ namespace SeoTags
             AudioUrl = url;
             AudioMimeType = mimeType;
             MusicCreator = creator;
+            return this;
         }
 
         /// <summary>
@@ -504,7 +509,7 @@ namespace SeoTags
         /// <param name="isbn">The isbn of book.</param>
         /// <param name="bookReleaseDate">The book release date.</param>
         /// <param name="tags">The books tags.</param>
-        public void SetBookInfo(string author, string isbn = null, DateTimeOffset? bookReleaseDate = null, IEnumerable<string> tags = null)
+        public OpenGraph SetBookInfo(string author, string isbn = null, DateTimeOffset? bookReleaseDate = null, IEnumerable<string> tags = null)
         {
             author.EnsureNotNullOrWhiteSpace(author);
             tags?.EnsureNotNullItem(nameof(tags));
@@ -514,6 +519,7 @@ namespace SeoTags
             BookISBN = isbn;
             BookReleasDate = bookReleaseDate;
             BookTags = tags?.ToList();
+            return this;
         }
 
         /// <summary>
@@ -521,12 +527,13 @@ namespace SeoTags
         /// </summary>
         /// <param name="priceAmount">The price amount.</param>
         /// <param name="priceCurrency">The price currency.</param>
-        public void SetProducInfo(int priceAmount, string priceCurrency)
+        public OpenGraph SetProducInfo(int priceAmount, string priceCurrency)
         {
             priceCurrency.EnsureNotNullOrWhiteSpace(nameof(priceCurrency));
 
             ProductPriceAmount = priceAmount;
             ProductPriceCurrency = priceCurrency;
+            return this;
         }
 
         /// <summary>
@@ -534,39 +541,42 @@ namespace SeoTags
         /// </summary>
         /// <param name="locale">The locale.</param>
         /// <param name="localeAlternatives">The locale alternatives.</param>
-        public void SetLocales(string locale, string[] localeAlternatives = null)
+        public OpenGraph SetLocales(string locale, string[] localeAlternatives = null)
         {
             locale.EnsureNotNullOrWhiteSpace(nameof(locale));
             localeAlternatives?.EnsureNotNullItem(nameof(localeAlternatives));
 
             Locale = locale;
             LocaleAlternatives = localeAlternatives?.ToList();
+            return this;
         }
 
         /// <summary>
         /// Adds the see also urls.
         /// </summary>
         /// <param name="seeAlsoUrls">The see also urls.</param>
-        public void AddSeeAlsoUrls(params string[] seeAlsoUrls)
+        public OpenGraph AddSeeAlsoUrls(params string[] seeAlsoUrls)
         {
             seeAlsoUrls.EnsureNotNullAndNotNullItem(nameof(seeAlsoUrls));
 
             SeeAlsoUrls ??= new();
             foreach (var item in seeAlsoUrls)
                 SeeAlsoUrls.Add(item);
+            return this;
         }
 
         /// <summary>
         /// Adds the see also urls.
         /// </summary>
         /// <param name="seeAlsoUrls">The see also urls.</param>
-        public void AddSeeAlsoUrls(IEnumerable<string> seeAlsoUrls)
+        public OpenGraph AddSeeAlsoUrls(IEnumerable<string> seeAlsoUrls)
         {
             seeAlsoUrls.EnsureNotNullAndNotNullItem(nameof(seeAlsoUrls));
 
             SeeAlsoUrls ??= new();
             foreach (var item in seeAlsoUrls)
                 SeeAlsoUrls.Add(item);
+            return this;
         }
         #endregion
 

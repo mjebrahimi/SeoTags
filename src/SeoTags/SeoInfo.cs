@@ -52,7 +52,7 @@ namespace SeoTags
         /// <param name="siteFacebookId">The site facebook id.</param>
         /// <param name="openSearchUrl">The open search URL.</param>
         /// <param name="robots">The robots meta tag.</param>
-        public void SetSiteInfo(string siteTitle, string siteTwitterId = null, string siteFacebookId = null, string openSearchUrl = null, string robots = null)
+        public SeoInfo SetSiteInfo(string siteTitle, string siteTwitterId = null, string siteFacebookId = null, string openSearchUrl = null, string robots = null)
         {
             siteTitle.EnsureNotNullOrWhiteSpace(nameof(siteTitle));
 
@@ -65,6 +65,7 @@ namespace SeoTags
 
             OpenGraph.SiteName = siteTitle;
             OpenGraph.ArticlePublisher = siteFacebookId;
+            return this;
         }
 
         /// <summary>
@@ -72,18 +73,20 @@ namespace SeoTags
         /// </summary>
         /// <param name="title">The title.</param>
         /// <param name="url">The URL.</param>
-        public void SetOpenSearch(string title, string url)
+        public SeoInfo SetOpenSearch(string title, string url)
         {
             MetaLink.SetOpenSearch(title, url);
+            return this;
         }
 
         /// <summary>
         /// Sets the title format.
         /// </summary>
         /// <param name="titleFormat">The title format.</param>
-        public void SetTitleFormat(string titleFormat = "{0} - {1}")
+        public SeoInfo SetTitleFormat(string titleFormat = "{0} - {1}")
         {
             MetaLink.SetTitleFormat(titleFormat);
+            return this;
         }
 
         /// <summary>
@@ -91,9 +94,10 @@ namespace SeoTags
         /// </summary>
         /// <param name="locale">The locale.</param>
         /// <param name="localeAlternatives">The locale alternatives.</param>
-        public void SetLocales(string locale, string[] localeAlternatives = null)
+        public SeoInfo SetLocales(string locale, string[] localeAlternatives = null)
         {
             OpenGraph.SetLocales(locale, localeAlternatives);
+            return this;
         }
 
         /// <summary>
@@ -101,9 +105,10 @@ namespace SeoTags
         /// </summary>
         /// <param name="prevUrl">The previous URL.</param>
         /// <param name="nextUrl">The next URL.</param>
-        public void SetPagingInfo(string prevUrl, string nextUrl)
+        public SeoInfo SetPagingInfo(string prevUrl, string nextUrl)
         {
             MetaLink.SetPagingInfo(prevUrl, nextUrl);
+            return this;
         }
 
         /// <summary>
@@ -114,13 +119,14 @@ namespace SeoTags
         /// <param name="url">The URL.</param>
         /// <param name="keywordTags">The keyword tags.</param>
         /// <param name="seeAlsoUrls">The see also urls.</param>
-        public void SetCommonInfo(string pageTitle, string description, string url, IEnumerable<string> keywordTags, IEnumerable<string> seeAlsoUrls = null)
+        public SeoInfo SetCommonInfo(string pageTitle, string description, string url, IEnumerable<string> keywordTags, IEnumerable<string> seeAlsoUrls = null)
         {
             MetaLink.SetCommonInfo(pageTitle, description, url, keywordTags);
 
             TwitterCard.SetCommonInfo(pageTitle, description);
 
             OpenGraph.SetCommonInfo(pageTitle, description, url, seeAlsoUrls);
+            return this;
         }
 
         /// <summary>
@@ -132,7 +138,7 @@ namespace SeoTags
         /// <param name="alt">Alt of the image.</param>
         /// <param name="mimeType">Type of the MIME.</param>
         /// <param name="cardType">Type of the card.</param>
-        public void SetImageInfo(string url, int? width = null, int? height = null, string alt = null, string mimeType = null,
+        public SeoInfo SetImageInfo(string url, int? width = null, int? height = null, string alt = null, string mimeType = null,
             TwitterCardType cardType = TwitterCardType.SummaryLargeImage)
         {
             MetaLink.Preloads.Add(new Preload(url, mimeType, PreloadType.Image));
@@ -140,6 +146,7 @@ namespace SeoTags
             TwitterCard.SetImageInfo(url, width, height, alt, cardType);
 
             OpenGraph.SetImageInfo(url, width, height, alt, mimeType);
+            return this;
         }
 
         /// <summary>
@@ -152,7 +159,7 @@ namespace SeoTags
         /// <param name="authorFacebookId">The facebook id of author.</param>
         /// <param name="authorUrl">A url/link of author.</param>
         /// <param name="section">The section of artile (a high-level topic).</param>
-        public void SetArticleInfo(string authorName, DateTimeOffset publishDate, DateTimeOffset? modifiedDate = null,
+        public SeoInfo SetArticleInfo(string authorName, DateTimeOffset publishDate, DateTimeOffset? modifiedDate = null,
             string authorTwitterId = null, string authorFacebookId = null, string authorUrl = null, string section = null)
         {
             MetaLink.SetAuthorInfo(authorName, authorUrl);
@@ -160,6 +167,7 @@ namespace SeoTags
             TwitterCard.Creator = authorTwitterId;
 
             OpenGraph.SetArticleInfo(publishDate, authorFacebookId, section, MetaLink.Keywords, modifiedDate);
+            return this;
         }
 
         /// <summary>
@@ -171,9 +179,10 @@ namespace SeoTags
         /// <param name="releaseDate">The release date of video.</param>
         /// <param name="durationSeconds">The duration seconds of video.</param>
         /// <param name="mimeType">The mime type of video.</param>
-        public void SetVideoInfo(string url, int? width = null, int? height = null, DateTimeOffset? releaseDate = null, int? durationSeconds = null, string mimeType = null)
+        public SeoInfo SetVideoInfo(string url, int? width = null, int? height = null, DateTimeOffset? releaseDate = null, int? durationSeconds = null, string mimeType = null)
         {
             OpenGraph.SetVideoInfo(url, width, height, releaseDate, durationSeconds, mimeType, MetaLink.Keywords);
+            return this;
         }
 
         /// <summary>
@@ -182,9 +191,10 @@ namespace SeoTags
         /// <param name="url">The URL.</param>
         /// <param name="mimeType">The mime type.</param>
         /// <param name="creatorFacebookId">The creator (usually creator facebook id).</param>
-        public void SetAudioInfo(string url, string mimeType = null, string creatorFacebookId = null)
+        public SeoInfo SetAudioInfo(string url, string mimeType = null, string creatorFacebookId = null)
         {
             OpenGraph.SetAudioInfo(url, mimeType, creatorFacebookId);
+            return this;
         }
 
         /// <summary>
@@ -193,9 +203,10 @@ namespace SeoTags
         /// <param name="authorFacebookId">The author (usually author facebook id).</param>
         /// <param name="isbn">The isbn of book.</param>
         /// <param name="bookReleaseDate">The book release date.</param>
-        public void SetBookInfo(string authorFacebookId, string isbn = null, DateTimeOffset? bookReleaseDate = null)
+        public SeoInfo SetBookInfo(string authorFacebookId, string isbn = null, DateTimeOffset? bookReleaseDate = null)
         {
             OpenGraph.SetBookInfo(authorFacebookId, isbn, bookReleaseDate, MetaLink.Keywords);
+            return this;
         }
 
         /// <summary>
@@ -204,45 +215,50 @@ namespace SeoTags
         /// <param name="title">The title.</param>
         /// <param name="url">The URL.</param>
         /// <param name="feedType">Type of the feed.</param>
-        public void AddFeed(string title, string url, FeedType feedType)
+        public SeoInfo AddFeed(string title, string url, FeedType feedType)
         {
             MetaLink.AddFeed(title, url, feedType);
+            return this;
         }
 
         /// <summary>
         /// Adds the feed.
         /// </summary>
         /// <param name="feeds">The feeds.</param>
-        public void AddFeed(params Feed[] feeds)
+        public SeoInfo AddFeed(params Feed[] feeds)
         {
             MetaLink.AddFeed(feeds);
+            return this;
         }
 
         /// <summary>
         /// Adds the feed.
         /// </summary>
         /// <param name="feeds">The feeds.</param>
-        public void AddFeed(IEnumerable<Feed> feeds)
+        public SeoInfo AddFeed(IEnumerable<Feed> feeds)
         {
             MetaLink.AddFeed(feeds);
+            return this;
         }
 
         /// <summary>
         /// Adds the DNS prefetch.
         /// </summary>
         /// <param name="dnsPrefetchUrls">The DNS prefetch urls.</param>
-        public void AddDnsPrefetch(params string[] dnsPrefetchUrls)
+        public SeoInfo AddDnsPrefetch(params string[] dnsPrefetchUrls)
         {
             MetaLink.AddDnsPrefetch(dnsPrefetchUrls);
+            return this;
         }
 
         /// <summary>
         /// Adds the DNS prefetch.
         /// </summary>
         /// <param name="dnsPrefetchUrls">The DNS prefetch urls.</param>
-        public void AddDnsPrefetch(IEnumerable<string> dnsPrefetchUrls)
+        public SeoInfo AddDnsPrefetch(IEnumerable<string> dnsPrefetchUrls)
         {
             MetaLink.AddDnsPrefetch(dnsPrefetchUrls);
+            return this;
         }
 
         /// <summary>
@@ -251,27 +267,30 @@ namespace SeoTags
         /// <param name="url">The URL of preload for href attribute.</param>
         /// <param name="mimeType">MimeType for the type attribute.</param>
         /// <param name="as">The as attrubite.</param>
-        public void AddPreload(string url, string mimeType = null, PreloadType? @as = null)
+        public SeoInfo AddPreload(string url, string mimeType = null, PreloadType? @as = null)
         {
             MetaLink.AddPreload(url, mimeType, @as);
+            return this;
         }
 
         /// <summary>
         /// Adds the preload.
         /// </summary>
         /// <param name="preloads">The preloads.</param>
-        public void AddPreload(params Preload[] preloads)
+        public SeoInfo AddPreload(params Preload[] preloads)
         {
             MetaLink.AddPreload(preloads);
+            return this;
         }
 
         /// <summary>
         /// Adds the preload.
         /// </summary>
         /// <param name="preloads">The preloads.</param>
-        public void AddPreload(IEnumerable<Preload> preloads)
+        public SeoInfo AddPreload(IEnumerable<Preload> preloads)
         {
             MetaLink.AddPreload(preloads);
+            return this;
         }
 
         /// <summary>
@@ -279,36 +298,40 @@ namespace SeoTags
         /// </summary>
         /// <param name="label">The label.</param>
         /// <param name="data">The data.</param>
-        public void AddAdditionalInfo(string label, string data)
+        public SeoInfo AddAdditionalInfo(string label, string data)
         {
             TwitterCard.AddAdditionalInfo(label, data);
+            return this;
         }
 
         /// <summary>
         /// Adds the additional information.
         /// </summary>
         /// <param name="additionalInfo">The additional information.</param>
-        public void AddAdditionalInfo(Dictionary<string, string> additionalInfo)
+        public SeoInfo AddAdditionalInfo(Dictionary<string, string> additionalInfo)
         {
             TwitterCard.AddAdditionalInfo(additionalInfo);
+            return this;
         }
 
         /// <summary>
         /// Adds the see also urls.
         /// </summary>
         /// <param name="seeAlsoUrls">The see also urls.</param>
-        public void AddSeeAlsoUrls(params string[] seeAlsoUrls)
+        public SeoInfo AddSeeAlsoUrls(params string[] seeAlsoUrls)
         {
             OpenGraph.AddSeeAlsoUrls(seeAlsoUrls);
+            return this;
         }
 
         /// <summary>
         /// Adds the see also urls.
         /// </summary>
         /// <param name="seeAlsoUrls">The see also urls.</param>
-        public void AddSeeAlsoUrls(IEnumerable<string> seeAlsoUrls)
+        public SeoInfo AddSeeAlsoUrls(IEnumerable<string> seeAlsoUrls)
         {
             OpenGraph.AddSeeAlsoUrls(seeAlsoUrls);
+            return this;
         }
         #endregion
 

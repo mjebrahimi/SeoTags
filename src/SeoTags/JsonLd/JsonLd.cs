@@ -103,100 +103,111 @@ namespace SeoTags
         /// Adds the product.
         /// </summary>
         /// <param name="productInfo">The product information.</param>
-        public void AddProduct(ProductInfo productInfo)
+        public JsonLd AddProduct(ProductInfo productInfo)
         {
             Add(productInfo);
+            return this;
         }
 
         /// <summary>
         /// Adds the article.
         /// </summary>
         /// <param name="articleInfo">The article information.</param>
-        public void AddArticle(ArticleInfo articleInfo)
+        public JsonLd AddArticle(ArticleInfo articleInfo)
         {
             Add(articleInfo);
+            return this;
         }
 
         /// <summary>
         /// Adds the event.
         /// </summary>
         /// <param name="eventInfo">The event information.</param>
-        public void AddEvent(EventInfo eventInfo)
+        public JsonLd AddEvent(EventInfo eventInfo)
         {
             Add(eventInfo);
+            return this;
         }
 
         /// <summary>
         /// Adds the page.
         /// </summary>
         /// <param name="pageInfo">The page information.</param>
-        public void AddPage(PageInfo pageInfo)
+        public JsonLd AddPage(PageInfo pageInfo)
         {
             Add(pageInfo);
+            return this;
         }
 
         /// <summary>
         /// Adds the organization.
         /// </summary>
         /// <param name="organizationInfo">The organization information.</param>
-        public void AddOrganization(OrganizationInfo organizationInfo)
+        public JsonLd AddOrganization(OrganizationInfo organizationInfo)
         {
             Add(organizationInfo);
+            return this;
         }
 
         /// <summary>
         /// Adds the webiste.
         /// </summary>
         /// <param name="webSiteInfo">The web site information.</param>
-        public void AddWebiste(WebSiteInfo webSiteInfo)
+        public JsonLd AddWebiste(WebSiteInfo webSiteInfo)
         {
             Add(webSiteInfo);
+            return this;
         }
 
         /// <summary>
         /// Adds the breadcrumb.
         /// </summary>
         /// <param name="breadcrumbInfo">The breadcrumb information.</param>
-        public void AddBreadcrumb(BreadcrumbInfo breadcrumbInfo)
+        public JsonLd AddBreadcrumb(BreadcrumbInfo breadcrumbInfo)
         {
             Add(breadcrumbInfo);
+            return this;
         }
 
         /// <summary>
         /// Adds the image.
         /// </summary>
         /// <param name="imageInfo">The image information.</param>
-        public void AddImage(ImageInfo imageInfo)
+        public JsonLd AddImage(ImageInfo imageInfo)
         {
             Add(imageInfo);
+            return this;
         }
 
         /// <summary>
         /// Adds the person information.
         /// </summary>
         /// <param name="personInfo">The person information.</param>
-        public void AddPerson(PersonInfo personInfo)
+        public JsonLd AddPerson(PersonInfo personInfo)
         {
             Add(personInfo);
+            return this;
         }
 
         /// <summary>
         /// Adds the review information.
         /// </summary>
         /// <param name="reviewInfo">The review information.</param>
-        public void AddReview(ReviewInfo reviewInfo)
+        public JsonLd AddReview(ReviewInfo reviewInfo)
         {
             Add(reviewInfo);
+            return this;
         }
 
         /// <summary>
         /// Adds the specified thing information.
         /// </summary>
         /// <param name="thingInfo">The thing information.</param>
-        public void Add(IThingInfo thingInfo)
+        public JsonLd Add(IThingInfo thingInfo)
         {
             Things ??= new();
             Things.Add(thingInfo.ToThing());
+            return this;
         }
 
         #region ContractResolver and JsonConverter
