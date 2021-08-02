@@ -7,26 +7,23 @@
             description: "Create all SEO tags you need such as meta, link, twitter card (twitter:), open graph (og:), and ...",
             url: "https://site.com/url/",
             keywordTags: new[] { "SEO", "AspNetCore", "MVC", "RazorPages" },
-            seeAlsoUrls: new[] { "https://site.com/see-also-1", "https://site.com/see-also-2" });
-
-        seoInfo.SetImageInfo(
+            seeAlsoUrls: new[] { "https://site.com/see-also-1", "https://site.com/see-also-2" })
+        .SetImageInfo(
             url: "https://site.com/uploads/image.jpg",
             width: 1280,
             height: 720,
             alt: "Image alt",
             //mimeType: "image/jpeg", //optional: detect from url file extension
-            cardType: SeoTags.TwitterCardType.SummaryLargeImage);
-
-        seoInfo.SetArticleInfo(
+            cardType: SeoTags.TwitterCardType.SummaryLargeImage)
+        .SetArticleInfo(
             authorName: "Author Name",
             publishDate: DateTimeOffset.Now,
             modifiedDate: DateTimeOffset.Now,
             authorTwitterId: "@MyTwitterId",
             authorFacebookId: "https://facebook.com/MyUserId",
             authorUrl: "https://github.com/author-profile",
-            section: "SEO");
-
-        seoInfo.AddFeed("Post Comments", "https://site.com/post/comment/rss", SeoTags.FeedType.Rss);
+            section: "SEO")
+        .AddFeed("Post Comments", "https://site.com/post/comment/rss", SeoTags.FeedType.Rss);
     });
 }
 

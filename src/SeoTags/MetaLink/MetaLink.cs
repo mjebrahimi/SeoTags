@@ -223,10 +223,11 @@ namespace SeoTags
         /// Sets the title format.
         /// </summary>
         /// <param name="titleFormat">The title format.</param>
-        public void SetTitleFormat(string titleFormat = "{0} - {1}")
+        public MetaLink SetTitleFormat(string titleFormat = "{0} - {1}")
         {
             titleFormat.EnsureNotNullOrWhiteSpace(nameof(titleFormat));
             TitleFormat = titleFormat;
+            return this;
         }
 
         /// <summary>
@@ -234,13 +235,14 @@ namespace SeoTags
         /// </summary>
         /// <param name="title">The title.</param>
         /// <param name="url">The URL.</param>
-        public void SetOpenSearch(string title, string url)
+        public MetaLink SetOpenSearch(string title, string url)
         {
             title.EnsureNotNullOrWhiteSpace(nameof(title));
             url.EnsureNotNullOrWhiteSpace(nameof(url));
 
             OpenSearchTitle = title;
             OpenSearchUrl = url;
+            return this;
         }
 
         /// <summary>
@@ -250,7 +252,7 @@ namespace SeoTags
         /// <param name="description">The description.</param>
         /// <param name="url">The URL.</param>
         /// <param name="keywords">The keyword tags.</param>
-        public void SetCommonInfo(string pageTitle, string description, string url, IEnumerable<string> keywords = null)
+        public MetaLink SetCommonInfo(string pageTitle, string description, string url, IEnumerable<string> keywords = null)
         {
             pageTitle.EnsureNotNullOrWhiteSpace(nameof(pageTitle));
             description.EnsureNotNullOrWhiteSpace(nameof(description));
@@ -261,6 +263,7 @@ namespace SeoTags
             Description = description;
             CanonicalUrl = url;
             Keywords = keywords?.ToList();
+            return this;
         }
 
         /// <summary>
@@ -268,10 +271,11 @@ namespace SeoTags
         /// </summary>
         /// <param name="authorName">Name of the author.</param>
         /// <param name="authorUrl">The author URL.</param>
-        public void SetAuthorInfo(string authorName, string authorUrl)
+        public MetaLink SetAuthorInfo(string authorName, string authorUrl)
         {
             AuthorName = authorName;
             AuthorUrl = authorUrl;
+            return this;
         }
 
         /// <summary>
@@ -279,10 +283,11 @@ namespace SeoTags
         /// </summary>
         /// <param name="prevUrl">The previous URL.</param>
         /// <param name="nextUrl">The next URL.</param>
-        public void SetPagingInfo(string prevUrl, string nextUrl)
+        public MetaLink SetPagingInfo(string prevUrl, string nextUrl)
         {
             PrevUrl = prevUrl;
             NextUrl = nextUrl;
+            return this;
         }
 
         /// <summary>
@@ -291,62 +296,67 @@ namespace SeoTags
         /// <param name="title">The title.</param>
         /// <param name="url">The URL.</param>
         /// <param name="feedType">Type of the feed.</param>
-        public void AddFeed(string title, string url, FeedType feedType)
+        public MetaLink AddFeed(string title, string url, FeedType feedType)
         {
             Feeds ??= new();
             Feeds.Add(new Feed(title, url, feedType));
+            return this;
         }
 
         /// <summary>
         /// Adds the feed.
         /// </summary>
         /// <param name="feeds">The feeds.</param>
-        public void AddFeed(params Feed[] feeds)
+        public MetaLink AddFeed(params Feed[] feeds)
         {
             feeds.EnsureNotNullAndNotNullItem(nameof(feeds));
 
             Feeds ??= new();
             foreach (var feed in feeds)
                 Feeds.Add(feed);
+            return this;
         }
 
         /// <summary>
         /// Adds the feed.
         /// </summary>
         /// <param name="feeds">The feeds.</param>
-        public void AddFeed(IEnumerable<Feed> feeds)
+        public MetaLink AddFeed(IEnumerable<Feed> feeds)
         {
             feeds.EnsureNotNullAndNotNullItem(nameof(feeds));
 
             Feeds ??= new();
             foreach (var feed in feeds)
                 Feeds.Add(feed);
+            return this;
         }
 
         /// <summary>
         /// Adds the DNS prefetch.
         /// </summary>
         /// <param name="dnsPrefetchUrls">The DNS prefetch urls.</param>
-        public void AddDnsPrefetch(params string[] dnsPrefetchUrls)
+        public MetaLink AddDnsPrefetch(params string[] dnsPrefetchUrls)
         {
             dnsPrefetchUrls.EnsureNotNullAndNotNullItem(nameof(dnsPrefetchUrls));
 
             DnsPrefetchUrls ??= new();
             foreach (var item in dnsPrefetchUrls)
                 DnsPrefetchUrls.Add(item);
+            return this;
         }
 
         /// <summary>
         /// Adds the DNS prefetch.
         /// </summary>
         /// <param name="dnsPrefetchUrls">The DNS prefetch urls.</param>
-        public void AddDnsPrefetch(IEnumerable<string> dnsPrefetchUrls)
+        public MetaLink AddDnsPrefetch(IEnumerable<string> dnsPrefetchUrls)
         {
             dnsPrefetchUrls.EnsureNotNullAndNotNullItem(nameof(dnsPrefetchUrls));
 
             DnsPrefetchUrls ??= new();
             foreach (var item in dnsPrefetchUrls)
                 DnsPrefetchUrls.Add(item);
+            return this;
         }
 
         /// <summary>
@@ -355,36 +365,39 @@ namespace SeoTags
         /// <param name="url">The URL of preload for href attribute.</param>
         /// <param name="mimeType">MimeType for the type attribute. (Default: if not set, try to detect by url file extension)</param>
         /// <param name="as">The as attrubite.</param>
-        public void AddPreload(string url, string mimeType = null, PreloadType? @as = null)
+        public MetaLink AddPreload(string url, string mimeType = null, PreloadType? @as = null)
         {
             Preloads ??= new();
             Preloads.Add(new Preload(url, mimeType, @as));
+            return this;
         }
 
         /// <summary>
         /// Adds the preload.
         /// </summary>
         /// <param name="preloads">The preloads.</param>
-        public void AddPreload(params Preload[] preloads)
+        public MetaLink AddPreload(params Preload[] preloads)
         {
             preloads.EnsureNotNullAndNotNullItem(nameof(preloads));
 
             Preloads ??= new();
             foreach (var item in preloads)
                 Preloads.Add(item);
+            return this;
         }
 
         /// <summary>
         /// Adds the preload.
         /// </summary>
         /// <param name="preloads">The preloads.</param>
-        public void AddPreload(IEnumerable<Preload> preloads)
+        public MetaLink AddPreload(IEnumerable<Preload> preloads)
         {
             preloads.EnsureNotNullAndNotNullItem(nameof(preloads));
 
             Preloads ??= new();
             foreach (var item in preloads)
                 Preloads.Add(item);
+            return this;
         }
 
         /// <summary>

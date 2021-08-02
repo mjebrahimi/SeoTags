@@ -111,12 +111,12 @@
 
     Html.SetSeoInfo(seoInfo =>
     {
-        seoInfo.JsonLd.AddOrganization(organization);
-        seoInfo.JsonLd.AddWebiste(website);
-        seoInfo.JsonLd.AddBreadcrumb(breadcrumb);
-        seoInfo.JsonLd.AddImage(image);
-        seoInfo.JsonLd.AddPerson(author);
-        seoInfo.JsonLd.AddPage(webpage);
+        seoInfo.JsonLd.AddOrganization(organization)
+        .AddWebiste(website)
+        .AddBreadcrumb(breadcrumb)
+        .AddImage(image)
+        .AddPerson(author)
+        .AddPage(webpage);
     });
 }
 

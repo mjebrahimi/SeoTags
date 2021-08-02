@@ -186,7 +186,7 @@ namespace SeoTags
         /// </summary>
         /// <param name="title">The title.</param>
         /// <param name="description">The description.</param>
-        public void SetCommonInfo(string title, string description)
+        public TwitterCard SetCommonInfo(string title, string description)
         {
             title.EnsureNotNullOrWhiteSpace(nameof(title));
             description.EnsureNotNullOrWhiteSpace(nameof(description));
@@ -194,6 +194,7 @@ namespace SeoTags
             CardType ??= TwitterCardType.Summary; //null-coalescing assign to prevent overwrite value
             Title = title;
             Description = description;
+            return this;
         }
 
         /// <summary>
@@ -204,7 +205,7 @@ namespace SeoTags
         /// <param name="height">Height of the image.</param>
         /// <param name="alt">Alt of the image.</param>
         /// <param name="cardType">Type of the card.</param>
-        public void SetImageInfo(string url, int? width = null, int? height = null, string alt = null, TwitterCardType cardType = TwitterCardType.SummaryLargeImage)
+        public TwitterCard SetImageInfo(string url, int? width = null, int? height = null, string alt = null, TwitterCardType cardType = TwitterCardType.SummaryLargeImage)
         {
             url.EnsureNotNullOrWhiteSpace(nameof(url));
             cardType.EnsureIsValid(nameof(cardType));
@@ -214,6 +215,7 @@ namespace SeoTags
             ImageWidth = width;
             ImageHeight = height;
             ImageAlt = alt;
+            return this;
         }
 
         /// <summary>
@@ -222,7 +224,7 @@ namespace SeoTags
         /// <param name="url">The URL of iframe player.</param>
         /// <param name="width">The width of video.</param>
         /// <param name="height">The height of video.</param>
-        public void SetPlayerInfo(string url, int width, int height)
+        public TwitterCard SetPlayerInfo(string url, int width, int height)
         {
             url.EnsureNotNullOrWhiteSpace(nameof(url));
 
@@ -230,6 +232,7 @@ namespace SeoTags
             PlayerUrl = url;
             PlayerWidth = width;
             PlayerHeight = height;
+            return this;
         }
 
         /// <summary>
@@ -245,7 +248,7 @@ namespace SeoTags
         /// <param name="imageWidth">Width of the image.</param>
         /// <param name="imageHeight">Height of the image.</param>
         /// <param name="imageAlt">Alt of the image.</param>
-        public void SetPlayerInfo(string playerUrl, int playerWidth, int playerHeight, string site, string title,
+        public TwitterCard SetPlayerInfo(string playerUrl, int playerWidth, int playerHeight, string site, string title,
             string description = null, string imageUrl = null, int? imageWidth = null, int? imageHeight = null, string imageAlt = null)
         {
             site.EnsureNotNullOrWhiteSpace(nameof(site));
@@ -263,6 +266,7 @@ namespace SeoTags
             ImageWidth = imageWidth;
             ImageHeight = imageHeight;
             ImageAlt = imageAlt;
+            return this;
         }
 
         /// <summary>
@@ -270,20 +274,21 @@ namespace SeoTags
         /// </summary>
         /// <param name="label">The label.</param>
         /// <param name="data">The data.</param>
-        public void AddAdditionalInfo(string label, string data)
+        public TwitterCard AddAdditionalInfo(string label, string data)
         {
             label.EnsureNotNullOrWhiteSpace(nameof(label));
             data.EnsureNotNullOrWhiteSpace(nameof(data));
 
             AdditionalInfo ??= new();
             AdditionalInfo[label] = data;
+            return this;
         }
 
         /// <summary>
         /// Adds the additional information.
         /// </summary>
         /// <param name="additionalInfo">The additional information.</param>
-        public void AddAdditionalInfo(Dictionary<string, string> additionalInfo)
+        public TwitterCard AddAdditionalInfo(Dictionary<string, string> additionalInfo)
         {
             additionalInfo.EnsureNotNull(nameof(additionalInfo));
 
@@ -293,6 +298,7 @@ namespace SeoTags
                 item.Value.EnsureNotNullOrWhiteSpace(nameof(item.Value));
                 AdditionalInfo[item.Key] = item.Value;
             }
+            return this;
         }
 
         /// <summary>
