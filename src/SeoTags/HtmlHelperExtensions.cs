@@ -121,6 +121,36 @@ namespace Microsoft.AspNetCore.Mvc.Rendering
             //Microsoft.AspNetCore.Mvc.ViewFeatures.StringHtmlContent (encode input string when writen)
             //Microsoft.AspNetCore.Mvc.Rendering.TagBuilder (html tag builder)
         }
+
+        /// <summary>
+        /// Render page title
+        /// </summary>
+        /// <param name="_">The HTML helper.</param>
+        public static string GetPageTitle(this IHtmlHelper _)
+        {
+            var seoInfo = _.ViewContext.HttpContext.RequestServices.GetRequiredService<SeoInfo>();
+            return seoInfo.MetaLink.PageTitle;
+        }
+
+        /// <summary>
+        /// Render page description
+        /// </summary>
+        /// <param name="_">The HTML helper.</param>
+        public static string GetPageDescription(this IHtmlHelper _)
+        {
+            var seoInfo = _.ViewContext.HttpContext.RequestServices.GetRequiredService<SeoInfo>();
+            return seoInfo.MetaLink.Description;
+        }
+
+        /// <summary>
+        /// Render page keywords
+        /// </summary>
+        /// <param name="_">The HTML helper.</param>
+        public static List<string> GetPageKeywords(this IHtmlHelper _)
+        {
+            var seoInfo = _.ViewContext.HttpContext.RequestServices.GetRequiredService<SeoInfo>();
+            return seoInfo.MetaLink.Keywords;
+        }
     }
 }
 
