@@ -10,6 +10,7 @@ namespace Microsoft.AspNetCore.Mvc.Rendering
     using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Text;
+    using System.Collections.Generic;
 
     /// <summary>
     /// HtmlHelper extensions for seo tags
