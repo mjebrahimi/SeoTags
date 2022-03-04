@@ -10,6 +10,7 @@ namespace Microsoft.AspNetCore.Mvc.Rendering
     using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Text;
+    using System.Collections.Generic;
 
     /// <summary>
     /// HtmlHelper extensions for seo tags
@@ -120,6 +121,36 @@ namespace Microsoft.AspNetCore.Mvc.Rendering
             //Microsoft.AspNetCore.Html.HtmlFormattableString (same as HtmlString but formattable string)
             //Microsoft.AspNetCore.Mvc.ViewFeatures.StringHtmlContent (encode input string when writen)
             //Microsoft.AspNetCore.Mvc.Rendering.TagBuilder (html tag builder)
+        }
+
+        /// <summary>
+        /// Render page title
+        /// </summary>
+        /// <param name="_">The HTML helper.</param>
+        public static string GetPageTitle(this IHtmlHelper _)
+        {
+            var seoInfo = _.ViewContext.HttpContext.RequestServices.GetRequiredService<SeoInfo>();
+            return seoInfo.MetaLink.PageTitle;
+        }
+
+        /// <summary>
+        /// Render page description
+        /// </summary>
+        /// <param name="_">The HTML helper.</param>
+        public static string GetPageDescription(this IHtmlHelper _)
+        {
+            var seoInfo = _.ViewContext.HttpContext.RequestServices.GetRequiredService<SeoInfo>();
+            return seoInfo.MetaLink.Description;
+        }
+
+        /// <summary>
+        /// Render page keywords
+        /// </summary>
+        /// <param name="_">The HTML helper.</param>
+        public static List<string> GetPageKeywords(this IHtmlHelper _)
+        {
+            var seoInfo = _.ViewContext.HttpContext.RequestServices.GetRequiredService<SeoInfo>();
+            return seoInfo.MetaLink.Keywords;
         }
     }
 }
