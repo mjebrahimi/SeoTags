@@ -150,10 +150,10 @@ namespace SeoTags
         }
 
         /// <summary>
-        /// Adds the webiste.
+        /// Adds the website.
         /// </summary>
         /// <param name="webSiteInfo">The web site information.</param>
-        public JsonLd AddWebiste(WebSiteInfo webSiteInfo)
+        public JsonLd AddWebsite(WebSiteInfo webSiteInfo)
         {
             Add(webSiteInfo);
             return this;
