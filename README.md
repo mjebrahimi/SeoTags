@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/mjebrahimi/SeoTags/workflows/.NET%20Core/badge.svg)](https://github.com/mjebrahimi/SeoTags)
 
 # SeoTags
-SeoTags Create **all SEO tags** you need such as **meta**, **link**, **twitter card** (twitter:), **open graph** (og:), and **JSON-LD** schema (structred data).
+SeoTags Creates **All SEO Tags** you need such as **meta**, **link**, **Twitter card** (twitter:), **Open Graph (for Facebook)** (og:), and **JSON-LD** schema (structured data).
 
 ## How to use
 
@@ -17,17 +17,17 @@ PM> Install-Package SeoTags
 
 ### 2. Add Services and Configure
 
-Everything you need to do is configuring `SeoInfo` object  and render this in your _Layout.cshtml.
+Everything you need to do is to configure the `SeoInfo` object and render it in your _Layout.cshtml.
 
-This configuring can be achived by set properties of SeoInfo object in three ways:
+This configuring can be achieved by setting the properties of the SeoInfo object in three ways:
 
-1. When register services using `services.AddSeoTags(seoInfo => { ... })` method in Startup.cs
+1. When registering services using `services.AddSeoTags(seoInfo => { ... })` method in Startup.cs
 2. `Html.SetSeoInfo(seoInfo => { ... })`method in your views .cshtml (Mvc or RazorPages)
-3. `HttpContext.SetSeoInfo(seoInfo => { ... })` method anywhere you access to HttpContext object (for example in your Controller or PageModel)
+3. `HttpContext.SetSeoInfo(seoInfo => { ... })` method anywhere you access the HttpContext object (for example in your Controller or PageModel)
 
-There is common options which is not page spacific like site title, site twitter id, site facebook id, open search url, feeds (Rss or Atom), and etc...
+There are common options that aren't specific to certain pages such as Title, Twitter ID, Facebook ID, OpenSearch URL, feeds (RSS or Atom), etc...
 
-Usually this values set when register services using `services.AddSeoTags(seoInfo => { ... })` method in Startup.cs.
+Usually, these values are set when registering services using `services.AddSeoTags(seoInfo => { ... })` method in Startup.cs.
 
 ```cs
 public void ConfigureServices(IServiceCollection services)
@@ -71,7 +71,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Call `Html.SeoTags()` to render seo tags.
 
-This method has two overload, one with SeoInfo argument (if you need to pass custom instance of SeoInfo object), and one without argument which retrive configured SeoInfo object from services.
+This method has two overloads, one with a SeoInfo argument (if you need to pass a custom instance of the SeoInfo object), and one without an argument that retrieves the configured SeoInfo object from services.
 
 ```html
 <!DOCTYPE html>
@@ -89,9 +89,9 @@ This method has two overload, one with SeoInfo argument (if you need to pass cus
 
 ### 4. Set SEO info in your view
 
-Set your SEO options with calling `Html.SetSeoInfo(seoInfo => { ... })` method in your view .cshtml.
+Set your SEO options by calling `Html.SetSeoInfo(seoInfo => { ... })` method in your view .cshtml.
 
-You can do the same with calling `HttpContext.SetSeoInfo(seoInfo => { ... })` anywhere you access to HttpContext object (for example in your Controller or PageModel)
+You can do the same by calling `HttpContext.SetSeoInfo(seoInfo => { ... })` anywhere you access to HttpContext object (for example in your Controller or PageModel)
 
 ```csharp
 @{
@@ -101,7 +101,7 @@ You can do the same with calling `HttpContext.SetSeoInfo(seoInfo => { ... })` an
     {
         seoInfo.SetCommonInfo(
             pageTitle: "SEO Tags for ASP.NET Core",
-            description: "Create all SEO tags you need such as meta, link, twitter card (twitter:), open graph (og:), and ...",
+            description: "SetoTags creates all SEO tags you need such as meta, link, Twitter card (twitter:), open graph (og:), and ...",
             url: "https://site.com/url/",
             keywordTags: new[] { "SEO", "AspNetCore", "MVC", "RazorPages" }, //optional
             seeAlsoUrls: new[] { "https://site.com/see-also-1", "https://site.com/see-also-2" }  //optional
@@ -112,7 +112,7 @@ You can do the same with calling `HttpContext.SetSeoInfo(seoInfo => { ... })` an
             width: 1280,  //optional
             height: 720,  //optional
             alt: "Image alt",  //optional
-            //mimeType: "image/jpeg", //optional (detects from url file extension if not set.)
+            //mimeType: "image/jpeg", //optional (detects from URL file extension if not set.)
             cardType: SeoTags.TwitterCardType.SummaryLargeImage   //optional
         );
 
@@ -126,7 +126,7 @@ You can do the same with calling `HttpContext.SetSeoInfo(seoInfo => { ... })` an
             section: "Article Topic"  //optional
         );
 
-        //Add another rss feed. (only for this page) (optional)
+        //Add another RSS feed. (only for this page) (optional)
         seoInfo.AddFeed("Post Comments", "https://site.com/post/comment/rss", SeoTags.FeedType.Rss);
     });
 }
@@ -160,7 +160,7 @@ The following code shows the rendered output.
 
 <title>SEO Tags for ASP.NET Core - My Site Title</title>
 <meta name="title" content="SEO Tags for ASP.NET Core - My Site Title" />
-<meta name="description" content="Create all SEO tags you need such as meta, link, twitter card (twitter:), open graph (og:), and ..." />
+<meta name="description" content="SetoTags Creates all SEO tags you need such as meta, link, Twitter card (twitter:), open graph (og:), and ..." />
 <meta name="keywords" content="SEO, AspNetCore, MVC, RazorPages" />
 <meta name="author" content="Author Name" />
 <link rel="author" href="https://github.com/author-profile" />
@@ -171,7 +171,7 @@ The following code shows the rendered output.
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="SEO Tags for ASP.NET Core" />
-<meta name="twitter:description" content="Create all SEO tags you need such as meta, link, twitter card (twitter:), open graph (og:), and ..." />
+<meta name="twitter:description" content="SetoTags creates all SEO tags you need such as meta, link, Twitter card (twitter:), open graph (og:), and ..." />
 <meta name="twitter:site" content="@MySiteTwitter" />
 <meta name="twitter:creator" content="@MyTwitterId" />
 <meta name="twitter:image" content="https://site.com/uploads/image.jpg" />
@@ -181,7 +181,7 @@ The following code shows the rendered output.
 
 <meta property="og:type" content="article" />
 <meta property="og:title" content="SEO Tags for ASP.NET Core" />
-<meta property="og:description" content="Create all SEO tags you need such as meta, link, twitter card (twitter:), open graph (og:), and ..." />
+<meta property="og:description" content="SetoTags creates all SEO tags you need such as meta, link, Twitter card (twitter:), open graph (og:), and ..." />
 <meta property="og:url" content="https://site.com/url/" />
 <meta property="og:site_name" content="My Site Title" />
 <meta property="og:locale" content="en_US" />
@@ -214,7 +214,7 @@ See our docs for [Nested example](https://mjebrahimi.github.io/SeoTags/jsonld1.h
 
 ## Note
 - This package does not generate **favicon** tags. Use [realfavicongenerator.net](https://realfavicongenerator.net/) to generate favicon tags. 
-- Generation of **JSON-LD** is in progress and not yet available .
+- **Only ASP.NET Core is supported** (not the legacy ASP.NET Framework)
 
 ## Contributing
 
