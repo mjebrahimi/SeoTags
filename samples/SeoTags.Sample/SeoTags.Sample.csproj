@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SeoTags\SeoTags.csproj" />
+    <ProjectReference Include="..\..\src\SeoTags\SeoTags.csproj" />
   </ItemGroup>
 
 </Project>

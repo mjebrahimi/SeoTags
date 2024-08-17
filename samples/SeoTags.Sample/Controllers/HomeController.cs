@@ -8,7 +8,7 @@ namespace SeoTags.Sample.Controllers
         {
             //HttpContext.SetSeoInfo(seoInfo =>
             //{
-            //    //Set seo info
+            //    //Set SEO info
             //});
             return View();
         }
