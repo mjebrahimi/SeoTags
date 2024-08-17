@@ -1,3 +1,4 @@
+[![NuGet](https://img.shields.io/nuget/dt/SeoTags?style=flat&logo=nuget&cacheSeconds=1&label=Downloads)](https://www.nuget.org/packages/SeoTags)
 [![NuGet](https://img.shields.io/nuget/v/SeoTags.svg)](https://www.nuget.org/packages/SeoTags)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://github.com/mjebrahimi/SeoTags/workflows/.NET%20Core/badge.svg)](https://github.com/mjebrahimi/SeoTags)
@@ -232,4 +233,4 @@ If you find this repository useful, please give it a star. Thanks!
 
 ## License
 
-SeoTags is Copyright © 2021 [Mohammd Javad Ebrahimi](https://github.com/mjebrahimi) under the [MIT License](https://github.com/mjebrahimi/SeoTags/LICENSE).
+Copyright © 2021 [Mohammd Javad Ebrahimi](https://github.com/mjebrahimi) under the [MIT License](https://github.com/mjebrahimi/SeoTags/LICENSE).
