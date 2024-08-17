@@ -10,7 +10,7 @@ namespace SeoTags
     /// </summary>
     public class MetaLink
     {
-        #region Properties      
+        #region Properties
         /// <summary>
         /// Gets or sets the charset meta tag. (default: "utf-8")
         /// </summary>
@@ -436,6 +436,7 @@ namespace SeoTags
             {
                 string s when s.Equals("text/css") => PreloadType.Style,
                 string s when s.Equals("application/javascript") => PreloadType.Script,
+                string s when s.Equals("text/javascript") => PreloadType.Script,
                 string s when s.StartsWith("image/") => PreloadType.Image,
                 string s when s.Contains("font") => PreloadType.Font,
                 string s when s.StartsWith("video/") => PreloadType.Video,
@@ -459,10 +460,10 @@ namespace SeoTags
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
         https://stackoverflow.com/questions/22059060/is-it-still-valid-to-use-ie-edge-chrome-1
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 
-        <meta http-equiv="Content-Language" content="fa-IR" /> (deprecated) https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta 
+        <meta http-equiv="Content-Language" content="fa-IR" /> (deprecated) https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
         <meta name="language" content="fa-IR" /> (it seems is not valid)
 
         https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag

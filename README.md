@@ -16,87 +16,87 @@ See https://mjebrahimi.github.io/SeoTags/ for more info.
 PM> Install-Package SeoTags
 ```
 
-### 2. Add Services and Configure
+### 2. Register/Configure to your Services
 
-Everything you need to do is to configure the `SeoInfo` object and render it in your _Layout.cshtml.
+Everything you need to do is to configure the `SeoInfo` object and render it in your `_Layout.cshtml`.
 
-This configuring can be achieved by setting the properties of the SeoInfo object in three ways:
+This configuring can be done by setting the properties of the `SeoInfo` object in **three ways**:
 
-1. When registering services using `services.AddSeoTags(seoInfo => { ... })` method in Startup.cs
-2. `Html.SetSeoInfo(seoInfo => { ... })`method in your views .cshtml (Mvc or RazorPages)
-3. `HttpContext.SetSeoInfo(seoInfo => { ... })` method anywhere you access the HttpContext object (for example in your Controller or PageModel)
+1. When **registering your services** using `services.AddSeoTags(seoInfo => { ... })` method.
+2. `Html.SetSeoInfo(seoInfo => { ... })` method in your `.cshtml` **views (Mvc or RazorPages)**
+3. `HttpContext.SetSeoInfo(seoInfo => { ... })` method anywhere you access the `HttpContext` object (for example in your mvc **Controller**/**Action** or razor-pages **PageModel**)
 
-There are common options that aren't specific to certain pages such as Title, Twitter ID, Facebook ID, OpenSearch URL, feeds (RSS or Atom), etc...
+There are general options that are constant for your entire website (not specific to a certain page), such as **Website Title**, **Twitter ID**, **Facebook ID**, **OpenSearch URL**, **feeds (RSS or Atom)**, etc...
 
-Usually, these values are set when registering services using `services.AddSeoTags(seoInfo => { ... })` method in Startup.cs.
+Usually, these values are set when registering services using `services.AddSeoTags(seoInfo => { ... })` method.
 
 ```cs
-public void ConfigureServices(IServiceCollection services)
+//Register your services
+app.Services.AddSeoTags(seoInfo =>
 {
-    //...
-    services.AddSeoTags(seoInfo =>
-    {
-        seoInfo.SetSiteInfo(
-            siteTitle: "My Site Title", 
-            siteTwitterId: "@MySiteTwitter",  //optional
-            siteFacebookId: "https://facebook.com/MySite",  //optional
-            openSearchUrl: "https://site.com/open-search.xml",  //optional
-            robots: "index, follow"  //optional
-        );
+    seoInfo.SetSiteInfo(
+        siteTitle: "My Site Title", 
+        siteTwitterId: "@MySiteTwitter",                    //Optional
+        siteFacebookId: "https://facebook.com/MySite",      //Optional
+        openSearchUrl: "https://site.com/open-search.xml",  //Optional
+        robots: "index, follow"                             //Optional
+    );
 
-        //optional
-        seoInfo.AddFeed(
-            title: "Post Feeds",
-            url: "https://site.com/rss/",
-            feedType: FeedType.Rss);
+    //Optional
+    seoInfo.AddFeed(
+        title: "Post Feeds",
+        url: "https://site.com/rss/",
+        feedType: FeedType.Rss);
 
-        //optional
-        seoInfo.AddDnsPrefetch("https://fonts.gstatic.com/", "https://www.google-analytics.com");
+    //Optional
+    seoInfo.AddDnsPrefetch("https://fonts.gstatic.com/", "https://www.google-analytics.com");
 
-        //optional
-        seoInfo.AddPreload(new Preload("https://site.com/site.css"),
-            new Preload("https://site.com/app.js"),
-            new Preload("https://site.com/fonts/Font.woff2"),
-            new Preload("https://site.com/fonts/Font_Light.woff2"),
-            new Preload("https://site.com/fonts/Font_Medium.woff2"),
-            new Preload("https://site.com/fonts/Font_Bold.woff2"));
+    //Optional
+    seoInfo.AddPreload(new Preload("https://site.com/site.css"),
+        new Preload("https://site.com/app.js"),
+        new Preload("https://site.com/fonts/Font.woff2"),
+        new Preload("https://site.com/fonts/Font_Light.woff2"),
+        new Preload("https://site.com/fonts/Font_Medium.woff2"),
+        new Preload("https://site.com/fonts/Font_Bold.woff2"));
 
-        //optional
-        seoInfo.SetLocales("en_US");
-    });
-    //...
-}
+    //Optional
+    seoInfo.SetLocales("en_US");
+});
+//...
 ```
 
-### 3. Place it in your _Layout.cshtml
+### 3. Render SEO Tags in your _Layout.cshtml
 
-Call `Html.SeoTags()` to render seo tags.
+To render the output SEO Tags call `Html.SeoTags()` method in your `_Layout.cshtml`.
 
-This method has two overloads, one with a SeoInfo argument (if you need to pass a custom instance of the SeoInfo object), and one without an argument that retrieves the configured SeoInfo object from services.
+This method has two overloads, one with a `SeoInfo` argument (if you need to pass a new arbitrary instance of the `SeoInfo` object), and one without an argument that retrieves the configured `SeoInfo` object from your previous registered services.
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <!-- You don't need this anymore -->
-    @*<meta charset="utf-8" />
+    <!-- Remove these tags from your _Layout.cshtml
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] -  Site Title</title>*@
-    <!-- SeoTags generates all of these for you. -->
+    <title>@ViewData["Title"] -  Site Title</title>
+    -->
 
-    @Html.SeoTags()
+    <!-- SeoTags generates all of these for you -->
+    @Html.SeoTags() <!-- 👈 Add this line -->
 ```
 
-### 4. Set SEO info in your view
+### 4. Set Specific SEO info in your Views/Pages
 
-Set your SEO options by calling `Html.SetSeoInfo(seoInfo => { ... })` method in your view .cshtml.
+There are some specific SEO info that you may want to set for a certain page, such as such as **Page Title**, **Page Description**, **Page Keywords**, **Page URL**, **Publish Date**, **Modified Date**, **Image Info**, **Page Type** etc...
 
-You can do the same by calling `HttpContext.SetSeoInfo(seoInfo => { ... })` anywhere you access to HttpContext object (for example in your Controller or PageModel)
+To do this, call `Html.SetSeoInfo(seoInfo => { ... })` method in your `.cshtml` views to set specific desired SEO info for that page.
+
+You can do the same by calling `HttpContext.SetSeoInfo(seoInfo => { ... })` anywhere you access to `HttpContext` object (for example in your mvc **Controller**/**Action** or razor-pages **PageModel**)
 
 ```csharp
 @{
-    //ViewData["Title"] = "Page Title";
+    // Remove these line from your views
+    // ViewData["Title"] = "Page Title";
 
     Html.SetSeoInfo(seoInfo =>
     {
@@ -104,38 +104,40 @@ You can do the same by calling `HttpContext.SetSeoInfo(seoInfo => { ... })` anyw
             pageTitle: "SEO Tags for ASP.NET Core",
             description: "SetoTags creates all SEO tags you need such as meta, link, Twitter card (twitter:), open graph (og:), and ...",
             url: "https://site.com/url/",
-            keywordTags: new[] { "SEO", "AspNetCore", "MVC", "RazorPages" }, //optional
-            seeAlsoUrls: new[] { "https://site.com/see-also-1", "https://site.com/see-also-2" }  //optional
+            keywordTags: new[] { "SEO", "AspNetCore", "MVC", "RazorPages" }, //Optional
+            seeAlsoUrls: new[] { "https://site.com/see-also-1", "https://site.com/see-also-2" }  //Optional
         );
 
         seoInfo.SetImageInfo(
             url: "https://site.com/uploads/image.jpg",
-            width: 1280,  //optional
-            height: 720,  //optional
-            alt: "Image alt",  //optional
-            //mimeType: "image/jpeg", //optional (detects from URL file extension if not set.)
-            cardType: SeoTags.TwitterCardType.SummaryLargeImage   //optional
+            width: 1280,                                        //Optional
+            height: 720,                                        //Optional
+            alt: "Image alt",                                   //Optional
+            //mimeType: "image/jpeg",                           //Optional (detects from URL file extension if not set.)
+            cardType: SeoTags.TwitterCardType.SummaryLargeImage //Optional
         );
 
         seoInfo.SetArticleInfo(
             authorName: "Author Name",
             publishDate: DateTimeOffset.Now,
-            modifiedDate: DateTimeOffset.Now,  //optional
-            authorTwitterId: "@MyTwitterId",  //optional
-            authorFacebookId: "https://facebook.com/MyUserId",  //optional
-            authorUrl: "https://github.com/author-profile",  //optional
-            section: "Article Topic"  //optional
+            modifiedDate: DateTimeOffset.Now,                   //Optional
+            authorTwitterId: "@MyTwitterId",                    //Optional
+            authorFacebookId: "https://facebook.com/MyUserId",  //Optional
+            authorUrl: "https://github.com/author-profile",     //Optional
+            section: "Article Topic"                            //Optional
         );
 
-        //Add another RSS feed. (only for this page) (optional)
+        //Add another RSS feed. (only for this page) (Optional)
         seoInfo.AddFeed("Post Comments", "https://site.com/post/comment/rss", SeoTags.FeedType.Rss);
     });
 }
 ```
 
-### 5. Renderd Output
+### 5. Done! Enjoy the Renderd Output
 
-The following code shows the rendered output.
+Open your page in a browser and view the source code.
+
+The following code shows the rendered output for this example.
 
 ```html
 <!DOCTYPE html>
@@ -207,7 +209,7 @@ The following code shows the rendered output.
 ...
 ```
 
-## JSON-LD
+## JSON-LD Support
 
 SeoTags now supports popular JSON-LD types such as **Article**, **Product**, **Book**, **Organization**, **WebSite**, **WebPage**, and etc...
 
