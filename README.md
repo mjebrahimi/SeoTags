@@ -1,7 +1,7 @@
 [![NuGet](https://img.shields.io/nuget/dt/SeoTags?style=flat&logo=nuget&cacheSeconds=1&label=Downloads)](https://www.nuget.org/packages/SeoTags)
 [![NuGet](https://img.shields.io/nuget/v/SeoTags.svg)](https://www.nuget.org/packages/SeoTags)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://github.com/mjebrahimi/SeoTags/workflows/.NET%20Core/badge.svg)](https://github.com/mjebrahimi/SeoTags)
+[![Build Status](https://github.com/mjebrahimi/SeoTags/workflows/dotnet/badge.svg)](https://github.com/mjebrahimi/SeoTags)
 
 # SeoTags
 SeoTags Creates **All SEO Tags** you need such as **meta**, **link**, **Twitter card** (twitter:), **Open Graph (for Facebook)** (og:), and **JSON-LD** schema (structured data).
