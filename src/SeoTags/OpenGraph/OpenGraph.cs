@@ -10,7 +10,7 @@ namespace SeoTags
     /// </summary>
     public class OpenGraph
     {
-        #region Properties        
+        #region Properties
         /// <summary>
         /// Gets or sets the type of card. (og:type)
         /// </summary>
@@ -44,7 +44,7 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the locale alternatives. (og:locale:alternate)
         /// </summary>
-        public List<string> LocaleAlternatives { get; set; } = new();
+        public List<string> LocaleAlternatives { get; set; } = [];
 
         /// <summary>
         /// Gets or sets the image URL. (og:image and og:image:secure_url if url starts with https:)
@@ -104,7 +104,7 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the article tags. (article:tag)
         /// </summary>
-        public List<string> ArticleTags { get; set; } = new();
+        public List<string> ArticleTags { get; set; } = [];
 
         /// <summary>
         /// Gets or sets the URL of iframe player of video. (og:video and og:video:secure_url if url starts with https:)
@@ -139,7 +139,7 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the video tags. (og:video:tag)
         /// </summary>
-        public List<string> VideoTags { get; set; } = new();
+        public List<string> VideoTags { get; set; } = [];
 
         /// <summary>
         /// Gets or sets the audio URL. (og:audio and og:audio:secure_url if url starts with https:)
@@ -174,7 +174,7 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the book tags. (book:tag)
         /// </summary>
-        public List<string> BookTags { get; set; } = new();
+        public List<string> BookTags { get; set; } = [];
 
         /// <summary>
         /// Gets or sets the product price amount. (product:price:amount and og:price:amount)
@@ -189,7 +189,7 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the see also urls. (og:see_also)
         /// </summary>
-        public List<string> SeeAlsoUrls { get; set; } = new();
+        public List<string> SeeAlsoUrls { get; set; } = [];
 
         /// <summary>
         /// Gets or sets a value indicating render date times as UTC. (default: <see langword="true"/>)
@@ -559,9 +559,8 @@ namespace SeoTags
         {
             seeAlsoUrls.EnsureNotNullAndNotNullItem(nameof(seeAlsoUrls));
 
-            SeeAlsoUrls ??= new();
-            foreach (var item in seeAlsoUrls)
-                SeeAlsoUrls.Add(item);
+            SeeAlsoUrls ??= [];
+            SeeAlsoUrls.AddRange(seeAlsoUrls);
             return this;
         }
 
@@ -573,9 +572,8 @@ namespace SeoTags
         {
             seeAlsoUrls.EnsureNotNullAndNotNullItem(nameof(seeAlsoUrls));
 
-            SeeAlsoUrls ??= new();
-            foreach (var item in seeAlsoUrls)
-                SeeAlsoUrls.Add(item);
+            SeeAlsoUrls ??= [];
+            SeeAlsoUrls.AddRange(seeAlsoUrls);
             return this;
         }
         #endregion

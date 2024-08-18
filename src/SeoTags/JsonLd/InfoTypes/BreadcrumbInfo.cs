@@ -53,7 +53,7 @@ namespace SeoTags
                 item.Name.EnsureNotNullOrWhiteSpace(nameof(item.Name));
                 item.Url.EnsureNotNullOrWhiteSpace(nameof(item.Url));
 
-                var url = item.Url.ToUri();
+                var uri = item.Url.ToUri();
                 return new ListItem
                 {
                     Position = @index + 1,
@@ -62,8 +62,8 @@ namespace SeoTags
                     //Name = item.Name,
                     Item = new WebPage
                     {
-                        Id = url.Relative("#webpage"),
-                        Url = url,
+                        Id = uri.Relative("#webpage"),
+                        Url = uri,
                         Name = item.Name,
                     }
                 };

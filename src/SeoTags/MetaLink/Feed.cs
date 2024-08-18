@@ -11,7 +11,7 @@
         /// <param name="title">The title.</param>
         /// <param name="url">The URL.</param>
         /// <param name="feedType">Type of the feed.</param>
-        public Feed(string title, string url, FeedType feedType)
+        public Feed(string title, string url, FeedType feedType = FeedType.Rss)
         {
             title.EnsureNotNullOrWhiteSpace(nameof(title));
             url.EnsureNotNullOrWhiteSpace(nameof(url));
@@ -35,6 +35,6 @@
         /// <summary>
         /// Gets or sets the type of the feed. (default: RSS)
         /// </summary>
-        public FeedType FeedType { get; set; } = FeedType.Rss;
+        public FeedType FeedType { get; set; }
     }
 }

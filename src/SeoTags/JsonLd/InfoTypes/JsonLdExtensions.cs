@@ -63,8 +63,8 @@ namespace SeoTags
 
             var bestRating = bestRatingList[0];
             var worstRating = worstRatingList[0];
-            var ratingValue = reviews.Average(p => p.RatingValue);
-            var ratingCount = reviews?.Count();
+            var ratingValue = reviews.DefaultIfEmpty().Average(p => p.RatingValue);
+            var ratingCount = reviews.Count();
 
             if (ratingValue > bestRating)
                 throw new ArgumentException("Rating value can not be grater than best rating value.");

@@ -29,10 +29,7 @@ namespace SeoTags
             };
             jsonSerializerSettings = new()
             {
-                Converters = new List<JsonConverter>
-                {
-                    new StringEnumConverter()
-                },
+                Converters = [new StringEnumConverter()],
                 ContractResolver = dateTimeOffsetToIso8601ContractResolver,
                 DefaultValueHandling = DefaultValueHandling.Ignore,
                 NullValueHandling = NullValueHandling.Ignore,
@@ -50,12 +47,12 @@ namespace SeoTags
         }
 
         /// <summary>
-        /// Gets or sets a value indicating escape non ASCII characters.
+        /// Gets or sets a value indicating escape non ASCII characters. (Default is <see langword="false"/>)
         /// </summary>
         /// <value>
         ///   <c>true</c> if escape non ASCII characters; otherwise, <c>false</c>.
         /// </value>
-        public bool EscapeNonAsciiCharacters { get; set; } = true;
+        public bool EscapeNonAsciiCharacters { get; set; } = false;
 
         /// <summary>
         /// Gets or sets a value indicating graph mode enabled.
@@ -68,7 +65,7 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the things.
         /// </summary>
-        public List<Thing> Things { get; set; } = new();
+        public List<Thing> Things { get; set; } = [];
 
         /// <summary>
         /// Renders the specified builder.
@@ -205,13 +202,13 @@ namespace SeoTags
         /// <param name="thingInfo">The thing information.</param>
         public JsonLd Add(IThingInfo thingInfo)
         {
-            Things ??= new();
+            Things ??= [];
             Things.Add(thingInfo.ToThing());
             return this;
         }
 
         #region ContractResolver and JsonConverter
-        private class DateTimeOffsetToIso8601ContractResolver : DefaultContractResolver
+        private sealed class DateTimeOffsetToIso8601ContractResolver : DefaultContractResolver
         {
             private readonly DateTimeOffsetToIso8601JsonConverter dateTimeOffsetToIso8601JsonConverter = new();
             public bool RenderDateAsUTC
@@ -228,7 +225,7 @@ namespace SeoTags
                 return jsonProperty;
             }
 
-            private class DateTimeOffsetToIso8601JsonConverter : DateTimeToIso8601DateValuesJsonConverter
+            private sealed class DateTimeOffsetToIso8601JsonConverter : DateTimeToIso8601DateValuesJsonConverter
             {
                 public bool RenderDateAsUTC { get; set; }
 

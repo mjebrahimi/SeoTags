@@ -34,12 +34,12 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the DNS prefetch urls. (create both rel='preconnect' and rel='dns-prefetch' link tags)
         /// </summary>
-        public List<string> DnsPrefetchUrls { get; set; } = new();
+        public List<string> DnsPrefetchUrls { get; set; } = [];
 
         /// <summary>
         /// Gets or sets the preloads. (create rel='preload' link tag).
         /// </summary>
-        public List<Preload> Preloads { get; set; } = new();
+        public List<Preload> Preloads { get; set; } = [];
 
         /// <summary>
         /// Gets or sets the site title. (final title generate from SiteTitle and PageTitle by TitleFormat)
@@ -64,7 +64,7 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the keywords. (create name='keywords' meta tag)
         /// </summary>
-        public List<string> Keywords { get; set; } = new();
+        public List<string> Keywords { get; set; } = [];
 
         /// <summary>
         /// Gets or sets the canonical URL. (create rel='canonical' link tag)
@@ -104,7 +104,7 @@ namespace SeoTags
         /// <summary>
         /// Gets or sets the feeds. (create application/rss+xml and application/atom+xml link tags)
         /// </summary>
-        public List<Feed> Feeds { get; set; } = new();
+        public List<Feed> Feeds { get; set; } = [];
 
         /// <summary>
         /// Gets or sets the robots meta tag.
@@ -298,7 +298,7 @@ namespace SeoTags
         /// <param name="feedType">Type of the feed.</param>
         public MetaLink AddFeed(string title, string url, FeedType feedType)
         {
-            Feeds ??= new();
+            Feeds ??= [];
             Feeds.Add(new Feed(title, url, feedType));
             return this;
         }
@@ -311,9 +311,8 @@ namespace SeoTags
         {
             feeds.EnsureNotNullAndNotNullItem(nameof(feeds));
 
-            Feeds ??= new();
-            foreach (var feed in feeds)
-                Feeds.Add(feed);
+            Feeds ??= [];
+            Feeds.AddRange(feeds);
             return this;
         }
 
@@ -325,9 +324,8 @@ namespace SeoTags
         {
             feeds.EnsureNotNullAndNotNullItem(nameof(feeds));
 
-            Feeds ??= new();
-            foreach (var feed in feeds)
-                Feeds.Add(feed);
+            Feeds ??= [];
+            Feeds.AddRange(feeds);
             return this;
         }
 
@@ -339,9 +337,8 @@ namespace SeoTags
         {
             dnsPrefetchUrls.EnsureNotNullAndNotNullItem(nameof(dnsPrefetchUrls));
 
-            DnsPrefetchUrls ??= new();
-            foreach (var item in dnsPrefetchUrls)
-                DnsPrefetchUrls.Add(item);
+            DnsPrefetchUrls ??= [];
+            DnsPrefetchUrls.AddRange(dnsPrefetchUrls);
             return this;
         }
 
@@ -353,9 +350,8 @@ namespace SeoTags
         {
             dnsPrefetchUrls.EnsureNotNullAndNotNullItem(nameof(dnsPrefetchUrls));
 
-            DnsPrefetchUrls ??= new();
-            foreach (var item in dnsPrefetchUrls)
-                DnsPrefetchUrls.Add(item);
+            DnsPrefetchUrls ??= [];
+            DnsPrefetchUrls.AddRange(dnsPrefetchUrls);
             return this;
         }
 
@@ -367,7 +363,7 @@ namespace SeoTags
         /// <param name="as">The as attrubite.</param>
         public MetaLink AddPreload(string url, string mimeType = null, PreloadType? @as = null)
         {
-            Preloads ??= new();
+            Preloads ??= [];
             Preloads.Add(new Preload(url, mimeType, @as));
             return this;
         }
@@ -380,9 +376,8 @@ namespace SeoTags
         {
             preloads.EnsureNotNullAndNotNullItem(nameof(preloads));
 
-            Preloads ??= new();
-            foreach (var item in preloads)
-                Preloads.Add(item);
+            Preloads ??= [];
+            Preloads.AddRange(preloads);
             return this;
         }
 
@@ -394,9 +389,8 @@ namespace SeoTags
         {
             preloads.EnsureNotNullAndNotNullItem(nameof(preloads));
 
-            Preloads ??= new();
-            foreach (var item in preloads)
-                Preloads.Add(item);
+            Preloads ??= [];
+            Preloads.AddRange(preloads);
             return this;
         }
 

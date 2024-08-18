@@ -77,7 +77,7 @@ namespace SeoTags
         /// &lt;meta name="twitter:label2" content="Color" /&gt;
         /// &lt;meta name="twitter:data2" content="Black" /&gt;
         /// </summary>
-        public Dictionary<string, string> AdditionalInfo { get; set; } = new();
+        public Dictionary<string, string> AdditionalInfo { get; set; } = [];
 
         ///// <summary>
         ///// Url of your page. &lt;meta name="twitter:url" content="[for example: https://site.com/page-url]" /gt;
@@ -279,7 +279,7 @@ namespace SeoTags
             label.EnsureNotNullOrWhiteSpace(nameof(label));
             data.EnsureNotNullOrWhiteSpace(nameof(data));
 
-            AdditionalInfo ??= new();
+            AdditionalInfo ??= [];
             AdditionalInfo[label] = data;
             return this;
         }
@@ -292,7 +292,7 @@ namespace SeoTags
         {
             additionalInfo.EnsureNotNull(nameof(additionalInfo));
 
-            AdditionalInfo ??= new();
+            AdditionalInfo ??= [];
             foreach (var item in additionalInfo)
             {
                 item.Value.EnsureNotNullOrWhiteSpace(nameof(item.Value));

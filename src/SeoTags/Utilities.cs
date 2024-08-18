@@ -157,7 +157,7 @@ namespace SeoTags
         //https://github.com/samuelneff/MimeTypeMap
         #endregion
 
-        private static readonly IContentTypeProvider contentTypeProvider = new FileExtensionContentTypeProvider();
+        private static readonly FileExtensionContentTypeProvider contentTypeProvider = new();
 
         /// <summary>
         /// Given a file path, determine the MIME type.
