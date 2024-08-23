@@ -4,7 +4,7 @@
 [![Build Status](https://github.com/mjebrahimi/SeoTags/workflows/.NET/badge.svg)](https://github.com/mjebrahimi/SeoTags)
 
 # SeoTags
-SeoTags Creates **All SEO Tags** you need such as **meta**, **link**, **Twitter card** (twitter:), **Open Graph (for Facebook)** (og:), and **JSON-LD** schema (structured data).
+SeoTags generates **All SEO Tags** you need such as **meta**, **link**, **Twitter card** (twitter:), **Open Graph (for Facebook)** (og:), and **JSON-LD** schema (structured data).
 
 ## How to use
 
