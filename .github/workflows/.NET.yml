@@ -18,12 +18,12 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4.1.1
+      uses: actions/checkout@v4
         
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4.0.0
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.x.x
+        dotnet-version: 9.x.x
         
     - name: Restore dependencies
       run: dotnet restore
@@ -35,7 +35,7 @@ jobs:
       run: dotnet test --configuration Release --no-build --no-restore
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v4.3.6
+      uses: actions/upload-artifact@v4
       if: failure()
       with:
         name: test-artifact
